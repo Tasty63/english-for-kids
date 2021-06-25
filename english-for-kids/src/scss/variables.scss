@@ -1,0 +1,14 @@
+@import './fonts.scss';
+
+$containerSize: 1170px;
+
+$logofont: 'Montserrat-Bold', sans-serif;
+$cardfont: 'Montserrat-Medium', sans-serif;
+$menufont: 'Roboto-Regular', sans-serif;
+
+$logoColor: linear-gradient(90deg, #ff7676 1.04%, #b8f900 44.07%, #6af0c8 65.4%, #71c2ef 96.59%);
+$cardCategoryColor: linear-gradient(94.4deg, #ffcc00 29.23%, rgba(255, 204, 0, 0.56) 76.1%);
+$trainModeColor: #ffcc00;
+$playModeColor: #2196f3;
+$menuColor: #ffe897;
+$cardWordColor: #ffc0cb;
