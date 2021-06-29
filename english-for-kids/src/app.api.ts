@@ -1,3 +1,4 @@
+import { TOGGLE_MENU } from './redux/action-constants';
 export type CardCategoryProps = {
   categories: Category[];
 };
@@ -23,4 +24,12 @@ export enum CategoryNames {
   AnimalSetB = 'Animal (set B)',
   Clothes = 'Clothes',
   Emotions = 'Emotions',
+}
+
+export type MenuState = {
+  isOpen: boolean;
+};
+
+export interface IMenuAction {
+  type: typeof TOGGLE_MENU;
 }

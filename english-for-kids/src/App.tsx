@@ -2,6 +2,7 @@ import Header from './components/header/Header';
 import CategoryList from './components/categories-list/categories-list';
 import cardCategories from './categories-data';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { reduxStore } from './redux/store';
 
 function App() {
 

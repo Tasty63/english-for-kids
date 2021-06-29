@@ -1,24 +1,17 @@
-import React from 'react';
 import './burger.scss';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMenu } from '../../../redux/actions';
+import {RootState} from '../../../redux/store';
 
 const Burger = () => {
 
-  const toggleMenu = ({target}: React.MouseEvent) => {
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
-    
-    const burger: HTMLElement | null = target.closest('.burger');
+  const dispatch = useDispatch();
+  const isOpen = useSelector((store: RootState) => store.menu.isOpen)
 
-    if (!burger) {
-      return;
-    }
-    
-    burger.classList.toggle('burger_active');
-  }
-
+ 
   return (
-      <div className="header__burger burger" onClick={toggleMenu}>
+      <div className={isOpen ? "header__burger burger burger_active" : "header__burger burger"} onClick={() => dispatch(toggleMenu())}>
         <div className="burger__line burger__line_top" />
         <div className="burger__line burger__line_mid" />
         <div className="burger__line burger__line_bottom" />
