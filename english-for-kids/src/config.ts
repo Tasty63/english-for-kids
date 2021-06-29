@@ -1,3 +1,3 @@
-export enum Config {
-  
-}
+export enum Config {}
+
+export const RegExpRemoveSpaces = /\s+/g;

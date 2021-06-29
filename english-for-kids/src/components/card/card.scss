@@ -4,12 +4,17 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  width: 290px;
-  height: 200px;
+  max-width: 30rem;
+  height: 24rem;
+  width: 100%;
   filter: drop-shadow(5px 10px 5px rgba(0, 0, 0, 0.25));
 
-  &:hover &__img {
-    transform: scale(1.1);
+  &:hover {
+    cursor: pointer;
+
+    .card__image {
+      transform: scale(1.1);
+    }
   }
 
   &:active {
@@ -21,28 +26,24 @@
     width: 100%;
     height: 100%;
     border-radius: 15px 15px 0 0;
+    overflow: hidden;
   }
 
   &__image {
     transition: all 0.4s ease;
-    object-fit: cover;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   &__footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $cardCategoryColor;
+    background: $trainModeColor;
     font-family: $cardfont;
-    padding: 13px 60px;
+    padding: 1.5rem 6rem;
     border-radius: 0 0 15px 15px;
-    font-size: 20px;
-    line-height: 24px;
-
-    &_word {
-      background: $cardWordColor;
-    }
+    font-size: 2rem;
   }
 }

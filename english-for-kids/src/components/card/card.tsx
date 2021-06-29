@@ -1,17 +1,20 @@
 import './card.scss';
 import { Category } from '../../app.api';
-import img from '../../../assets/images/coat.jpg';
+import {Link, useParams} from 'react-router-dom';
+import { RegExpRemoveSpaces } from '../../config';
 
 const CategoryCard = ( {name, image}: Category) => {
+  const nameWithoutSpaces = name.replace(RegExpRemoveSpaces,'')
+
   return (
-   <a className="card">
+   <Link to={nameWithoutSpaces} className="card">
      <div className="card__image-wrapper">
-       <img src={process.env.PUBLIC_URL + image} alt="" className="card__image" />
+       <img src={image} alt={name} className="card__image" />
      </div>
      <footer className="card__footer">
        <span className="card__name">{name}</span>
      </footer>
-   </a>
+   </Link>
   )
 }
 

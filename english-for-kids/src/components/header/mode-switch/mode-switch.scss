@@ -1,0 +1,44 @@
+@import '../../../scss/variables.scss';
+
+.mode-switch {
+  position: relative;
+  display: inline-block;
+  width: 100px;
+  height: 33px;
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $trainModeColor;
+    border-radius: 34px;
+    transition: 0.4s;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .mode-switch__slider {
+      background-color: $playModeColor;
+
+      &:before {
+        transform: translateX(66px);
+      }
+    }
+  }
+}

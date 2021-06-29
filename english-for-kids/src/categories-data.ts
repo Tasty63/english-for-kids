@@ -4,7 +4,7 @@ const categories: Category[] = [
   {
     id: '1',
     name: 'Action (set A)',
-    image: './cry.jpg',
+    image: 'images/dive.jpg',
     words: [
       {
         word: 'cry',
@@ -59,7 +59,7 @@ const categories: Category[] = [
   {
     id: '2',
     name: 'Action (set B)',
-    image: './open.jpg',
+    image: 'images/run.jpg',
     words: [
       {
         word: 'open',
@@ -114,7 +114,7 @@ const categories: Category[] = [
   {
     id: '3',
     name: 'Animal (set A)',
-    image: './cat.jpg',
+    image: 'images/chick.jpg',
     words: [
       {
         word: 'cat',
@@ -169,7 +169,7 @@ const categories: Category[] = [
   {
     id: '4',
     name: 'Animal (set B)',
-    image: '',
+    image: 'images/dolphin.jpg',
     words: [
       {
         word: 'bird',
@@ -224,7 +224,7 @@ const categories: Category[] = [
   {
     id: '5',
     name: 'Clothes',
-    image: '',
+    image: 'images/boot.jpg',
     words: [
       {
         word: 'skirt',
@@ -279,7 +279,7 @@ const categories: Category[] = [
   {
     id: '6',
     name: 'Emotions',
-    image: '',
+    image: 'images/happy.jpg',
     words: [
       {
         word: 'sad',
@@ -328,6 +328,32 @@ const categories: Category[] = [
         translation: 'смех',
         image: 'images/laugh.jpg',
         audioSrc: 'audio/laugh.mp3',
+      },
+    ],
+  },
+  {
+    id: '7',
+    name: 'Fruits',
+    image: 'images/fruits/apple.jpg',
+    words: [
+      {
+        word: 'sad',
+        translation: 'грустный',
+        image: 'images/sad.jpg',
+        audioSrc: 'audio/sad.mp3',
+      },
+    ],
+  },
+  {
+    id: '8',
+    name: 'Vetetables',
+    image: 'images/vegetables/carrot.jpg',
+    words: [
+      {
+        word: 'sad',
+        translation: 'грустный',
+        image: 'images/sad.jpg',
+        audioSrc: 'audio/sad.mp3',
       },
     ],
   },
