@@ -4,14 +4,18 @@ export type Category = {
   id: string;
   name: string;
   image: string;
-  words: Word[];
+  words: WordData[];
 };
 
-export type Word = {
+export type WordData = {
   word: string;
   translation: string;
   image: string;
   audioSrc: string;
+};
+
+export type RouteParams = {
+  name: string;
 };
 
 export enum CategoryNames {

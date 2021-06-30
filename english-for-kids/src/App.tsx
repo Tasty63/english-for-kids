@@ -1,8 +1,9 @@
 import Header from './components/header/Header';
 import CategoryList from './components/categories-list/categories-list';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { initCategories } from './redux/actions';
+import WordList from './components/word-list/word-list';
 
 function App() {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ function App() {
     <Router>
       <div className="app">
         <Header></Header>
-        <CategoryList></CategoryList>
+        <Route exact path="/" component={CategoryList} />
+        <Route exact path="/category/:name" component={WordList}/>
       </div>
     </Router>
   );
