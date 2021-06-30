@@ -1,10 +1,10 @@
 import './card.scss';
 import { Category } from '../../app.api';
 import {Link, useParams} from 'react-router-dom';
-import { RegExpRemoveSpaces } from '../../config';
+import { removeSpacesfromWord } from '../../utils/helpers';
 
 const CategoryCard = ( {name, image}: Category) => {
-  const nameWithoutSpaces = name.replace(RegExpRemoveSpaces,'')
+  const nameWithoutSpaces = removeSpacesfromWord(name);
 
   return (
    <Link to={nameWithoutSpaces} className="card">

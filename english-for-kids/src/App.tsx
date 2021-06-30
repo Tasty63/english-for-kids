@@ -1,16 +1,18 @@
 import Header from './components/header/Header';
 import CategoryList from './components/categories-list/categories-list';
-import cardCategories from './categories-data';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import { reduxStore } from './redux/store';
+import { useDispatch } from 'react-redux';
+import { initCategories } from './redux/actions';
 
 function App() {
+  const dispatch = useDispatch();
+  dispatch(initCategories());
 
   return (
     <Router>
       <div className="app">
         <Header></Header>
-        <CategoryList categories={cardCategories}></CategoryList>
+        <CategoryList></CategoryList>
       </div>
     </Router>
   );

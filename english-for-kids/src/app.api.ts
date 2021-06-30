@@ -1,7 +1,4 @@
-import { TOGGLE_MENU } from './redux/action-constants';
-export type CardCategoryProps = {
-  categories: Category[];
-};
+import { TOGGLE_MENU, INIT_CATEGORIES } from './redux/action-constants';
 
 export type Category = {
   id: string;
@@ -29,7 +26,13 @@ export enum CategoryNames {
 export type MenuState = {
   isOpen: boolean;
 };
+export type CategoriesState = {
+  list: Category[];
+};
 
 export interface IMenuAction {
   type: typeof TOGGLE_MENU;
+}
+export interface ICategoriesAction {
+  type: typeof INIT_CATEGORIES;
 }

@@ -1,9 +1,12 @@
 import './categories-list.scss';
-import { CardCategoryProps } from '../../app.api';
 import CategoryCard from '../card/card';
 import {BrowserRouter as Router, Route, Switch, Link, useParams} from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import {RootState} from '../../redux/store';
 
-const CategoryList = ({categories}: CardCategoryProps) => {
+const CategoryList = () => {
+  const categories = useSelector((state: RootState) => state.categories.list);
+
   return (
     <Router>
       <div className="category-list">

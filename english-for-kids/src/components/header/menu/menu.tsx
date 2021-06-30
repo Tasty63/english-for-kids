@@ -1,23 +1,28 @@
 import './menu.scss';
 import {RootState} from '../../../redux/store';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { removeSpacesfromWord } from '../../../utils/helpers';
 
 const Menu = () => {
- const isOpen = useSelector((store: RootState) => store.menu.isOpen)
-  // TODO: Переписать isOpen
+  const isOpen = useSelector((state: RootState) => state.menu.isOpen)
+  const className = isOpen ? "header__menu menu menu_opened" : "header__menu menu";
+  const categories = useSelector((state: RootState) => state.categories.list);
+  
   return (
-  <nav className={isOpen? "header__menu menu menu_opened" : "header__menu menu"}>
-    <ul className="menu__list">
-      <li className="menu__item"><a href="#" className="menu__link">Action (set A)</a></li>
-      <li className="menu__item"><a href="#" className="menu__link">Action (set B)</a></li>
-      <li className="menu__item"><a href="#" className="menu__link">Animal (set A)</a></li>
-      <li className="menu__item"><a href="#" className="menu__link">Animal (set B)</a></li>
-      <li className="menu__item"><a href="#" className="menu__link">Clothes</a></li>
-      <li className="menu__item"><a href="#" className="menu__link">Emotions</a></li>
-      <li className="menu__item"><a href="#" className="menu__link">Fruits</a></li>
-      <li className="menu__item"><a href="#" className="menu__link">Vegetables</a></li>
-    </ul>
-  </nav>
+    <nav className={className}>
+      <ul className="menu__list">
+        {categories.map(category => {
+            const nameWithoutSpaces = removeSpacesfromWord(category.name);
+
+              return (
+                <li className="menu__item" key={category.id}>
+                  <Link to={nameWithoutSpaces} className="menu__link">{category.name}</Link>
+                </li>
+              )
+          })}
+      </ul>
+    </nav>
   );
 }
 
