@@ -5,27 +5,20 @@
   flex-direction: column;
   text-decoration: none;
   flex-basis: calc(25% - 2rem);
+  width: 100%;
   margin-bottom: 5rem;
   height: 29rem;
-  width: 100%;
-  filter: drop-shadow(5px 10px 5px rgba(0, 0, 0, 0.25));
 
   &:hover {
     cursor: pointer;
 
-    .card__image {
-      transform: scale(1.1);
-    }
-  }
-
-  &:active {
-    color: inherit;
+    // .card__image {
+    //   transform: scale(1.1);
+    // }
   }
 
   &__image-wrapper {
     display: flex;
-    width: 100%;
-    height: 100%;
     border-radius: 15px 15px 0 0;
     overflow: hidden;
   }
@@ -46,5 +39,11 @@
     padding: 1.5rem 6rem;
     border-radius: 0 0 15px 15px;
     font-size: 2rem;
+  }
+
+  &__name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

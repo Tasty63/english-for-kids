@@ -1,7 +1,7 @@
 import './menu.scss';
 import { RootState } from '../../../redux/store';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { removeSpacesfromWord } from '../../../utils/helpers';
 
 const Menu = () => {
@@ -17,7 +17,7 @@ const Menu = () => {
 
               return (
                 <li className="menu__item" key={category.id}>
-                  <Link to={`/category/${nameWithoutSpaces}`} className="menu__link">{category.name}</Link>
+                  <NavLink to={`/category/${nameWithoutSpaces}`} className="menu__link">{category.name}</NavLink>
                 </li>
               )
           })}

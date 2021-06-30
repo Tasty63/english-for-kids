@@ -1,1 +1,34 @@
 @import '../../scss/variables.scss';
+
+.card {
+  position: relative;
+  perspective: 1000px;
+
+  &_flipped {
+    .card__front {
+      transform: rotateY(180deg);
+    }
+    .card__back {
+      transform: rotateY(360deg);
+    }
+  }
+
+  &__front {
+  }
+
+  &__back {
+    transform: rotateY(180deg);
+  }
+
+  &__front,
+  &__back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 2rem;
+    transition: transform 1s;
+  }
+}

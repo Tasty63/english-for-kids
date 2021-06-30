@@ -99,7 +99,7 @@ const categories: Category[] = [
       },
       {
         word: 'skip',
-        translation: 'пропускать, прыгать',
+        translation: 'скакать',
         image: '/images/skip.jpg',
         audioSrc: 'audio/skip.mp3',
       },
