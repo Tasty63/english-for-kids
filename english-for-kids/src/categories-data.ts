@@ -4,7 +4,7 @@ const categories: Category[] = [
   {
     id: '1',
     name: 'Action (set A)',
-    image: '/images/dive.jpg',
+    preview: '/images/dive.jpg',
     words: [
       {
         word: 'cry',
@@ -59,7 +59,7 @@ const categories: Category[] = [
   {
     id: '2',
     name: 'Action (set B)',
-    image: '/images/run.jpg',
+    preview: '/images/run.jpg',
     words: [
       {
         word: 'open',
@@ -114,7 +114,7 @@ const categories: Category[] = [
   {
     id: '3',
     name: 'Animal (set A)',
-    image: '/images/chick.jpg',
+    preview: '/images/chick.jpg',
     words: [
       {
         word: 'cat',
@@ -169,7 +169,7 @@ const categories: Category[] = [
   {
     id: '4',
     name: 'Animal (set B)',
-    image: '/images/dolphin.jpg',
+    preview: '/images/dolphin.jpg',
     words: [
       {
         word: 'bird',
@@ -224,7 +224,7 @@ const categories: Category[] = [
   {
     id: '5',
     name: 'Clothes',
-    image: '/images/boot.jpg',
+    preview: '/images/boot.jpg',
     words: [
       {
         word: 'skirt',
@@ -279,7 +279,7 @@ const categories: Category[] = [
   {
     id: '6',
     name: 'Emotions',
-    image: '/images/happy.jpg',
+    preview: '/images/happy.jpg',
     words: [
       {
         word: 'sad',
@@ -334,7 +334,7 @@ const categories: Category[] = [
   {
     id: '7',
     name: 'Fruits',
-    image: '/images/fruits/apple.jpg',
+    preview: '/images/fruits/apple.jpg',
     words: [
       {
         word: 'apple',
@@ -347,7 +347,7 @@ const categories: Category[] = [
   {
     id: '8',
     name: 'Vetetables',
-    image: '/images/vegetables/carrot.jpg',
+    preview: '/images/vegetables/carrot.jpg',
     words: [
       {
         word: 'carrot',

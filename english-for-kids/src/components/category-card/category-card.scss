@@ -4,8 +4,9 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  max-width: 30rem;
-  height: 24rem;
+  flex-basis: calc(25% - 2rem);
+  margin-bottom: 5rem;
+  height: 29rem;
   width: 100%;
   filter: drop-shadow(5px 10px 5px rgba(0, 0, 0, 0.25));
 

@@ -1,6 +1,5 @@
 .category-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
-  gap: 8rem 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }

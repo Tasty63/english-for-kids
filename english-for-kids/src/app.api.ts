@@ -3,7 +3,7 @@ import { TOGGLE_MENU, INIT_CATEGORIES } from './redux/action-constants';
 export type Category = {
   id: string;
   name: string;
-  image: string;
+  preview: string;
   words: WordData[];
 };
 
