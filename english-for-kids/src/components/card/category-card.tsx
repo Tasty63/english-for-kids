@@ -1,4 +1,4 @@
-import './category-card.scss';
+import './card.scss';
 import { Category } from '../../app.api';
 import { Link } from 'react-router-dom';
 import { removeSpacesfromWord } from '../../utils/helpers';

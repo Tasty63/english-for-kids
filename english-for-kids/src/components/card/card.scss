@@ -1,0 +1,86 @@
+@import '../../scss/variables.scss';
+
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  flex-basis: calc(25% - 2rem);
+  width: 100%;
+  margin-bottom: 5rem;
+  height: 26rem;
+  position: relative;
+  perspective: 1000px;
+  border-radius: 0 0 15px 15px;
+
+  &:hover {
+    cursor: pointer;
+
+    .card__image {
+      transform: scale(1.1);
+    }
+  }
+
+  &__image-wrapper {
+    display: flex;
+    height: 80%;
+    border-radius: 15px 15px 0 0;
+    overflow: hidden;
+  }
+
+  &__image {
+    transition: all 0.4s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $trainModeColor;
+    font-family: $cardFont;
+    height: 20%;
+    border-radius: 0 0 15px 15px;
+    font-size: 2rem;
+  }
+
+  &__flip {
+    position: absolute;
+    right: 2rem;
+    width: 2rem;
+    height: 2rem;
+    background: right / cover url('/icons/flip-icon.png');
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &_flipped {
+    .card__front {
+      transform: rotateY(180deg);
+    }
+    .card__back {
+      transform: rotateY(360deg);
+    }
+  }
+
+  &__back {
+    transform: rotateY(180deg);
+  }
+
+  &__front,
+  &__back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+    border-radius: 2rem;
+    transition: transform 1s;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+}
