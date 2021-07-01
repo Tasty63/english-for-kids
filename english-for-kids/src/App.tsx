@@ -6,9 +6,10 @@ import { initCategories } from './redux/actions';
 import WordList from './components/word-list/word-list';
 
 function App() {
+  //TODO: пофиксить навбар, добавить активность ссылкам
   const dispatch = useDispatch();
   dispatch(initCategories());
-
+  
   return (
     <Router>
       <div className="app">

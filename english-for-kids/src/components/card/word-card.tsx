@@ -1,22 +1,12 @@
 import './card.scss';
-import { WordData } from '../../app.api';
+import { WordCardProps } from '../../app.api';
 import React from 'react';
 
-const WordCard = ({ word, image, audioSrc, translation }: WordData) => {
-  //TODO:  аудио + бтн + начать плеймод(редакс)?
-
-  const flip = (event: React.MouseEvent) => {
-    if (event.target instanceof HTMLElement) {
-      event.target.closest('.card')?.classList.toggle('card_flipped');
-    }
-  }
-  const pronunciation = new Audio();
-  pronunciation.src = audioSrc;
-  console.log(audioSrc);
+const WordCard = (props: WordCardProps) => {
+  const { word, image, translation, flip, playPronunciation} = props;
   
-
   return (
-    <div className="card" onClick={() => pronunciation.play()}>
+    <div className="card" onClick={playPronunciation}>
       <div className="card__front">
         <div className="card__image-wrapper">
           <img src={image} alt={word} className="card__image" />

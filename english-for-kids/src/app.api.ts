@@ -1,4 +1,5 @@
-import { TOGGLE_MENU, INIT_CATEGORIES } from './redux/action-constants';
+import React from 'react';
+import { TOGGLE_MENU, INIT_CATEGORIES, TOGGLE_MODE } from './redux/action-constants';
 
 export type Category = {
   id: string;
@@ -14,6 +15,14 @@ export type WordData = {
   audioSrc: string;
 };
 
+export type WordCardProps = {
+  word: string;
+  image: string;
+  translation: string;
+  flip: ({ target }: React.MouseEvent) => void;
+  playPronunciation: ({ target }: React.MouseEvent) => void;
+};
+
 export type RouteParams = {
   name: string;
 };
@@ -27,11 +36,19 @@ export enum CategoryNames {
   Emotions = 'Emotions',
 }
 
+export enum Modes {
+  Train = 'Train',
+  Play = 'Play',
+}
+
 export type MenuState = {
   isOpen: boolean;
 };
 export type CategoriesState = {
   list: Category[];
+};
+export type ModeState = {
+  mode: Modes;
 };
 
 export interface IMenuAction {
@@ -39,4 +56,7 @@ export interface IMenuAction {
 }
 export interface ICategoriesAction {
   type: typeof INIT_CATEGORIES;
+}
+export interface IModeAction {
+  type: typeof TOGGLE_MODE;
 }

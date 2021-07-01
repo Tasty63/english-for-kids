@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { RouteParams} from '../../app.api';
 import { RootState } from '../../redux/store';
 import { removeSpacesfromWord } from '../../utils/helpers';
-import WordCard from '../card/word-card';
+import WordCardContainer from '../card/word-card-container';
 
 const WordList = () => {
   const { name } = useParams<RouteParams>();
@@ -13,7 +13,7 @@ const WordList = () => {
   return (
     <div className="card-list">
         {category?.words.map((wordData, index) => {
-          return <WordCard {...wordData} key={index}></WordCard>
+          return <WordCardContainer {...wordData} key={index}></WordCardContainer>
         })}
     </div>
   )
