@@ -1,8 +1,8 @@
 import './menu.scss';
-import { RootState } from '../../../redux/store';
+import { RootState } from '../../redux/store';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { removeSpacesfromWord } from '../../../utils/helpers';
+import { removeSpacesfromWord } from '../../utils/helpers';
 
 const Menu = () => {
   const isOpen = useSelector((state: RootState) => state.menu.isOpen)

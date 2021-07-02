@@ -13,8 +13,10 @@ p {
 :root {
   font-size: 10px;
 }
-
 .app {
+  height: 100vh;
+}
+.container {
   max-width: $containerSize;
   margin: 0 auto;
   padding: 0 1rem;

@@ -3,9 +3,9 @@ import { ThunkAction } from 'redux-thunk';
 import { TOGGLE_MENU, INIT_CATEGORIES, TOGGLE_MODE } from './action-constants';
 import { RootState } from './store';
 
-export const toggleMenu = (): ThunkAction<void, RootState, unknown, IMenuAction> => {
+export const toggleMenu = (target: EventTarget): ThunkAction<void, RootState, unknown, IMenuAction> => {
   return async (dispatch) => {
-    dispatch({ type: TOGGLE_MENU });
+    dispatch({ type: TOGGLE_MENU, target });
   };
 };
 

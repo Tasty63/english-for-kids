@@ -53,6 +53,7 @@ export type ModeState = {
 
 export interface IMenuAction {
   type: typeof TOGGLE_MENU;
+  target: EventTarget;
 }
 export interface ICategoriesAction {
   type: typeof INIT_CATEGORIES;
