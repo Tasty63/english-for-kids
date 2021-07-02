@@ -15,3 +15,9 @@ export const isClickOnBurger = (target: EventTarget) => {
     return !!target.closest('.burger');
   }
 };
+
+export const isClickOnLink = (target: EventTarget) => {
+  if (target instanceof HTMLElement) {
+    return !!target.closest('.menu__link');
+  }
+};

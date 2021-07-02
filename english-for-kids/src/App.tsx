@@ -7,7 +7,7 @@ import WordList from './components/word-list/word-list';
 import Menu from './components/menu/menu';
 
 function App() {
-  //TODO: закрытие меню по клику / создать кнопку игры / начать логику игры / доделать категории
+  //TODO:  / создать кнопку игры / начать логику игры / доделать категории / сделать футер/ сделать адаптив
   const dispatch = useDispatch();
   dispatch(initCategories());
   
