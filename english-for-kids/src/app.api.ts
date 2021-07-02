@@ -27,14 +27,14 @@ export type RouteParams = {
   name: string;
 };
 
-export enum CategoryNames {
-  ActionSetA = 'Action (set A)',
-  ActionSetB = 'Action (set B)',
-  AnimalSetA = 'Animal (set A)',
-  AnimalSetB = 'Animal (set B)',
-  Clothes = 'Clothes',
-  Emotions = 'Emotions',
-}
+// export enum CategoryNames {
+//   ActionSetA = 'Action (set A)',
+//   ActionSetB = 'Action (set B)',
+//   AnimalSetA = 'Animal (set A)',
+//   AnimalSetB = 'Animal (set B)',
+//   Clothes = 'Clothes',
+//   Emotions = 'Emotions',
+// }
 
 export enum Modes {
   Train = 'Train',
@@ -48,7 +48,7 @@ export type CategoriesState = {
   list: Category[];
 };
 export type ModeState = {
-  mode: Modes;
+  current: Modes;
 };
 
 export interface IMenuAction {

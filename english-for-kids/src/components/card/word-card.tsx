@@ -1,13 +1,16 @@
 import './card.scss';
-import { WordCardProps } from '../../app.api';
+import { Modes, WordCardProps } from '../../app.api';
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const WordCard = (props: WordCardProps) => {
   const { word, image, translation, flip, playPronunciation} = props;
+  const mode = useSelector((state: RootState) => state.mode.current)
   
   return (
-    <div className="card" onClick={playPronunciation}>
-      <div className="card__front">
+    <div className="card" onClick={mode === Modes.Train ? playPronunciation : undefined}>
+      <div className={mode === Modes.Train ? "card__front" : "card__front card__front_play"}>
         <div className="card__image-wrapper">
           <img src={image} alt={word} className="card__image" />
         </div>
@@ -22,7 +25,7 @@ const WordCard = (props: WordCardProps) => {
         </div>
         <footer className="card__footer">
           <span className="card__name">{translation}</span>
-        </footer>
+        </footer> 
       </div>
     </div>
   )

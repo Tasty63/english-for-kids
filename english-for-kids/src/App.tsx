@@ -6,7 +6,7 @@ import { initCategories } from './redux/actions';
 import WordList from './components/word-list/word-list';
 
 function App() {
-  //TODO: пофиксить навбар, добавить активность ссылкам
+  //TODO: закрытие меню по клику / создать кнопку игры / начать логику игры
   const dispatch = useDispatch();
   dispatch(initCategories());
   

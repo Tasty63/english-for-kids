@@ -191,7 +191,7 @@ const categories: Category[] = [
       },
       {
         word: 'giraffe',
-        translation: 'жирафа',
+        translation: 'жираф',
         image: '/images/giraffe.jpg',
         audioSrc: '/audio/giraffe.mp3',
       },
@@ -346,7 +346,7 @@ const categories: Category[] = [
   },
   {
     id: '8',
-    name: 'Vetetables',
+    name: 'Vegetables',
     preview: '/images/vegetables/carrot.jpg',
     words: [
       {

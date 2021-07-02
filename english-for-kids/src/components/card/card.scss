@@ -12,6 +12,9 @@
   perspective: 1000px;
   border-radius: 0 0 15px 15px;
 
+  &:active {
+    color: inherit;
+  }
   &:hover {
     cursor: pointer;
 
@@ -22,9 +25,10 @@
 
   &__image-wrapper {
     display: flex;
-    height: 80%;
+    flex-basis: 100%;
     border-radius: 15px 15px 0 0;
     overflow: hidden;
+    transition: all 0.5s;
   }
 
   &__image {
@@ -36,20 +40,26 @@
 
   &__footer {
     display: flex;
+    padding: 0.5rem;
     justify-content: center;
     align-items: center;
     background: $trainModeColor;
     font-family: $cardFont;
-    height: 20%;
+    flex-basis: 20%;
     border-radius: 0 0 15px 15px;
     font-size: 2rem;
+    transition: background-color 0.5s;
+
+    &_blue {
+      background: $playModeColor;
+    }
   }
 
   &__flip {
     position: absolute;
-    right: 2rem;
-    width: 2rem;
-    height: 2rem;
+    right: 3rem;
+    width: 3rem;
+    height: 3rem;
     background: right / cover url('/icons/flip-icon.png');
     transition: transform 0.3s;
 
@@ -74,13 +84,26 @@
   &__front,
   &__back {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     top: 0;
     left: 0;
     backface-visibility: hidden;
     border-radius: 2rem;
-    transition: transform 1s;
+    transition: transform 0.5s;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+
+  &__front {
+    &_play {
+      .card__footer {
+        display: none;
+      }
+      .card__image-wrapper {
+        border-radius: 15px;
+      }
+    }
   }
 }

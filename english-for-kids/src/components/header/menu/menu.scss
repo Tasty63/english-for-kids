@@ -2,14 +2,13 @@
 
 .menu {
   position: absolute;
-  font-family: $mainFont;
-  background: $menuColor;
+  box-sizing: border-box;
   top: 0;
   left: 0;
   height: 100%;
-  width: 20rem;
-  padding: 15rem 20rem;
   z-index: 2;
+  font-family: $mainFont;
+  background: $menuColor;
   transform: translateX(-100%);
   transition: transform 0.7s;
 
@@ -20,19 +19,38 @@
   &__list {
     display: flex;
     flex-direction: column;
-    padding: 0;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 10rem 0;
+    margin: 0;
   }
 
   &__item {
+    width: 100%;
     list-style: none;
-    &:not(:last-child) {
-      margin-bottom: 5rem;
-    }
+    box-sizing: border-box;
   }
 
   &__link {
+    display: block;
+    font-family: $logoFont;
     text-decoration: none;
-    padding: 1rem;
-    font-size: 2rem;
+    padding: 2rem 12rem;
+    color: $menuLinkColor;
+    font-size: 3rem;
+    text-shadow: 1px 1px 1px black;
+    -webkit-text-stroke: 1px black;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $menuColor;
+    }
+
+    &.active {
+      color: $actvieMenuLinkColor;
+    }
   }
 }

@@ -11,20 +11,28 @@ const WordCardContainer = ({word, image, audioSrc, translation}: WordData) => {
     }
   }
   
-  const playPronunciation = ({target}: React.MouseEvent) => {
+  const playPronunciation = ({target}: React.MouseEvent, pronunciationSrc: string) => {
     const pronunciation = new Audio();
-    pronunciation.src = audioSrc;
+    pronunciation.src = pronunciationSrc;
 
-    if (target instanceof HTMLElement) {
-      const isNotFlipButton = !target.classList.contains('card__flip')
-      if (isNotFlipButton) {
-        pronunciation.play()
-      }
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+    const isNotFlipButton = !target.classList.contains('card__flip');
+    
+    if (isNotFlipButton) {
+      pronunciation.play()
     }
   }
 
   return (
-   <WordCard word={word} image={image} translation={translation} flip={flip} playPronunciation={playPronunciation}></WordCard>
+   <WordCard 
+      word={word} 
+      image={image} 
+      translation={translation} 
+      flip={flip} 
+      playPronunciation={(event) => playPronunciation(event, audioSrc)} 
+   />
   )
 }
 
