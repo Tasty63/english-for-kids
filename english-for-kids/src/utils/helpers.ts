@@ -1,8 +1,6 @@
 import { RegExpRemoveSpaces } from './config';
 
-export const removeSpacesfromWord = (word: string) => {
-  return word.replace(RegExpRemoveSpaces, '');
-};
+export const removeSpacesfromWord = (word: string) => word.replace(RegExpRemoveSpaces, '');
 
 export const isClickOutsideMenu = (target: EventTarget) => {
   if (target instanceof HTMLElement) {

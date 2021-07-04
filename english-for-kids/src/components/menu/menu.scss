@@ -37,9 +37,9 @@
   &__link {
     display: block;
     font-family: $logoFont;
+    color: $menuLinkColor;
     text-decoration: none;
     padding: 2rem 12rem;
-    color: $menuLinkColor;
     font-size: 3rem;
     text-shadow: 1px 1px 1px black;
     -webkit-text-stroke: 1px black;

@@ -3,14 +3,12 @@ import Burger from './burger/burger';
 import Logo from './logo/Logo';
 import ModeSwitch from './mode-switch/mode-switch';
 
-const Header = () => {
-  return (
-    <div className="header">
-      <Burger></Burger>
-      <Logo></Logo>
-      <ModeSwitch></ModeSwitch>
-    </div>
-  );
-}
+const Header = () => (
+  <div className="header">
+    <Burger />
+    <Logo />
+    <ModeSwitch />
+  </div>
+);
 
 export default Header;
