@@ -12,12 +12,14 @@ const Menu = () => {
   return (
     <nav className={className}>
       <ul className="menu__list">
-        {categories.map((category) => {
+        {categories.map(category => {
           const nameWithoutSpaces = removeSpacesfromWord(category.name);
 
           return (
             <li className="menu__item" key={category.id}>
-              <NavLink to={`/category/${nameWithoutSpaces}`} className="menu__link">{category.name}</NavLink>
+              <NavLink to={`/category/${nameWithoutSpaces}`} className="menu__link">
+                {category.name}
+              </NavLink>
             </li>
           );
         })}

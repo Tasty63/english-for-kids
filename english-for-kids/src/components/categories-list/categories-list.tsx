@@ -8,7 +8,9 @@ const CategoryList = () => {
 
   return (
     <div className="card-list">
-      {categories.map((category) => <CategoryCard {...category} key={category.id} />)}
+      {categories.map(category => (
+        <CategoryCard {...category} key={category.id} />
+      ))}
     </div>
   );
 };

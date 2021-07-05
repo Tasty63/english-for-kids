@@ -19,8 +19,8 @@ export type WordCardProps = {
   word: string;
   image: string;
   translation: string;
-  flip: ({ target }: React.MouseEvent) => void;
-  playPronunciation: ({ target }: React.MouseEvent) => void;
+  flip: (event: React.MouseEvent) => void;
+  playPronunciation: (event: React.MouseEvent) => void;
 };
 
 export type RouteParams = {

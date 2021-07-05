@@ -9,11 +9,13 @@ import { StartButton } from '../start-button/start-button';
 const WordList = () => {
   const { name } = useParams<RouteParams>();
   const categories = useSelector((state: RootState) => state.categories.list);
-  const category = categories.find((category) => removeSpacesfromWord(category.name) === name);
+  const category = categories.find(category => removeSpacesfromWord(category.name) === name);
 
   return (
     <div className="card-list">
-      {category?.words.map((wordData, index) => <WordCardContainer {...wordData} key={index} />)}
+      {category?.words.map((wordData, index) => (
+        <WordCardContainer {...wordData} key={index} />
+      ))}
       <StartButton />
     </div>
   );

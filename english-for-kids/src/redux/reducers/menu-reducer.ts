@@ -9,9 +9,9 @@ const InitialMenuState: MenuState = {
 const menuReducer = (state = InitialMenuState, action: IMenuAction): MenuState => {
   if (action.type === TOGGLE_MENU) {
     if (
-      isClickOnBurger(action.target)
-      || isClickOnLink(action.target)
-      || (state.isOpen && isClickOutsideMenu(action.target))
+      isClickOnBurger(action.target) ||
+      isClickOnLink(action.target) ||
+      (state.isOpen && isClickOutsideMenu(action.target))
     ) {
       return { ...state, isOpen: !state.isOpen };
     }

@@ -3,9 +3,7 @@ import React from 'react';
 import { WordData } from '../../app.api';
 import WordCard from './word-card';
 
-const WordCardContainer = ({
-  word, image, audioSrc, translation,
-}: WordData) => {
+const WordCardContainer = ({ word, image, audioSrc, translation }: WordData) => {
   const flip = ({ target }: React.MouseEvent) => {
     if (target instanceof HTMLElement) {
       target.closest('.card')?.classList.toggle('card_flipped');
@@ -32,7 +30,7 @@ const WordCardContainer = ({
       image={image}
       translation={translation}
       flip={flip}
-      playPronunciation={(event) => playPronunciation(event, audioSrc)}
+      playPronunciation={event => playPronunciation(event, audioSrc)}
     />
   );
 };
