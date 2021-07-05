@@ -3,7 +3,7 @@ import { toggleMode } from '../../../redux/actions';
 import { RootState } from '../../../redux/store';
 import './mode-switch.scss';
 
-const ModeSwitch = () => {
+const ModeSwitch: React.FC = () => {
   const dispatch = useDispatch();
   const mode = useSelector((state: RootState) => state.mode.current);
 

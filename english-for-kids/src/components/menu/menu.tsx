@@ -1,10 +1,11 @@
 import './menu.scss';
-import { useSelector } from 'react-redux';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { removeSpacesfromWord } from '../../utils/helpers';
 
-const Menu = () => {
+const Menu: React.FC = () => {
   const isOpen = useSelector((state: RootState) => state.menu.isOpen);
   const className = isOpen ? 'header__menu menu menu_opened' : 'header__menu menu';
   const categories = useSelector((state: RootState) => state.categories.list);

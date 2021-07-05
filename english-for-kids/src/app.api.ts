@@ -23,18 +23,14 @@ export type WordCardProps = {
   playPronunciation: (event: React.MouseEvent) => void;
 };
 
+export type CategoryCardProps = {
+  name: string;
+  preview: string;
+};
+
 export type RouteParams = {
   name: string;
 };
-
-// export enum CategoryNames {
-//   ActionSetA = 'Action (set A)',
-//   ActionSetB = 'Action (set B)',
-//   AnimalSetA = 'Animal (set A)',
-//   AnimalSetB = 'Animal (set B)',
-//   Clothes = 'Clothes',
-//   Emotions = 'Emotions',
-// }
 
 export enum Modes {
   Train = 'Train',

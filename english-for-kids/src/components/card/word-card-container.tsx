@@ -3,7 +3,7 @@ import React from 'react';
 import { WordData } from '../../app.api';
 import WordCard from './word-card';
 
-const WordCardContainer = ({ word, image, audioSrc, translation }: WordData) => {
+const WordCardContainer: React.FC<WordData> = ({ word, audioSrc, image, translation }: WordData) => {
   const flip = ({ target }: React.MouseEvent) => {
     if (target instanceof HTMLElement) {
       target.closest('.card')?.classList.toggle('card_flipped');

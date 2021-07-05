@@ -6,7 +6,7 @@ import { initCategories, toggleMenu } from './redux/actions';
 import WordList from './components/word-list/word-list';
 import Menu from './components/menu/menu';
 
-function App() {
+const App: React.FC = () => {
   // TODO:  / создать кнопку игры / начать логику игры/ сделать футер/ сделать адаптив // eslint
   const dispatch = useDispatch();
   dispatch(initCategories());
@@ -23,6 +23,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

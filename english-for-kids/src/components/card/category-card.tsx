@@ -1,11 +1,11 @@
 import './card.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Category, Modes } from '../../app.api';
+import { CategoryCardProps, Modes } from '../../app.api';
 import { removeSpacesfromWord } from '../../utils/helpers';
 import { RootState } from '../../redux/store';
 
-const CategoryCard = ({ name, preview }: Category) => {
+const CategoryCard: React.FC<CategoryCardProps> = ({ name, preview }: CategoryCardProps) => {
   const nameWithoutSpaces = removeSpacesfromWord(name);
   const mode = useSelector((state: RootState) => state.mode.current);
 

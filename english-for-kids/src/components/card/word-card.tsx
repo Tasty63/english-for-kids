@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Modes, WordCardProps } from '../../app.api';
 import { RootState } from '../../redux/store';
 
-const WordCard = (props: WordCardProps) => {
+const WordCard: React.FC<WordCardProps> = (props: WordCardProps) => {
   const { word, image, translation, flip, playPronunciation } = props;
   const mode = useSelector((state: RootState) => state.mode.current);
   // переделать flip

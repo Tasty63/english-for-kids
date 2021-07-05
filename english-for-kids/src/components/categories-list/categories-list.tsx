@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux';
 import CategoryCard from '../card/category-card';
 import { RootState } from '../../redux/store';
 
-const CategoryList = () => {
+const CategoryList: React.FC = () => {
   const categories = useSelector((state: RootState) => state.categories.list);
 
   return (
     <div className="card-list">
       {categories.map(category => (
-        <CategoryCard {...category} key={category.id} />
+        <CategoryCard name={category.name} preview={category.preview} key={category.id} />
       ))}
     </div>
   );

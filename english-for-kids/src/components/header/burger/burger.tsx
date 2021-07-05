@@ -2,7 +2,7 @@ import './burger.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../redux/store';
 
-const Burger = () => {
+const Burger: React.FC = () => {
   const isOpen = useSelector((store: RootState) => store.menu.isOpen);
   const className = isOpen ? 'header__burger burger burger_active' : 'header__burger burger';
 
