@@ -1,12 +1,11 @@
 import './card.scss';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Modes, WordCardProps } from '../../app.api';
+import { WordCardProps } from '../../app.api';
 import { RootState } from '../../redux/store';
-import { toBack, toFront } from '../../utils/config';
+import { Modes, toBack, toFront } from '../../utils/config';
 
-const WordCard: React.FC<WordCardProps> = (props: WordCardProps) => {
-  const { word, image, translation, playPronunciation } = props;
+const WordCard: React.FC<WordCardProps> = ({ word, image, translation, playPronunciation, id }: WordCardProps) => {
   const mode = useSelector((state: RootState) => state.mode.current);
   const [flipped, flip] = useState(toFront);
 
@@ -15,6 +14,7 @@ const WordCard: React.FC<WordCardProps> = (props: WordCardProps) => {
       className={`card ${flipped ? 'card_flipped' : ''}`}
       onClick={mode === Modes.Train ? playPronunciation : undefined}
       onMouseLeave={() => flip(toFront)}
+      key={id}
     >
       <div className={`card__front ${mode === Modes.Play ? 'card__front_play' : ''}`}>
         <div className="card__image-wrapper">

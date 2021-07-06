@@ -1,5 +1,6 @@
 import React from 'react';
-import { TOGGLE_MENU, INIT_CATEGORIES, TOGGLE_MODE } from './redux/action-constants';
+import { Modes } from './utils/config';
+import { TOGGLE_MENU, INIT_CATEGORIES, TOGGLE_MODE, START_GAME, REPEAT_WORD } from './redux/action-constants';
 
 export type Category = {
   id: string;
@@ -13,12 +14,14 @@ export type WordData = {
   translation: string;
   image: string;
   audioSrc: string;
+  id: string;
 };
 
 export type WordCardProps = {
   word: string;
   image: string;
   translation: string;
+  id: string;
   playPronunciation: (event: React.MouseEvent) => void;
 };
 
@@ -31,11 +34,6 @@ export type RouteParams = {
   name: string;
 };
 
-export enum Modes {
-  Train = 'Train',
-  Play = 'Play',
-}
-
 export type MenuState = {
   isOpen: boolean;
 };
@@ -45,14 +43,27 @@ export type CategoriesState = {
 export type ModeState = {
   current: Modes;
 };
+export type GameState = {
+  isStarted: boolean;
+};
 
 export interface IMenuAction {
   type: typeof TOGGLE_MENU;
   target: EventTarget;
 }
+
 export interface ICategoriesAction {
   type: typeof INIT_CATEGORIES;
 }
+
 export interface IModeAction {
   type: typeof TOGGLE_MODE;
 }
+
+export interface IStartGame {
+  type: typeof START_GAME;
+}
+export interface IRepeatWord {
+  type: typeof REPEAT_WORD;
+}
+export type GameActionType = IStartGame | IRepeatWord;

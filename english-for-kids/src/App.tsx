@@ -7,7 +7,7 @@ import WordList from './components/word-list/word-list';
 import Menu from './components/menu/menu';
 
 const App: React.FC = () => {
-  // TODO:  / создать кнопку игры / начать логику игры/ сделать футер/ сделать адаптив // eslint
+  // TODO:  / начать логику игры/ сделать футер/ сделать адаптив
   const dispatch = useDispatch();
   dispatch(initCategories());
 

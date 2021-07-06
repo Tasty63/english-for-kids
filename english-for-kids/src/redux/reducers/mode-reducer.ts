@@ -1,5 +1,6 @@
 import { TOGGLE_MODE } from '../action-constants';
-import { IModeAction, ModeState, Modes } from '../../app.api';
+import { IModeAction, ModeState } from '../../app.api';
+import { Modes } from '../../utils/config';
 
 const InitialMenuState: ModeState = {
   current: Modes.Train,

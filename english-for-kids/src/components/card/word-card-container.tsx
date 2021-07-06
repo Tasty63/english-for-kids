@@ -3,7 +3,7 @@ import React from 'react';
 import { WordData } from '../../app.api';
 import WordCard from './word-card';
 
-const WordCardContainer: React.FC<WordData> = ({ word, audioSrc, image, translation }: WordData) => {
+const WordCardContainer: React.FC<WordData> = ({ word, audioSrc, image, translation, id }: WordData) => {
   const playPronunciation = ({ target }: React.MouseEvent, pronunciationSrc: string) => {
     const pronunciation = new Audio();
     pronunciation.src = pronunciationSrc;
@@ -24,6 +24,7 @@ const WordCardContainer: React.FC<WordData> = ({ word, audioSrc, image, translat
       image={image}
       translation={translation}
       playPronunciation={event => playPronunciation(event, audioSrc)}
+      id={id}
     />
   );
 };

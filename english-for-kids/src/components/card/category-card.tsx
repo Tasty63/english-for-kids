@@ -1,9 +1,10 @@
 import './card.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { CategoryCardProps, Modes } from '../../app.api';
+import { CategoryCardProps } from '../../app.api';
 import { removeSpacesfromWord } from '../../utils/helpers';
 import { RootState } from '../../redux/store';
+import { Modes } from '../../utils/config';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ name, preview }: CategoryCardProps) => {
   const nameWithoutSpaces = removeSpacesfromWord(name);
