@@ -4,12 +4,6 @@ import { WordData } from '../../app.api';
 import WordCard from './word-card';
 
 const WordCardContainer: React.FC<WordData> = ({ word, audioSrc, image, translation }: WordData) => {
-  const flip = ({ target }: React.MouseEvent) => {
-    if (target instanceof HTMLElement) {
-      target.closest('.card')?.classList.toggle('card_flipped');
-    }
-  };
-
   const playPronunciation = ({ target }: React.MouseEvent, pronunciationSrc: string) => {
     const pronunciation = new Audio();
     pronunciation.src = pronunciationSrc;
@@ -29,7 +23,6 @@ const WordCardContainer: React.FC<WordData> = ({ word, audioSrc, image, translat
       word={word}
       image={image}
       translation={translation}
-      flip={flip}
       playPronunciation={event => playPronunciation(event, audioSrc)}
     />
   );
