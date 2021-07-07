@@ -7,3 +7,8 @@ export enum Modes {
   Train = 'Train',
   Play = 'Play',
 }
+
+export enum Sounds {
+  Correct = '/audio/correct.mp3',
+  Error = '/audio/error.mp3',
+}

@@ -5,9 +5,10 @@ import {
   INIT_CATEGORIES,
   TOGGLE_MODE,
   START_GAME,
-  REPEAT_WORD,
   PLAY_WORD,
   CHOOSE_WORD,
+  WORD_GUESSED,
+  WORD_NOT_GUESSED,
 } from './redux/action-constants';
 
 export type Category = {
@@ -30,7 +31,7 @@ export type WordCardProps = {
   image: string;
   translation: string;
   id: string;
-  playPronunciationOnClick: (event: React.MouseEvent) => void;
+  playAudioOnClick: (event: React.MouseEvent) => void;
 };
 
 export type CategoryCardProps = {
@@ -59,8 +60,13 @@ export type GameState = {
   isStarted: boolean;
   words: string[];
   currentWord: string | null;
+  guessedWordsSrc: string[];
+  failureAmount: number;
 };
-
+export type GameWord = {
+  audioSrc: string;
+  id: string;
+};
 export interface IMenuAction {
   type: typeof TOGGLE_MENU;
   target: EventTarget;
@@ -78,9 +84,6 @@ export interface IStartGame {
   type: typeof START_GAME;
   wordsAudioSrc: string[];
 }
-export interface IRepeatWord {
-  type: typeof REPEAT_WORD;
-}
 
 export interface IPlayWord {
   type: typeof PLAY_WORD;
@@ -88,6 +91,14 @@ export interface IPlayWord {
 }
 export interface IChooseWord {
   type: typeof CHOOSE_WORD;
+  currentWordAudioSrc: string;
+}
+export interface IWordGuessed {
+  type: typeof WORD_GUESSED;
+  guessedWordSrc: string;
+}
+export interface IWordNotGuessed {
+  type: typeof WORD_NOT_GUESSED;
 }
 
-export type GameActionType = IStartGame | IPlayWord | IRepeatWord | IChooseWord;
+export type GameActionType = IStartGame | IPlayWord | IChooseWord | IWordGuessed | IWordNotGuessed;

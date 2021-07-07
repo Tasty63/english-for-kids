@@ -34,7 +34,7 @@ export function shuffleArray<T>(array: T[]): T[] {
   return shuffledArray;
 }
 
-export const playPronunciation = (audioSrc: string): void => {
+export const playAudio = (audioSrc: string): void => {
   const pronunciation = new Audio();
   pronunciation.src = audioSrc;
   pronunciation.play();

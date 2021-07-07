@@ -6,12 +6,12 @@ import {
   INIT_CATEGORIES,
   TOGGLE_MODE,
   START_GAME,
-  REPEAT_WORD,
   PLAY_WORD,
-  CHOOSE_WORD,
+  WORD_GUESSED,
+  WORD_NOT_GUESSED,
 } from './action-constants';
-import { wordPronounceDelayMs } from '../utils/config';
-import { playPronunciation } from '../utils/helpers';
+import { Sounds, wordPronounceDelayMs } from '../utils/config';
+import { playAudio } from '../utils/helpers';
 
 export const toggleMenu =
   (target: EventTarget): ThunkAction<void, RootState, unknown, IMenuAction> =>
@@ -24,13 +24,21 @@ export const initCategories = (): ThunkAction<void, RootState, unknown, ICategor
 };
 
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
+
 export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
   const words = getState().game.words.slice();
+
+  if (words.length === 0) {
+    return;
+  }
+
   const lastWordIndex = words.length - 1;
   const currentWord = words[lastWordIndex];
 
-  playPronunciation(currentWord);
-  setTimeout(() => dispatch({ type: PLAY_WORD, currentWord }), wordPronounceDelayMs);
+  setTimeout(() => {
+    playAudio(currentWord);
+    dispatch({ type: PLAY_WORD, currentWord });
+  }, wordPronounceDelayMs);
 };
 
 export const startGame =
@@ -40,9 +48,27 @@ export const startGame =
     dispatch(playWord());
   };
 
-export const repeatWord = (currentWord: string): GameActionType => {
-  playPronunciation(currentWord);
-  return { type: REPEAT_WORD };
+export const guessedWord =
+  (guessedWordSrc: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  async dispatch => {
+    playAudio(Sounds.Correct);
+    dispatch({ type: WORD_GUESSED, guessedWordSrc });
+  };
+
+export const notGuessedWord = (): ThunkAction<void, RootState, unknown, GameActionType> => async dispatch => {
+  playAudio(Sounds.Error);
+  dispatch({ type: WORD_NOT_GUESSED });
 };
 
-export const chooseWord = (): GameActionType => ({ type: CHOOSE_WORD });
+export const chooseWord =
+  (wordAudioSrc: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  async (dispatch, getState) => {
+    const currentWordAudioSrc = getState().game.currentWord;
+
+    if (currentWordAudioSrc === wordAudioSrc) {
+      dispatch(guessedWord(wordAudioSrc));
+      dispatch(playWord());
+    } else {
+      dispatch(notGuessedWord());
+    }
+  };

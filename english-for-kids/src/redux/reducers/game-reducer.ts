@@ -1,4 +1,4 @@
-import { PLAY_WORD, REPEAT_WORD, START_GAME } from '../action-constants';
+import { PLAY_WORD, START_GAME, WORD_GUESSED } from '../action-constants';
 import { GameActionType, GameState } from '../../app.api';
 import { shuffleArray } from '../../utils/helpers';
 
@@ -6,6 +6,8 @@ const InitialGameState: GameState = {
   isStarted: false,
   words: [],
   currentWord: null,
+  guessedWordsSrc: [],
+  failureAmount: 0,
 };
 
 const gameReducer = (state = InitialGameState, action: GameActionType): GameState => {
@@ -13,17 +15,16 @@ const gameReducer = (state = InitialGameState, action: GameActionType): GameStat
     const shuffledWords = shuffleArray<string>(action.wordsAudioSrc);
     return { ...state, isStarted: true, words: shuffledWords };
   }
-  if (action.type === PLAY_WORD) {
-    const lastIndex = state.words.length - 1;
-    const remainingWords = state.words.slice(0, lastIndex);
 
-    if (remainingWords.length > 0) {
-      return { ...state, words: remainingWords, currentWord: action.currentWord };
-    }
+  if (action.type === PLAY_WORD) {
+    const remainingWords = state.words.filter(word => word !== action.currentWord);
+    return { ...state, words: remainingWords, currentWord: action.currentWord };
   }
-  if (action.type === REPEAT_WORD) {
-    return { ...state };
+
+  if (action.type === WORD_GUESSED) {
+    return { ...state, guessedWordsSrc: [...state.guessedWordsSrc, action.guessedWordSrc] };
   }
+
   return state;
 };
 
