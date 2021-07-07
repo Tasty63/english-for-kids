@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { RouteParams } from '../../app.api';
 import { RootState } from '../../redux/store';
 import { Modes } from '../../utils/config';
-import { removeSpacesfromWord } from '../../utils/helpers';
+import { playPronunciation, removeSpacesfromWord } from '../../utils/helpers';
 
 import WordCardContainer from '../card/word-card-container';
 import RepeatButton from '../repeat-button/repeat-button';
@@ -17,12 +17,6 @@ const WordList: React.FC = () => {
   const wordsAudioSrc = currentCategory!.words.map(wordData => wordData.audioSrc);
   const mode = useSelector((state: RootState) => state.mode.current);
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
-
-  const playPronunciation = (audioSrc: string): void => {
-    const pronunciation = new Audio();
-    pronunciation.src = audioSrc;
-    pronunciation.play();
-  };
 
   const playPronunciationOnClick = ({ target }: React.MouseEvent, audioSrc: string): void => {
     if (!(target instanceof HTMLElement)) {

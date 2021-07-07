@@ -1,7 +1,7 @@
 import './card.scss';
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { WordCardProps, WordData } from '../../app.api';
+import { useSelector } from 'react-redux';
+import { WordCardProps } from '../../app.api';
 import { RootState } from '../../redux/store';
 import { Modes, toBack, toFront } from '../../utils/config';
 
@@ -13,9 +13,7 @@ const WordCard: React.FC<WordCardProps> = ({
   id,
 }: WordCardProps) => {
   const mode = useSelector((state: RootState) => state.mode.current);
-  const dispatch = useDispatch();
   const [flipped, flip] = useState(toFront);
-  const [disabled, setDisable] = useState(false);
 
   return (
     <div

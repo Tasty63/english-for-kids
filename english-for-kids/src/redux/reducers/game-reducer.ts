@@ -1,6 +1,6 @@
 import { PLAY_WORD, REPEAT_WORD, START_GAME } from '../action-constants';
 import { GameActionType, GameState } from '../../app.api';
-import { playPronunciation, shuffleArray } from '../../utils/helpers';
+import { shuffleArray } from '../../utils/helpers';
 
 const InitialGameState: GameState = {
   isStarted: false,
