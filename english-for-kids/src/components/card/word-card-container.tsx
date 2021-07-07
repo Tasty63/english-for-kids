@@ -1,29 +1,21 @@
 import './card.scss';
 import React from 'react';
-import { WordData } from '../../app.api';
+import { WordCardProps } from '../../app.api';
 import WordCard from './word-card';
 
-const WordCardContainer: React.FC<WordData> = ({ word, audioSrc, image, translation, id }: WordData) => {
-  const playPronunciation = ({ target }: React.MouseEvent, pronunciationSrc: string) => {
-    const pronunciation = new Audio();
-    pronunciation.src = pronunciationSrc;
-
-    if (!(target instanceof HTMLElement)) {
-      return;
-    }
-    const isNotFlipButton = !target.classList.contains('card__flip');
-
-    if (isNotFlipButton) {
-      pronunciation.play();
-    }
-  };
-
+const WordCardContainer: React.FC<WordCardProps> = ({
+  word,
+  image,
+  translation,
+  playPronunciationOnClick,
+  id,
+}: WordCardProps) => {
   return (
     <WordCard
       word={word}
       image={image}
       translation={translation}
-      playPronunciation={event => playPronunciation(event, audioSrc)}
+      playPronunciationOnClick={playPronunciationOnClick}
       id={id}
     />
   );

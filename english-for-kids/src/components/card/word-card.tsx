@@ -1,18 +1,26 @@
 import './card.scss';
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { WordCardProps } from '../../app.api';
+import { useDispatch, useSelector } from 'react-redux';
+import { WordCardProps, WordData } from '../../app.api';
 import { RootState } from '../../redux/store';
 import { Modes, toBack, toFront } from '../../utils/config';
 
-const WordCard: React.FC<WordCardProps> = ({ word, image, translation, playPronunciation, id }: WordCardProps) => {
+const WordCard: React.FC<WordCardProps> = ({
+  word,
+  image,
+  translation,
+  playPronunciationOnClick,
+  id,
+}: WordCardProps) => {
   const mode = useSelector((state: RootState) => state.mode.current);
+  const dispatch = useDispatch();
   const [flipped, flip] = useState(toFront);
+  const [disabled, setDisable] = useState(false);
 
   return (
     <div
       className={`card ${flipped ? 'card_flipped' : ''}`}
-      onClick={mode === Modes.Train ? playPronunciation : undefined}
+      onClick={mode === Modes.Train ? event => playPronunciationOnClick(event) : undefined}
       onMouseLeave={() => flip(toFront)}
       key={id}
     >
