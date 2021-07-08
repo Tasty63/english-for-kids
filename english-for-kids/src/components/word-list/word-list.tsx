@@ -25,8 +25,6 @@ const WordList: React.FC = () => {
   const currentCategory = categories.find(category => removeSpacesfromWord(category.name) === name);
   const wordsAudioSrc = currentCategory!.words.map(wordData => wordData.audioSrc);
 
-  // const mistakes = Array.from({ length: mistakesAmount });
-
   useEffect(() => {
     dispatch(stopGame());
   }, [location, dispatch]);
