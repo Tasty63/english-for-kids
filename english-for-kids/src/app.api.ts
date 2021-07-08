@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modes } from './utils/config';
+import { Modes, GameResults } from './utils/config';
 import {
   TOGGLE_MENU,
   INIT_CATEGORIES,
@@ -10,6 +10,8 @@ import {
   WORD_GUESSED,
   WORD_NOT_GUESSED,
   STOP_GAME,
+  LOSE_GAME,
+  WIN_GAME,
 } from './redux/action-constants';
 
 export type Category = {
@@ -43,9 +45,14 @@ export type CategoryCardProps = {
 export type StartButtonProps = {
   wordsAudioSrc: string[];
 };
+
 export type GameStarsProps = {
   mistakes: [];
   guesses: [];
+};
+
+export type PopUpProps = {
+  gameResult: GameResults;
 };
 
 export type RouteParams = {
@@ -67,6 +74,7 @@ export type GameState = {
   currentWord: string | null;
   guessedWords: string[];
   mistakenWords: string[];
+  result: GameResults | null;
 };
 
 export interface IMenuAction {
@@ -104,5 +112,19 @@ export interface IWordNotGuessed {
   type: typeof WORD_NOT_GUESSED;
   mistakenWord: string;
 }
-
-export type GameActionType = IStartGame | IStopGame | IPlayWord | IChooseWord | IWordGuessed | IWordNotGuessed;
+export interface IWinGame {
+  type: typeof WIN_GAME;
+}
+export interface ILoseGame {
+  type: typeof LOSE_GAME;
+  mistakesAmount: number;
+}
+export type GameActionType =
+  | IStartGame
+  | IStopGame
+  | IPlayWord
+  | IChooseWord
+  | IWordGuessed
+  | IWordNotGuessed
+  | ILoseGame
+  | IWinGame;

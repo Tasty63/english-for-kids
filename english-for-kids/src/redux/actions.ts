@@ -10,6 +10,8 @@ import {
   WORD_GUESSED,
   WORD_NOT_GUESSED,
   STOP_GAME,
+  WIN_GAME,
+  LOSE_GAME,
 } from './action-constants';
 import { Sounds, wordPronounceDelayMs } from '../utils/config';
 import { playAudio } from '../utils/helpers';
@@ -23,6 +25,16 @@ export const initCategories = (): ThunkAction<void, RootState, unknown, ICategor
 };
 
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
+
+export const loseGame =
+  (mistakesAmount: number): ThunkAction<void, RootState, unknown, GameActionType> =>
+  async dispatch => {
+    dispatch({ type: LOSE_GAME, mistakesAmount });
+  };
+
+export const winGame = (): ThunkAction<void, RootState, unknown, GameActionType> => async dispatch => {
+  dispatch({ type: WIN_GAME });
+};
 
 export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
   const words = getState().game.words.slice();
@@ -69,11 +81,23 @@ export const chooseWord =
   (word: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async (dispatch, getState) => {
     const { currentWord } = getState().game;
+    const mistakesAmount = getState().game.mistakenWords.length;
+    const words = getState().game.words.slice();
 
-    if (currentWord === word) {
-      dispatch(guessedWord(word));
-      dispatch(playWord());
-    } else {
+    if (currentWord !== word) {
       dispatch(notGuessedWord(word));
+      return;
+    }
+    dispatch(guessedWord(word));
+    if (words.length) {
+      dispatch(playWord());
+      return;
+    }
+    if (mistakesAmount) {
+      dispatch(loseGame(mistakesAmount));
+      playAudio(Sounds.Failure);
+    } else {
+      dispatch(winGame());
+      playAudio(Sounds.Success);
     }
   };

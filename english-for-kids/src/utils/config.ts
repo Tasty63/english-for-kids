@@ -11,4 +11,11 @@ export enum Modes {
 export enum Sounds {
   Correct = '/audio/correct.mp3',
   Error = '/audio/error.mp3',
+  Failure = '/audio/failure.mp3',
+  Success = '/audio/success.mp3',
+}
+
+export enum GameResults {
+  Win = 'Win',
+  Lose = 'Lose',
 }

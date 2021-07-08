@@ -6,10 +6,13 @@ import './mode-switch.scss';
 const ModeSwitch: React.FC = () => {
   const dispatch = useDispatch();
   const mode = useSelector((state: RootState) => state.mode.current);
+  const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
 
   const toggleSwitch = () => {
     dispatch(toggleMode());
-    dispatch(stopGame());
+    if (isGameStarted) {
+      dispatch(stopGame());
+    }
   };
 
   return (

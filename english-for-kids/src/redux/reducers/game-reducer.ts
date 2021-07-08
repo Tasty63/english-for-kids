@@ -1,6 +1,15 @@
-import { PLAY_WORD, START_GAME, STOP_GAME, WORD_GUESSED, WORD_NOT_GUESSED } from '../action-constants';
+import {
+  PLAY_WORD,
+  START_GAME,
+  STOP_GAME,
+  WORD_GUESSED,
+  WORD_NOT_GUESSED,
+  WIN_GAME,
+  LOSE_GAME,
+} from '../action-constants';
 import { GameActionType, GameState } from '../../app.api';
 import { shuffleArray } from '../../utils/helpers';
+import { GameResults } from '../../utils/config';
 
 const InitialGameState: GameState = {
   isStarted: false,
@@ -8,6 +17,7 @@ const InitialGameState: GameState = {
   guessedWords: [],
   mistakenWords: [],
   currentWord: null,
+  result: null,
 };
 
 const gameReducer = (state = InitialGameState, action: GameActionType): GameState => {
@@ -27,6 +37,12 @@ const gameReducer = (state = InitialGameState, action: GameActionType): GameStat
   }
   if (action.type === WORD_NOT_GUESSED) {
     return { ...state, mistakenWords: [...state.mistakenWords, action.mistakenWord] };
+  }
+  if (action.type === WIN_GAME) {
+    return { ...state, result: GameResults.Win };
+  }
+  if (action.type === LOSE_GAME) {
+    return { ...state, result: GameResults.Lose };
   }
 
   return state;

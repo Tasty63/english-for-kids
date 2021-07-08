@@ -32,7 +32,7 @@ const WordList: React.FC = () => {
   return (
     <>
       <GameStars />
-      <div className="card-list">
+      <div className="word-list">
         {currentCategory?.words.map(wordData => (
           <WordCard
             word={wordData.word}

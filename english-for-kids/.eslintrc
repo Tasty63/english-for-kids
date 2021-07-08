@@ -23,6 +23,7 @@
     "jsx-a11y/label-has-associated-control": 0,
     "no-plusplus": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
+    "react/no-array-index-key": 0,
     "max-len": [
       "error",
       {
