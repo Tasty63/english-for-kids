@@ -70,7 +70,6 @@ export type GameWord = {
 };
 export interface IMenuAction {
   type: typeof TOGGLE_MENU;
-  target: EventTarget;
 }
 
 export interface ICategoriesAction {

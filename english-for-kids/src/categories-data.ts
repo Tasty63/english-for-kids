@@ -280,7 +280,7 @@ const categories: Category[] = [
         audioSrc: '/audio/blouse.mp3',
       },
       {
-        id: '35',
+        id: '36',
         word: 'dress',
         translation: 'платье',
         image: '/images/dress.jpg',

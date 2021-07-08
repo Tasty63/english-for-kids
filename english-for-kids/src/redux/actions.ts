@@ -14,11 +14,9 @@ import {
 import { Sounds, wordPronounceDelayMs } from '../utils/config';
 import { playAudio } from '../utils/helpers';
 
-export const toggleMenu =
-  (target: EventTarget): ThunkAction<void, RootState, unknown, IMenuAction> =>
-  async dispatch => {
-    dispatch({ type: TOGGLE_MENU, target });
-  };
+export const toggleMenu = (): ThunkAction<void, RootState, unknown, IMenuAction> => async dispatch => {
+  dispatch({ type: TOGGLE_MENU });
+};
 
 export const initCategories = (): ThunkAction<void, RootState, unknown, ICategoriesAction> => async dispatch => {
   dispatch({ type: INIT_CATEGORIES });
