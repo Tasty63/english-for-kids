@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleMode } from '../../../redux/actions';
+import { stopGame, toggleMode } from '../../../redux/actions';
 import { RootState } from '../../../redux/store';
 import './mode-switch.scss';
 
@@ -7,8 +7,13 @@ const ModeSwitch: React.FC = () => {
   const dispatch = useDispatch();
   const mode = useSelector((state: RootState) => state.mode.current);
 
+  const toggleSwitch = () => {
+    dispatch(toggleMode());
+    dispatch(stopGame());
+  };
+
   return (
-    <label className="mode-switch" onInput={() => dispatch(toggleMode())}>
+    <label className="mode-switch" onInput={() => toggleSwitch()}>
       <input className="mode-switch__input" type="checkbox" />
       <span className="mode-switch__slider" />
       <span className="mode-switch__text">{mode}</span>
