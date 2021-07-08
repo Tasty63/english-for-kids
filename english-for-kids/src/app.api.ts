@@ -43,6 +43,10 @@ export type CategoryCardProps = {
 export type StartButtonProps = {
   wordsAudioSrc: string[];
 };
+export type GameStarsProps = {
+  mistakes: [];
+  guesses: [];
+};
 
 export type RouteParams = {
   name: string;
@@ -61,13 +65,10 @@ export type GameState = {
   isStarted: boolean;
   words: string[];
   currentWord: string | null;
-  guessedWordsSrc: string[];
-  failureAmount: number;
+  guessedWords: string[];
+  mistakenWords: string[];
 };
-export type GameWord = {
-  audioSrc: string;
-  id: string;
-};
+
 export interface IMenuAction {
   type: typeof TOGGLE_MENU;
 }
@@ -93,14 +94,15 @@ export interface IPlayWord {
 }
 export interface IChooseWord {
   type: typeof CHOOSE_WORD;
-  currentWordAudioSrc: string;
+  currentWord: string;
 }
 export interface IWordGuessed {
   type: typeof WORD_GUESSED;
-  guessedWordSrc: string;
+  guessedWord: string;
 }
 export interface IWordNotGuessed {
   type: typeof WORD_NOT_GUESSED;
+  mistakenWord: string;
 }
 
 export type GameActionType = IStartGame | IStopGame | IPlayWord | IChooseWord | IWordGuessed | IWordNotGuessed;

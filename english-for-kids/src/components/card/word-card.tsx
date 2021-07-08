@@ -10,7 +10,8 @@ import { playAudio } from '../../utils/helpers';
 const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }: WordData) => {
   const [flipped, flip] = useState(toFront);
   const mode = useSelector((state: RootState) => state.mode.current);
-  const isGuessed = useSelector((state: RootState) => state.game.guessedWordsSrc.includes(audioSrc));
+  const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
+  const isGuessed = useSelector((state: RootState) => state.game.guessedWords.includes(audioSrc));
 
   const dispatch = useDispatch();
 
@@ -28,7 +29,7 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
   return (
     <div
       className={`card ${flipped ? 'card_flipped' : ''} ${isGuessed ? 'card_guessed' : ''}`}
-      onClick={mode === Modes.Train ? event => playAudioOnClick(event, audioSrc) : () => dispatch(chooseWord(audioSrc))}
+      onClick={isGameStarted ? () => dispatch(chooseWord(audioSrc)) : event => playAudioOnClick(event, audioSrc)}
       onMouseLeave={() => flip(toFront)}
       key={id}
     >

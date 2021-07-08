@@ -52,26 +52,28 @@ export const stopGame = (): GameActionType => {
 };
 
 export const guessedWord =
-  (guessedWordSrc: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (word: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async dispatch => {
     playAudio(Sounds.Correct);
-    dispatch({ type: WORD_GUESSED, guessedWordSrc });
+    dispatch({ type: WORD_GUESSED, guessedWord: word });
   };
 
-export const notGuessedWord = (): ThunkAction<void, RootState, unknown, GameActionType> => async dispatch => {
-  playAudio(Sounds.Error);
-  dispatch({ type: WORD_NOT_GUESSED });
-};
+export const notGuessedWord =
+  (word: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  async dispatch => {
+    playAudio(Sounds.Error);
+    dispatch({ type: WORD_NOT_GUESSED, mistakenWord: word });
+  };
 
 export const chooseWord =
-  (wordAudioSrc: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (word: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async (dispatch, getState) => {
-    const currentWordAudioSrc = getState().game.currentWord;
+    const { currentWord } = getState().game;
 
-    if (currentWordAudioSrc === wordAudioSrc) {
-      dispatch(guessedWord(wordAudioSrc));
+    if (currentWord === word) {
+      dispatch(guessedWord(word));
       dispatch(playWord());
     } else {
-      dispatch(notGuessedWord());
+      dispatch(notGuessedWord(word));
     }
   };
