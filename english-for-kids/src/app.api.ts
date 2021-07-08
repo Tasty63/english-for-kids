@@ -9,6 +9,7 @@ import {
   CHOOSE_WORD,
   WORD_GUESSED,
   WORD_NOT_GUESSED,
+  STOP_GAME,
 } from './redux/action-constants';
 
 export type Category = {
@@ -84,7 +85,9 @@ export interface IStartGame {
   type: typeof START_GAME;
   wordsAudioSrc: string[];
 }
-
+export interface IStopGame {
+  type: typeof STOP_GAME;
+}
 export interface IPlayWord {
   type: typeof PLAY_WORD;
   currentWord: string;
@@ -101,4 +104,4 @@ export interface IWordNotGuessed {
   type: typeof WORD_NOT_GUESSED;
 }
 
-export type GameActionType = IStartGame | IPlayWord | IChooseWord | IWordGuessed | IWordNotGuessed;
+export type GameActionType = IStartGame | IStopGame | IPlayWord | IChooseWord | IWordGuessed | IWordNotGuessed;

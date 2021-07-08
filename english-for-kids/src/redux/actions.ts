@@ -9,6 +9,7 @@ import {
   PLAY_WORD,
   WORD_GUESSED,
   WORD_NOT_GUESSED,
+  STOP_GAME,
 } from './action-constants';
 import { Sounds, wordPronounceDelayMs } from '../utils/config';
 import { playAudio } from '../utils/helpers';
@@ -47,6 +48,10 @@ export const startGame =
     dispatch({ type: START_GAME, wordsAudioSrc });
     dispatch(playWord());
   };
+
+export const stopGame = (): GameActionType => {
+  return { type: STOP_GAME };
+};
 
 export const guessedWord =
   (guessedWordSrc: string): ThunkAction<void, RootState, unknown, GameActionType> =>

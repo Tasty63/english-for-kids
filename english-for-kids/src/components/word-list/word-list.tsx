@@ -1,6 +1,8 @@
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom';
 import { RouteParams } from '../../app.api';
+import { stopGame } from '../../redux/actions';
 import { RootState } from '../../redux/store';
 import { Modes } from '../../utils/config';
 import { removeSpacesfromWord } from '../../utils/helpers';
@@ -17,6 +19,12 @@ const WordList: React.FC = () => {
 
   const mode = useSelector((state: RootState) => state.mode.current);
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
+  const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(stopGame());
+  }, [location, dispatch]);
 
   return (
     <div className="card-list">

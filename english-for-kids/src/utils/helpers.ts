@@ -35,7 +35,8 @@ export function shuffleArray<T>(array: T[]): T[] {
 }
 
 export const playAudio = (audioSrc: string): void => {
-  const pronunciation = new Audio();
-  pronunciation.src = audioSrc;
-  pronunciation.play();
+  const audio = new Audio();
+  audio.src = audioSrc;
+  audio.currentTime = 0;
+  audio.play();
 };
