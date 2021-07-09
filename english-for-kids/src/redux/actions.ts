@@ -35,13 +35,11 @@ export const initCategories = (): ThunkAction<void, RootState, unknown, ICategor
 
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
-export const loseGame =
-  (mistakesAmount: number): ThunkAction<void, RootState, unknown, GameActionType> =>
-  async dispatch => {
-    dispatch({ type: LOSE_GAME, mistakesAmount });
-  };
+export const loseGame = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
+  dispatch({ type: LOSE_GAME });
+};
 
-export const winGame = (): ThunkAction<void, RootState, unknown, GameActionType> => async dispatch => {
+export const winGame = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
   dispatch({ type: WIN_GAME });
 };
 
@@ -100,7 +98,7 @@ export const chooseWord =
     }
 
     if (mistakesAmount) {
-      dispatch(loseGame(mistakesAmount));
+      dispatch(loseGame());
       playAudio(Sounds.Failure);
       return;
     }

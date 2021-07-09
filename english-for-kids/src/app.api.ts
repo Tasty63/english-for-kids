@@ -149,7 +149,6 @@ export interface IWinGame {
 
 export interface ILoseGame {
   type: typeof LOSE_GAME;
-  mistakesAmount: number;
 }
 
 export interface ITrainClick {
