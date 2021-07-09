@@ -68,31 +68,31 @@ export const stopGame = (): GameActionType => {
 };
 
 export const guessedWord =
-  (word: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (word: string, id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async dispatch => {
     playAudio(Sounds.Correct);
-    dispatch({ type: WORD_GUESSED, guessedWord: word });
+    dispatch({ type: WORD_GUESSED, guessedWord: word, id });
   };
 
 export const notGuessedWord =
-  (word: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (word: string, id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async dispatch => {
     playAudio(Sounds.Error);
-    dispatch({ type: WORD_NOT_GUESSED, mistakenWord: word });
+    dispatch({ type: WORD_NOT_GUESSED, mistakenWord: word, id });
   };
 
 export const chooseWord =
-  (word: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (word: string, id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async (dispatch, getState) => {
     const { currentWord } = getState().game;
     const mistakesAmount = getState().game.mistakenWords.length;
     const words = getState().game.words.slice();
 
     if (currentWord !== word) {
-      dispatch(notGuessedWord(word));
+      dispatch(notGuessedWord(word, id));
       return;
     }
-    dispatch(guessedWord(word));
+    dispatch(guessedWord(word, id));
 
     if (words.length) {
       dispatch(playWord());

@@ -11,7 +11,9 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
   const [flipped, flip] = useState(toFront);
   const mode = useSelector((state: RootState) => state.mode.current);
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
-  const isGuessed = useSelector((state: RootState) => state.game.guessedWords.includes(audioSrc));
+  const isGuessed = useSelector((state: RootState) =>
+    state.game.guessedWords.map(item => item.word).includes(audioSrc),
+  );
 
   const dispatch = useDispatch();
 
@@ -34,7 +36,9 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
   return (
     <div
       className={`card ${flipped ? 'card_flipped' : ''} ${isGuessed ? 'card_guessed' : ''}`}
-      onClick={isGameStarted ? () => dispatch(chooseWord(audioSrc)) : event => handleTrainClick(event, audioSrc, id)}
+      onClick={
+        isGameStarted ? () => dispatch(chooseWord(audioSrc, id)) : event => handleTrainClick(event, audioSrc, id)
+      }
       onMouseLeave={() => flip(toFront)}
       key={id}
     >

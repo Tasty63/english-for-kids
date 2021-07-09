@@ -8,11 +8,11 @@ const GameStars: React.FC = () => {
 
   return (
     <div className="stars">
-      {mistakenWords.map((mistake, index) => (
-        <div className="star star_mistake" key={`${mistake}${index}`} />
+      {mistakenWords.map((word, index) => (
+        <div className="star star_mistake" key={`${word}${index}`} />
       ))}
-      {guessedWords.map((guess, index) => (
-        <div className="star star_guess" key={`${guess}${index}`} />
+      {guessedWords.map((word, index) => (
+        <div className="star star_guess" key={`${word}${index}`} />
       ))}
     </div>
   );

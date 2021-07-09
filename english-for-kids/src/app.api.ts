@@ -48,6 +48,11 @@ export type StatisticWord = {
   mistakes: number;
 };
 
+export type GameWord = {
+  word: string;
+  id: string;
+};
+
 export type WordCardProps = {
   word: string;
   image: string;
@@ -91,8 +96,8 @@ export type GameState = {
   isStarted: boolean;
   words: string[];
   currentWord: string | null;
-  guessedWords: string[];
-  mistakenWords: string[];
+  guessedWords: GameWord[];
+  mistakenWords: GameWord[];
   result: GameResults | null;
 };
 
@@ -129,11 +134,13 @@ export interface IChooseWord {
 export interface IWordGuessed {
   type: typeof WORD_GUESSED;
   guessedWord: string;
+  id: string;
 }
 
 export interface IWordNotGuessed {
   type: typeof WORD_NOT_GUESSED;
   mistakenWord: string;
+  id: string;
 }
 
 export interface IWinGame {
