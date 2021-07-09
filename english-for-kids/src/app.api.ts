@@ -36,9 +36,9 @@ export type StatisticTableWord = {
   category: string;
   word: string;
   translation: string;
-  trainClicks: number | undefined;
-  guesses: number | undefined;
-  mistakes: number | undefined;
+  trainClicks?: number;
+  guesses?: number;
+  mistakes?: number;
 };
 
 export type StatisticWord = {

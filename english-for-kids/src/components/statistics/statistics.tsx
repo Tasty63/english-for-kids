@@ -9,8 +9,8 @@ const Statistics: React.FC = () => {
   const statistics = useSelector((state: RootState) => state.statistics);
 
   const makeTable = (categoriesData: Category[], statisticsData: StatisticWord[]): StatisticTableWord[] => {
-    return categoriesData.reduce((table: StatisticTableWord[], category) => {
-      const tableItem = category.words.map(categoryItem => {
+    return categoriesData.flatMap(category => {
+      return category.words.map(categoryItem => {
         const statWord = statisticsData.find(statItem => statItem.id === categoryItem.id);
 
         return {
@@ -23,10 +23,17 @@ const Statistics: React.FC = () => {
           mistakes: statWord?.mistakes,
         };
       });
+    });
+  };
 
-      table.push(...tableItem);
-      return table;
-    }, []);
+  const getAccuracyPercentage = (correct?: number, mistakes?: number): number => {
+    if (!correct) {
+      return 0;
+    }
+    if (!mistakes) {
+      return 100;
+    }
+    return Math.floor(100 / ((correct + mistakes) / correct));
   };
 
   return (
@@ -40,7 +47,7 @@ const Statistics: React.FC = () => {
             <th className="statistics__title">Trained</th>
             <th className="statistics__title">Correct</th>
             <th className="statistics__title">Mistakes</th>
-            <th className="statistics__title">%</th>
+            <th className="statistics__title">Accuracy %</th>
           </tr>
         </thead>
         <tbody className="statistics__body">
@@ -53,6 +60,7 @@ const Statistics: React.FC = () => {
                 <td className="statistics__item">{item.trainClicks}</td>
                 <td className="statistics__item">{item.guesses}</td>
                 <td className="statistics__item">{item.mistakes}</td>
+                <td className="statistics__item">{getAccuracyPercentage(item.guesses, item.mistakes)}</td>
               </tr>
             );
           })}

@@ -8,7 +8,7 @@ const statisticsReducer = (state = InitialStatisticState, action: StatisticsActi
     return [...action.list];
   }
   if (action.type === TRAIN_CLICK) {
-    return state;
+    return state.map(word => (word.id === action.id ? { ...word, trainClicks: word.trainClicks + 1 } : word));
   }
   return state;
 };

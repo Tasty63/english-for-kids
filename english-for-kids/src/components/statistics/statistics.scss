@@ -1,7 +1,7 @@
 @import '../../scss//variables.scss';
 
 .statistics {
-  font-size: 3rem;
+  font-size: 2.7rem;
   letter-spacing: 1.5px;
   font-family: $mainFont;
   overflow-x: auto;
@@ -31,8 +31,5 @@
     &:hover {
       background: $menuColor;
     }
-  }
-
-  &__item {
   }
 }

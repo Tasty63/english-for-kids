@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { WordData } from '../../app.api';
 import { RootState } from '../../redux/store';
 import { Modes, toBack, toFront } from '../../utils/config';
-import { chooseWord } from '../../redux/actions';
+import { chooseWord, trainClick } from '../../redux/actions';
 import { playAudio } from '../../utils/helpers';
 
 const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }: WordData) => {
@@ -26,10 +26,15 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
     }
   };
 
+  const handleTrainClick = (event: React.MouseEvent, src: string, wordId: string) => {
+    playAudioOnClick(event, src);
+    dispatch(trainClick(wordId));
+  };
+
   return (
     <div
       className={`card ${flipped ? 'card_flipped' : ''} ${isGuessed ? 'card_guessed' : ''}`}
-      onClick={isGameStarted ? () => dispatch(chooseWord(audioSrc)) : event => playAudioOnClick(event, audioSrc)}
+      onClick={isGameStarted ? () => dispatch(chooseWord(audioSrc)) : event => handleTrainClick(event, audioSrc, id)}
       onMouseLeave={() => flip(toFront)}
       key={id}
     >
