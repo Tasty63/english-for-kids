@@ -1,16 +1,25 @@
 import './game-stars.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
+import { MistakenWord } from '../../app.api';
 
 const GameStars: React.FC = () => {
   const mistakenWords = useSelector((state: RootState) => state.game.mistakenWords);
   const guessedWords = useSelector((state: RootState) => state.game.guessedWords);
 
+  const mistakeStars = (words: MistakenWord[]) => {
+    return words.reduce((acc: JSX.Element[], item) => {
+      for (let i = 0; i < item.mistakesAmount; i++) {
+        acc.push(<div className="star star_mistake" key={`${item.id}${i}`} />);
+      }
+
+      return acc;
+    }, []);
+  };
+
   return (
     <div className="stars">
-      {mistakenWords.map((word, index) => (
-        <div className="star star_mistake" key={`${word}${index}`} />
-      ))}
+      {mistakeStars(mistakenWords)}
       {guessedWords.map((word, index) => (
         <div className="star star_guess" key={`${word}${index}`} />
       ))}

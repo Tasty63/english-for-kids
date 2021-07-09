@@ -14,3 +14,4 @@ export const END_GAME = 'END_GAME';
 
 export const INIT_STATISTIC = 'INIT_STATISTIC';
 export const TRAIN_CLICK = 'TRAIN_CLICK';
+export const UPDATE_STATISTIC = 'UPDATE_STATISTIC';

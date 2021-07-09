@@ -7,6 +7,8 @@ import {
   GameActionType,
   StatisticsActionType,
   StatisticWord,
+  MistakenWord,
+  GuessedWord,
 } from '../app.api';
 import {
   TOGGLE_MENU,
@@ -20,6 +22,7 @@ import {
   INIT_STATISTIC,
   TRAIN_CLICK,
   END_GAME,
+  UPDATE_STATISTIC,
 } from './action-constants';
 import { GameResults, Sounds, wordPronounceDelayMs } from '../utils/config';
 import { playAudio } from '../utils/helpers';
@@ -34,9 +37,21 @@ export const initCategories = (): ThunkAction<void, RootState, unknown, ICategor
 
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
+export const updateStatiics =
+  (
+    guessedWords: GuessedWord[],
+    mistakenWords: MistakenWord[],
+  ): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
+  async dispatch => {
+    dispatch({ type: UPDATE_STATISTIC, guessedWords, mistakenWords });
+  };
+
 export const endGame =
   (result: GameResults): ThunkAction<void, RootState, unknown, GameActionType> =>
   async (dispatch, getState) => {
+    const { guessedWords, mistakenWords } = getState().game;
+
+    dispatch(updateStatiics(guessedWords, mistakenWords));
     dispatch({ type: END_GAME, result });
   };
 

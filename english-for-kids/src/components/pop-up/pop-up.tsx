@@ -8,7 +8,11 @@ import { PopUpProps } from '../../app.api';
 import { stopGame } from '../../redux/actions';
 
 const PopUp: React.FC<PopUpProps> = ({ gameResult }: PopUpProps) => {
-  const mistakesAmount = useSelector((state: RootState) => state.game.mistakenWords.length);
+  const mistakenWords = useSelector((state: RootState) => state.game.mistakenWords);
+  const mistakesAmount = mistakenWords.reduce((acc: number, item) => {
+    return acc + item.mistakesAmount;
+  }, 0);
+
   const dispatch = useDispatch();
   const hisory = useHistory();
 

@@ -1,5 +1,5 @@
 import { StatisticsActionType, StatisticWord } from '../../app.api';
-import { TRAIN_CLICK, INIT_STATISTIC } from '../action-constants';
+import { TRAIN_CLICK, INIT_STATISTIC, UPDATE_STATISTIC } from '../action-constants';
 
 const InitialStatisticState: StatisticWord[] = [];
 
@@ -9,6 +9,9 @@ const statisticsReducer = (state = InitialStatisticState, action: StatisticsActi
   }
   if (action.type === TRAIN_CLICK) {
     return state.map(word => (word.id === action.id ? { ...word, trainClicks: word.trainClicks + 1 } : word));
+  }
+  if (action.type === UPDATE_STATISTIC) {
+    return state;
   }
   return state;
 };

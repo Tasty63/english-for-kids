@@ -13,6 +13,7 @@ import {
   TRAIN_CLICK,
   INIT_STATISTIC,
   END_GAME,
+  UPDATE_STATISTIC,
 } from './redux/action-constants';
 
 export type Category = {
@@ -50,6 +51,19 @@ export type StatisticWord = {
 export type GameWord = {
   word: string;
   id: string;
+  mistakesAmount?: number;
+};
+
+export type GuessedWord = {
+  word: string;
+  id: string;
+  mistakesAmount?: number;
+};
+
+export type MistakenWord = {
+  word: string;
+  id: string;
+  mistakesAmount: number;
 };
 
 export type WordCardProps = {
@@ -95,8 +109,8 @@ export type GameState = {
   isStarted: boolean;
   words: string[];
   currentWord: string | null;
-  guessedWords: GameWord[];
-  mistakenWords: GameWord[];
+  guessedWords: GuessedWord[];
+  mistakenWords: MistakenWord[];
   result: GameResults | null;
 };
 
@@ -155,6 +169,11 @@ export interface IInitStatistics {
   type: typeof INIT_STATISTIC;
   list: StatisticWord[];
 }
+export interface IUpdateStatistics {
+  type: typeof UPDATE_STATISTIC;
+  guessedWords: GuessedWord[];
+  mistakenWords: MistakenWord[];
+}
 
 export type GameActionType =
   | IStartGame
@@ -165,4 +184,4 @@ export type GameActionType =
   | IWordNotGuessed
   | IEndGame;
 
-export type StatisticsActionType = IInitStatistics | ITrainClick;
+export type StatisticsActionType = IInitStatistics | ITrainClick | IUpdateStatistics;
