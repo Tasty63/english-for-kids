@@ -23,6 +23,7 @@ import {
   TRAIN_CLICK,
   END_GAME,
   UPDATE_STATISTIC,
+  RESET_STATISTIC,
 } from './action-constants';
 import { GameResults, Sounds, wordPronounceDelayMs } from '../utils/config';
 import { playAudio } from '../utils/helpers';
@@ -129,6 +130,10 @@ export const initStatistics = (): ThunkAction<void, RootState, unknown, Statisti
   }
 
   dispatch({ type: INIT_STATISTIC, list });
+};
+
+export const resetStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
+  dispatch({ type: RESET_STATISTIC });
 };
 
 export const trainClick =

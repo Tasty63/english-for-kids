@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Category, StatisticWord, StatisticTableWord, SortConfigType } from '../../app.api';
+import { resetStatistics } from '../../redux/actions';
 import { RootState } from '../../redux/store';
 import { SortDirections, SortKeys } from '../../utils/config';
 import './statistics.scss';
@@ -8,6 +9,7 @@ import './statistics.scss';
 const Statistics: React.FC = () => {
   const categories = useSelector((state: RootState) => state.categories.list);
   const statistics = useSelector((state: RootState) => state.statistics);
+  const dispatch = useDispatch();
   const [sortConfig, setSortConfig] = useState<SortConfigType | null>(null);
 
   const getAccuracyPercentage = (corrects?: number, mistakes?: number): number => {
@@ -55,13 +57,14 @@ const Statistics: React.FC = () => {
     table.sort((first, second) => {
       const firstKey = first[sortConfig.key];
       const secondKey = second[sortConfig.key];
-      if (firstKey !== undefined && secondKey !== undefined) {
-        if (firstKey < secondKey) {
-          return sortConfig.direction === SortDirections.Asc ? -1 : 1;
-        }
-        if (firstKey > secondKey) {
-          return sortConfig.direction === SortDirections.Asc ? 1 : -1;
-        }
+      if (firstKey === undefined || secondKey === undefined) {
+        return 0;
+      }
+      if (firstKey < secondKey) {
+        return sortConfig.direction === SortDirections.Asc ? -1 : 1;
+      }
+      if (firstKey > secondKey) {
+        return sortConfig.direction === SortDirections.Asc ? 1 : -1;
       }
       return 0;
     });
@@ -70,7 +73,7 @@ const Statistics: React.FC = () => {
   return (
     <div className="statistics">
       <div className="statistics__action-buttons">
-        <button className="statistics__reset" type="button">
+        <button className="statistics__reset" type="button" onClick={() => dispatch(resetStatistics())}>
           Reset
         </button>
         <button className="statistics__repeat" type="button">

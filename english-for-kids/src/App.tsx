@@ -11,6 +11,7 @@ import PopUp from './components/pop-up/pop-up';
 import Statistics from './components/statistics/statistics';
 
 const App: React.FC = () => {
+  // TODO: пофиксить статистику
   const dispatch = useDispatch();
   const gameResult = useSelector((state: RootState) => state.game.result);
   const statistics = useSelector((state: RootState) => state.statistics);

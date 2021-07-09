@@ -1,5 +1,5 @@
 import { StatisticsActionType, StatisticWord } from '../../app.api';
-import { TRAIN_CLICK, INIT_STATISTIC, UPDATE_STATISTIC } from '../action-constants';
+import { TRAIN_CLICK, INIT_STATISTIC, UPDATE_STATISTIC, RESET_STATISTIC } from '../action-constants';
 
 const InitialStatisticState: StatisticWord[] = [];
 
@@ -21,6 +21,9 @@ const statisticsReducer = (state = InitialStatisticState, action: StatisticsActi
         const currentMistakenWord = action.mistakenWords.find(mistakenWord => word.id === mistakenWord.id);
         return currentMistakenWord ? { ...word, mistakes: word.mistakes + currentMistakenWord.mistakesAmount } : word;
       });
+  }
+  if (action.type === RESET_STATISTIC) {
+    return state.map(word => ({ ...word, guesses: 0, mistakes: 0, trainClicks: 0 }));
   }
   return state;
 };

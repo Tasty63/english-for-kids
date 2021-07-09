@@ -12,7 +12,20 @@
     display: flex;
     justify-content: flex-end;
   }
-
+  &__reset,
+  &__repeat {
+    background: $playModeColor;
+    transition: background-color 0.5s;
+    border-radius: 15px;
+    padding: 0.5rem 2rem;
+    &:hover {
+      cursor: pointer;
+      background: $menuColor;
+    }
+  }
+  &__reset {
+    margin-right: 2rem;
+  }
   &__button {
     font-family: $mainFont;
     font-weight: 600;

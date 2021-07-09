@@ -14,6 +14,7 @@ import {
   INIT_STATISTIC,
   END_GAME,
   UPDATE_STATISTIC,
+  RESET_STATISTIC,
 } from './redux/action-constants';
 
 export type Category = {
@@ -181,6 +182,10 @@ export interface IUpdateStatistics {
   mistakenWords: MistakenWord[];
 }
 
+export interface IResetStatistic {
+  type: typeof RESET_STATISTIC;
+}
+
 export type GameActionType =
   | IStartGame
   | IStopGame
@@ -190,4 +195,4 @@ export type GameActionType =
   | IWordNotGuessed
   | IEndGame;
 
-export type StatisticsActionType = IInitStatistics | ITrainClick | IUpdateStatistics;
+export type StatisticsActionType = IInitStatistics | ITrainClick | IUpdateStatistics | IResetStatistic;
