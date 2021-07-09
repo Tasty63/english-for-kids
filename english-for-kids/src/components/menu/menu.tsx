@@ -17,7 +17,6 @@ const Menu: React.FC = () => {
         <ul className="menu__list">
           {categories.map(category => {
             const nameWithoutSpaces = removeSpacesfromWord(category.name);
-
             return (
               <li className="menu__item" key={category.id}>
                 <NavLink
@@ -30,6 +29,11 @@ const Menu: React.FC = () => {
               </li>
             );
           })}
+          <li className="menu__item">
+            <NavLink to="/statistics" className="menu__link" onClick={() => dispatch(toggleMenu())}>
+              Statistics
+            </NavLink>
+          </li>
         </ul>
       </nav>
       <div

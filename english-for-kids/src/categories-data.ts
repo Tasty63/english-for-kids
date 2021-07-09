@@ -392,7 +392,7 @@ const categories: Category[] = [
         audioSrc: '/audio/apple.mp3',
       },
       {
-        id: '5',
+        id: '50',
         word: 'pear',
         translation: 'груша',
         image: '/images/fruits/pear.jpg',

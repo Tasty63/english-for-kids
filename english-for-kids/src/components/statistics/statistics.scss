@@ -1,0 +1,38 @@
+@import '../../scss//variables.scss';
+
+.statistics {
+  font-size: 3rem;
+  letter-spacing: 1.5px;
+  font-family: $mainFont;
+  overflow-x: auto;
+  box-sizing: border-box;
+
+  &__table {
+    user-select: none;
+    width: 100%;
+    border-collapse: collapse;
+    border: 5px solid $menuColor;
+    text-align: center;
+  }
+
+  &__header {
+    background: $trainModeColor;
+  }
+
+  &__title {
+    padding: 1rem 4rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__row {
+    transition: background-color 0.3s;
+    &:hover {
+      background: $menuColor;
+    }
+  }
+
+  &__item {
+  }
+}

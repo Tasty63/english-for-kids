@@ -14,7 +14,7 @@ const PopUp: React.FC<PopUpProps> = ({ gameResult }: PopUpProps) => {
 
   useEffect(() => {
     setTimeout(() => {
-      hisory.push('/');
+      hisory.push('/statistics');
       dispatch(stopGame());
     }, 2000);
   }, [dispatch, hisory]);

@@ -12,6 +12,8 @@ import {
   STOP_GAME,
   LOSE_GAME,
   WIN_GAME,
+  TRAIN_CLICK,
+  INIT_STATISTIC,
 } from './redux/action-constants';
 
 export type Category = {
@@ -27,6 +29,23 @@ export type WordData = {
   image: string;
   audioSrc: string;
   id: string;
+};
+
+export type WordStatistic = {
+  id: string;
+  category: string;
+  word: string;
+  translation: string;
+  trainClicks: number;
+  guesses: number;
+  mistakes: number;
+};
+
+export type StatisticWord = {
+  id: string;
+  trainClicks: number;
+  guesses: number;
+  mistakes: number;
 };
 
 export type WordCardProps = {
@@ -93,9 +112,11 @@ export interface IStartGame {
   type: typeof START_GAME;
   wordsAudioSrc: string[];
 }
+
 export interface IStopGame {
   type: typeof STOP_GAME;
 }
+
 export interface IPlayWord {
   type: typeof PLAY_WORD;
   currentWord: string;
@@ -104,21 +125,35 @@ export interface IChooseWord {
   type: typeof CHOOSE_WORD;
   currentWord: string;
 }
+
 export interface IWordGuessed {
   type: typeof WORD_GUESSED;
   guessedWord: string;
 }
+
 export interface IWordNotGuessed {
   type: typeof WORD_NOT_GUESSED;
   mistakenWord: string;
 }
+
 export interface IWinGame {
   type: typeof WIN_GAME;
 }
+
 export interface ILoseGame {
   type: typeof LOSE_GAME;
   mistakesAmount: number;
 }
+
+export interface ITrainClick {
+  type: typeof TRAIN_CLICK;
+  id: string;
+}
+export interface IInitStatistics {
+  type: typeof INIT_STATISTIC;
+  list: StatisticWord[];
+}
+
 export type GameActionType =
   | IStartGame
   | IStopGame
@@ -128,3 +163,5 @@ export type GameActionType =
   | IWordNotGuessed
   | ILoseGame
   | IWinGame;
+
+export type StatisticsActionType = IInitStatistics | ITrainClick;

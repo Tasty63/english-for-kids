@@ -1,6 +1,13 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from './store';
-import { IMenuAction, ICategoriesAction, IModeAction, GameActionType } from '../app.api';
+import {
+  IMenuAction,
+  ICategoriesAction,
+  IModeAction,
+  GameActionType,
+  StatisticsActionType,
+  StatisticWord,
+} from '../app.api';
 import {
   TOGGLE_MENU,
   INIT_CATEGORIES,
@@ -12,6 +19,8 @@ import {
   STOP_GAME,
   WIN_GAME,
   LOSE_GAME,
+  INIT_STATISTIC,
+  TRAIN_CLICK,
 } from './action-constants';
 import { Sounds, wordPronounceDelayMs } from '../utils/config';
 import { playAudio } from '../utils/helpers';
@@ -38,11 +47,6 @@ export const winGame = (): ThunkAction<void, RootState, unknown, GameActionType>
 
 export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
   const words = getState().game.words.slice();
-
-  if (words.length === 0) {
-    return;
-  }
-
   const lastWordIndex = words.length - 1;
   const currentWord = words[lastWordIndex];
 
@@ -89,15 +93,36 @@ export const chooseWord =
       return;
     }
     dispatch(guessedWord(word));
+
     if (words.length) {
       dispatch(playWord());
       return;
     }
+
     if (mistakesAmount) {
       dispatch(loseGame(mistakesAmount));
       playAudio(Sounds.Failure);
-    } else {
-      dispatch(winGame());
-      playAudio(Sounds.Success);
+      return;
     }
+    dispatch(winGame());
+    playAudio(Sounds.Success);
+  };
+
+export const initStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
+  let list: StatisticWord[];
+  const localStorageStatistics = localStorage.getItem('tasty63-statistics');
+  if (localStorageStatistics) {
+    list = JSON.parse(localStorageStatistics);
+  } else {
+    const result = await fetch('/card-statistics.json');
+    list = await result.json();
+  }
+
+  dispatch({ type: INIT_STATISTIC, list });
+};
+
+export const trainClick =
+  (id: string): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
+  async dispatch => {
+    dispatch({ type: TRAIN_CLICK, id });
   };

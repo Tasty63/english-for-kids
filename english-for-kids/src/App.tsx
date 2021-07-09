@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { RootState } from './redux/store';
 import Header from './components/header/Header';
 import CategoryList from './components/categories-list/categories-list';
-import { initCategories } from './redux/actions';
+import { initCategories, initStatistics } from './redux/actions';
 import WordList from './components/word-list/word-list';
 import Menu from './components/menu/menu';
 import PopUp from './components/pop-up/pop-up';
-import { RootState } from './redux/store';
+import Statistics from './components/statistics/statistics';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(initCategories());
+    dispatch(initStatistics());
   }, [dispatch]);
 
   return (
@@ -25,6 +27,7 @@ const App: React.FC = () => {
           <Menu />
           {gameResult && <PopUp gameResult={gameResult} />}
           <Route exact path="/" component={CategoryList} />
+          <Route path="/statistics" component={Statistics} />
           <Route exact path="/category/:name" component={WordList} />
         </div>
       </div>
