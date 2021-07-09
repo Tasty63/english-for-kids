@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modes, GameResults } from './utils/config';
+import { Modes, GameResults, SortDirections, SortKeys } from './utils/config';
 import {
   TOGGLE_MENU,
   INIT_CATEGORIES,
@@ -39,6 +39,7 @@ export type StatisticTableWord = {
   trainClicks?: number;
   guesses?: number;
   mistakes?: number;
+  accuracy?: number;
 };
 
 export type StatisticWord = {
@@ -64,6 +65,11 @@ export type MistakenWord = {
   word: string;
   id: string;
   mistakesAmount: number;
+};
+
+export type SortConfigType = {
+  direction: SortDirections;
+  key: SortKeys;
 };
 
 export type WordCardProps = {

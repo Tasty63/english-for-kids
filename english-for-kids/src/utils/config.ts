@@ -19,3 +19,18 @@ export enum GameResults {
   Win = 'Win',
   Lose = 'Lose',
 }
+
+export enum SortDirections {
+  Asc = 'Asc',
+  Desc = 'Desc',
+}
+
+export enum SortKeys {
+  Category = 'category',
+  Word = 'word',
+  Translation = 'translation',
+  TrainClicks = 'trainClicks',
+  Guesses = 'guesses',
+  Mistakes = 'mistakes',
+  Accuracy = 'accuracy',
+}
