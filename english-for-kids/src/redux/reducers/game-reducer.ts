@@ -27,9 +27,9 @@ const gameReducer = (state = InitialGameState, action: GameActionType): GameStat
     return { ...state, guessedWords: [...state.guessedWords, { word: action.guessedWord, id: action.id }] };
   }
   if (action.type === WORD_NOT_GUESSED) {
-    const isFind = state.mistakenWords.map(item => item.word).includes(action.mistakenWord);
+    const isMistakenWordsIncludes = state.mistakenWords.map(item => item.word).includes(action.mistakenWord);
 
-    if (isFind) {
+    if (isMistakenWordsIncludes) {
       return {
         ...state,
         mistakenWords: state.mistakenWords.map(word =>
@@ -51,5 +51,3 @@ const gameReducer = (state = InitialGameState, action: GameActionType): GameStat
 };
 
 export default gameReducer;
-
-// [...state.mistakenWords, { word: action.mistakenWord, id: action.id }
