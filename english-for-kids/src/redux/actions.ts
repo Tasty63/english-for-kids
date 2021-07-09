@@ -17,12 +17,11 @@ import {
   WORD_GUESSED,
   WORD_NOT_GUESSED,
   STOP_GAME,
-  WIN_GAME,
-  LOSE_GAME,
   INIT_STATISTIC,
   TRAIN_CLICK,
+  END_GAME,
 } from './action-constants';
-import { Sounds, wordPronounceDelayMs } from '../utils/config';
+import { GameResults, Sounds, wordPronounceDelayMs } from '../utils/config';
 import { playAudio } from '../utils/helpers';
 
 export const toggleMenu = (): ThunkAction<void, RootState, unknown, IMenuAction> => async dispatch => {
@@ -35,13 +34,11 @@ export const initCategories = (): ThunkAction<void, RootState, unknown, ICategor
 
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
-export const loseGame = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
-  dispatch({ type: LOSE_GAME });
-};
-
-export const winGame = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
-  dispatch({ type: WIN_GAME });
-};
+export const endGame =
+  (result: GameResults): ThunkAction<void, RootState, unknown, GameActionType> =>
+  async (dispatch, getState) => {
+    dispatch({ type: END_GAME, result });
+  };
 
 export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType> => async (dispatch, getState) => {
   const words = getState().game.words.slice();
@@ -98,11 +95,11 @@ export const chooseWord =
     }
 
     if (mistakesAmount) {
-      dispatch(loseGame());
+      dispatch(endGame(GameResults.Lose));
       playAudio(Sounds.Failure);
       return;
     }
-    dispatch(winGame());
+    dispatch(endGame(GameResults.Win));
     playAudio(Sounds.Success);
   };
 

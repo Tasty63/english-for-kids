@@ -10,10 +10,9 @@ import {
   WORD_GUESSED,
   WORD_NOT_GUESSED,
   STOP_GAME,
-  LOSE_GAME,
-  WIN_GAME,
   TRAIN_CLICK,
   INIT_STATISTIC,
+  END_GAME,
 } from './redux/action-constants';
 
 export type Category = {
@@ -143,12 +142,9 @@ export interface IWordNotGuessed {
   id: string;
 }
 
-export interface IWinGame {
-  type: typeof WIN_GAME;
-}
-
-export interface ILoseGame {
-  type: typeof LOSE_GAME;
+export interface IEndGame {
+  type: typeof END_GAME;
+  result: GameResults;
 }
 
 export interface ITrainClick {
@@ -167,7 +163,6 @@ export type GameActionType =
   | IChooseWord
   | IWordGuessed
   | IWordNotGuessed
-  | ILoseGame
-  | IWinGame;
+  | IEndGame;
 
 export type StatisticsActionType = IInitStatistics | ITrainClick;
