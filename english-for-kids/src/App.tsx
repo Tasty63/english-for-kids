@@ -19,6 +19,7 @@ const App: React.FC = () => {
     dispatch(initCategories());
     dispatch(initStatistics());
   }, [dispatch]);
+
   window.onbeforeunload = () => {
     localStorage.setItem('tasty63-statistics', JSON.stringify(statistics));
   };
