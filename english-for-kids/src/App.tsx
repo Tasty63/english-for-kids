@@ -13,11 +13,15 @@ import Statistics from './components/statistics/statistics';
 const App: React.FC = () => {
   const dispatch = useDispatch();
   const gameResult = useSelector((state: RootState) => state.game.result);
+  const statistics = useSelector((state: RootState) => state.statistics);
 
   useEffect(() => {
     dispatch(initCategories());
     dispatch(initStatistics());
   }, [dispatch]);
+  window.onbeforeunload = () => {
+    localStorage.setItem('tasty63-statistics', JSON.stringify(statistics));
+  };
 
   return (
     <Router>
