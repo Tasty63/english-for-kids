@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { Category, StatisticWord, StatisticTableWord } from '../../app.api';
 
 import { RootState } from '../../redux/store';
 import './statistics.scss';
@@ -7,46 +8,26 @@ const Statistics: React.FC = () => {
   const categories = useSelector((state: RootState) => state.categories.list);
   const statistics = useSelector((state: RootState) => state.statistics);
 
-  // export type WordStatistic = {
-  //   id: string;
-  //   category: string;
-  //   word: string;
-  //   translation: string;
-  //   trainClicks: number;
-  //   guesses: number;
-  //   mistakes: number;
-  // };
+  const makeTable = (categoriesData: Category[], statisticsData: StatisticWord[]): StatisticTableWord[] => {
+    return categoriesData.reduce((table: StatisticTableWord[], category) => {
+      const tableItem = category.words.map(categoryItem => {
+        const statWord = statisticsData.find(statItem => statItem.id === categoryItem.id);
 
-  // const makeTable = (): any => {
-  //   return statistics.map((item, index, statsArr) =>
-  //     statsArr.reduce((acc, statsArrItem) => {
-  //       for (let key in statsArrItem) {
-  //         acc.key = statsArrItem.key;
-  //       }
+        return {
+          id: categoryItem.id,
+          category: category.name,
+          word: categoryItem.word,
+          translation: categoryItem.translation,
+          trainClicks: statWord?.trainClicks,
+          guesses: statWord?.guesses,
+          mistakes: statWord?.mistakes,
+        };
+      });
 
-  //       return acc;
-  //     }, {}),
-  //   );
-  // };
-
-  const makeTable = (): any => {
-    // const categoriesWords = categories.map(category => category.words).flat();
-    // const bla = categories.reduce((acc, item, index) => {
-    //   return item.words.reduce((wordAcc, wordItem) => {
-    //     return wordAcc[]
-    //   }, {});
-    // }, {});
-    console.log(categories);
-
-    return statistics.map((item, index, statsArr) => {
-      // const statWord = categoriesWords.find(word => word.id === item.id);
-
-      // const matchedCategory = categories.find(category => category.words);
-      // console.log(item);
-      return item;
-    });
+      table.push(...tableItem);
+      return table;
+    }, []);
   };
-  const summary = makeTable();
 
   return (
     <div className="statistics">
@@ -63,15 +44,18 @@ const Statistics: React.FC = () => {
           </tr>
         </thead>
         <tbody className="statistics__body">
-          <tr className="statistics__row">
-            <td className="statistics__item">данные</td>
-            <td className="statistics__item">данные</td>
-            <td className="statistics__item">данные</td>
-            <td className="statistics__item">данные</td>
-            <td className="statistics__item">данные</td>
-            <td className="statistics__item">данные</td>
-            <td className="statistics__item">данные</td>
-          </tr>
+          {makeTable(categories, statistics).map(item => {
+            return (
+              <tr className="statistics__row" key={item.id}>
+                <td className="statistics__item">{item.category}</td>
+                <td className="statistics__item">{item.word}</td>
+                <td className="statistics__item">{item.translation}</td>
+                <td className="statistics__item">{item.trainClicks}</td>
+                <td className="statistics__item">{item.guesses}</td>
+                <td className="statistics__item">{item.mistakes}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

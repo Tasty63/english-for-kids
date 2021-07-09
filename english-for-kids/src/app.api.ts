@@ -31,14 +31,14 @@ export type WordData = {
   id: string;
 };
 
-export type WordStatistic = {
+export type StatisticTableWord = {
   id: string;
   category: string;
   word: string;
   translation: string;
-  trainClicks: number;
-  guesses: number;
-  mistakes: number;
+  trainClicks: number | undefined;
+  guesses: number | undefined;
+  mistakes: number | undefined;
 };
 
 export type StatisticWord = {
