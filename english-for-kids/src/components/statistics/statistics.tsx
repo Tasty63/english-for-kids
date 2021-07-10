@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Category, StatisticWord, StatisticTableWord, SortConfigType } from '../../app.api';
 import { resetStatistics } from '../../redux/actions';
 import { RootState } from '../../redux/store';
-import { SortDirections, SortKeys } from '../../utils/config';
+import { RouteNames, SortDirections, SortKeys } from '../../utils/config';
+import { getAccuracyPercentage } from '../../utils/helpers';
 import './statistics.scss';
 
 const Statistics: React.FC = () => {
@@ -11,19 +13,6 @@ const Statistics: React.FC = () => {
   const statistics = useSelector((state: RootState) => state.statistics);
   const dispatch = useDispatch();
   const [sortConfig, setSortConfig] = useState<SortConfigType | null>(null);
-
-  const getAccuracyPercentage = (corrects?: number, mistakes?: number): number => {
-    const maxPercent = 100;
-    const minPercent = 0;
-
-    if (!corrects) {
-      return minPercent;
-    }
-    if (!mistakes) {
-      return maxPercent;
-    }
-    return Math.floor(maxPercent / ((corrects + mistakes) / corrects));
-  };
 
   const requestSort = (key: SortKeys) => {
     let direction = SortDirections.Desc;
@@ -77,7 +66,9 @@ const Statistics: React.FC = () => {
           Reset
         </button>
         <button className="statistics__repeat" type="button">
-          Repeat difficult words
+          <Link to={`/category/${RouteNames.DifficultWords}`} className="statistics__link">
+            Repeat difficult words
+          </Link>
         </button>
       </div>
       <div className="statistics__wrapper">

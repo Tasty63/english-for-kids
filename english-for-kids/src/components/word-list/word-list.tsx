@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { RouteParams } from '../../app.api';
 import { stopGame } from '../../redux/actions';
 import { RootState } from '../../redux/store';
-import { Modes } from '../../utils/config';
+import { Modes, RouteNames } from '../../utils/config';
 import { removeSpacesfromWord } from '../../utils/helpers';
 import WordCard from '../card/word-card';
 
@@ -21,9 +21,15 @@ const WordList: React.FC = () => {
   const categories = useSelector((state: RootState) => state.categories.list);
   const mode = useSelector((state: RootState) => state.mode.current);
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
+  const difficultWords = useSelector((state: RootState) => state.categories.difficultWords);
 
-  const currentCategory = categories.find(category => removeSpacesfromWord(category.name) === name);
-  const wordsAudioSrc = currentCategory!.words.map(wordData => wordData.audioSrc);
+  let currentCategoryWords;
+  if (name === RouteNames.DifficultWords) {
+    currentCategoryWords = difficultWords;
+  } else {
+    currentCategoryWords = categories.find(category => removeSpacesfromWord(category.name) === name)!.words;
+  }
+  const wordsAudioSrc = currentCategoryWords.map(wordData => wordData.audioSrc);
 
   useEffect(() => {
     dispatch(stopGame());
@@ -33,7 +39,7 @@ const WordList: React.FC = () => {
     <>
       <GameStars />
       <div className="card-list">
-        {currentCategory?.words.map(wordData => (
+        {currentCategoryWords.map(wordData => (
           <WordCard
             word={wordData.word}
             image={wordData.image}

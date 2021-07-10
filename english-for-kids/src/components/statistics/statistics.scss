@@ -31,7 +31,9 @@
       background: $menuColor;
     }
   }
-
+  &__link {
+    text-decoration: none;
+  }
   &__reset {
     margin-right: 2rem;
   }

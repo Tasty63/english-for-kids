@@ -15,6 +15,7 @@ import {
   END_GAME,
   UPDATE_STATISTIC,
   RESET_STATISTIC,
+  UPDATE_DIFFICULT_WORDS,
 } from './redux/action-constants';
 
 export type Category = {
@@ -108,6 +109,7 @@ export type MenuState = {
 };
 export type CategoriesState = {
   list: Category[];
+  difficultWords: WordData[];
 };
 export type ModeState = {
   current: Modes;
@@ -125,8 +127,13 @@ export interface IMenuAction {
   type: typeof TOGGLE_MENU;
 }
 
-export interface ICategoriesAction {
+export interface IInitCategories {
   type: typeof INIT_CATEGORIES;
+}
+
+export interface IGetDifficultWords {
+  type: typeof UPDATE_DIFFICULT_WORDS;
+  difficultWords: WordData[];
 }
 
 export interface IModeAction {
@@ -196,3 +203,4 @@ export type GameActionType =
   | IEndGame;
 
 export type StatisticsActionType = IInitStatistics | ITrainClick | IUpdateStatistics | IResetStatistic;
+export type CategoriesActionType = IInitCategories | IGetDifficultWords;

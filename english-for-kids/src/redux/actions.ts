@@ -2,7 +2,7 @@ import { ThunkAction } from 'redux-thunk';
 import { RootState } from './store';
 import {
   IMenuAction,
-  ICategoriesAction,
+  CategoriesActionType,
   IModeAction,
   GameActionType,
   StatisticsActionType,
@@ -24,27 +24,45 @@ import {
   END_GAME,
   UPDATE_STATISTIC,
   RESET_STATISTIC,
+  UPDATE_DIFFICULT_WORDS,
 } from './action-constants';
-import { GameResults, Sounds, wordPronounceDelayMs } from '../utils/config';
-import { playAudio } from '../utils/helpers';
+import { GameResults, lowAccuracy, maxDifficultWords, Sounds, wordPronounceDelayMs } from '../utils/config';
+import { getAccuracyPercentage, playAudio } from '../utils/helpers';
 
 export const toggleMenu = (): ThunkAction<void, RootState, unknown, IMenuAction> => async dispatch => {
   dispatch({ type: TOGGLE_MENU });
 };
 
-export const initCategories = (): ThunkAction<void, RootState, unknown, ICategoriesAction> => async dispatch => {
+export const initCategories = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {
   dispatch({ type: INIT_CATEGORIES });
 };
 
+export const updateDifficultWords =
+  (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async (dispatch, getState) => {
+    const categoriesWords = getState().categories.list.flatMap(category => category.words);
+    const difficultWordsStatistic = getState()
+      .statistics.filter(
+        statWord => statWord.mistakes && getAccuracyPercentage(statWord.guesses, statWord.mistakes) <= lowAccuracy,
+      )
+      .sort((firstWord, secondWord) => secondWord.mistakes - firstWord.mistakes)
+      .slice(0, maxDifficultWords);
+
+    const difficultWords = categoriesWords.filter(categoryWord =>
+      difficultWordsStatistic.some(wordStatistic => wordStatistic.id === categoryWord.id),
+    );
+    dispatch({ type: UPDATE_DIFFICULT_WORDS, difficultWords });
+  };
+
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
-export const updateStatiics =
+export const updateStatistics =
   (
     guessedWords: GuessedWord[],
     mistakenWords: MistakenWord[],
   ): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
   async dispatch => {
     dispatch({ type: UPDATE_STATISTIC, guessedWords, mistakenWords });
+    dispatch(updateDifficultWords());
   };
 
 export const endGame =
@@ -52,7 +70,7 @@ export const endGame =
   async (dispatch, getState) => {
     const { guessedWords, mistakenWords } = getState().game;
 
-    dispatch(updateStatiics(guessedWords, mistakenWords));
+    dispatch(updateStatistics(guessedWords, mistakenWords));
     dispatch({ type: END_GAME, result });
   };
 
@@ -99,8 +117,8 @@ export const chooseWord =
     const mistakesAmount = getState().game.mistakenWords.length;
     const words = getState().game.words.slice();
 
-    if (currentWord !== word) {
-      dispatch(notGuessedWord(word, id));
+    if (currentWord && currentWord !== word) {
+      dispatch(notGuessedWord(currentWord, id));
       return;
     }
     dispatch(guessedWord(word, id));
@@ -128,8 +146,8 @@ export const initStatistics = (): ThunkAction<void, RootState, unknown, Statisti
     const result = await fetch('/card-statistics.json');
     list = await result.json();
   }
-
   dispatch({ type: INIT_STATISTIC, list });
+  dispatch(updateDifficultWords());
 };
 
 export const resetStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {

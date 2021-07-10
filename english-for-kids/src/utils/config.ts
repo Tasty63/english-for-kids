@@ -2,6 +2,8 @@ export const RegExpRemoveSpaces = /\s+/g;
 export const toBack = true;
 export const toFront = false;
 export const wordPronounceDelayMs = 500;
+export const lowAccuracy = 50;
+export const maxDifficultWords = 8;
 
 export enum Modes {
   Train = 'Train',
@@ -33,4 +35,8 @@ export enum SortKeys {
   Guesses = 'guesses',
   Mistakes = 'mistakes',
   Accuracy = 'accuracy',
+}
+
+export enum RouteNames {
+  DifficultWords = 'difficultWords',
 }

@@ -19,3 +19,16 @@ export const playAudio = (audioSrc: string): void => {
   audio.currentTime = 0;
   audio.play();
 };
+
+export const getAccuracyPercentage = (corrects?: number, mistakes?: number): number => {
+  const maxPercent = 100;
+  const minPercent = 0;
+
+  if (!corrects) {
+    return minPercent;
+  }
+  if (!mistakes) {
+    return maxPercent;
+  }
+  return Math.floor(maxPercent / ((corrects + mistakes) / corrects));
+};
