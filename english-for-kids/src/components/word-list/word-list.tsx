@@ -32,7 +32,7 @@ const WordList: React.FC = () => {
   return (
     <>
       <GameStars />
-      <div className="word-list">
+      <div className="card-list">
         {currentCategory?.words.map(wordData => (
           <WordCard
             word={wordData.word}
@@ -43,12 +43,12 @@ const WordList: React.FC = () => {
             key={wordData.id}
           />
         ))}
-        {mode === Modes.Play && isGameStarted ? (
-          <RepeatButton />
-        ) : (
-          mode === Modes.Play && <StartButton wordsAudioSrc={wordsAudioSrc} />
-        )}
       </div>
+      {mode === Modes.Play && isGameStarted ? (
+        <RepeatButton />
+      ) : (
+        mode === Modes.Play && <StartButton wordsAudioSrc={wordsAudioSrc} />
+      )}
     </>
   );
 };

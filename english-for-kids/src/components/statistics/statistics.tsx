@@ -80,62 +80,64 @@ const Statistics: React.FC = () => {
           Repeat difficult words
         </button>
       </div>
-      <table className="statistics__table">
-        <thead className="statistics__header">
-          <tr className="statistics__head">
-            <th className="statistics__title">
-              <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Category)}>
-                Category
-              </button>
-            </th>
-            <th className="statistics__title">
-              <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Word)}>
-                Word
-              </button>
-            </th>
-            <th className="statistics__title">
-              <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Translation)}>
-                Translation
-              </button>
-            </th>
-            <th className="statistics__title">
-              <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.TrainClicks)}>
-                Trained
-              </button>
-            </th>
-            <th className="statistics__title">
-              <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Guesses)}>
-                Correct
-              </button>
-            </th>
-            <th className="statistics__title">
-              <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Mistakes)}>
-                Mistakes
-              </button>
-            </th>
-            <th className="statistics__title">
-              <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Accuracy)}>
-                Accuracy %
-              </button>
-            </th>
-          </tr>
-        </thead>
-        <tbody className="statistics__body">
-          {table.map(item => {
-            return (
-              <tr className="statistics__row" key={item.id}>
-                <td className="statistics__item">{item.category}</td>
-                <td className="statistics__item">{item.word}</td>
-                <td className="statistics__item">{item.translation}</td>
-                <td className="statistics__item">{item.trainClicks}</td>
-                <td className="statistics__item">{item.guesses}</td>
-                <td className="statistics__item">{item.mistakes}</td>
-                <td className="statistics__item">{item.accuracy}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className="statistics__wrapper">
+        <table className="statistics__table">
+          <thead className="statistics__header">
+            <tr className="statistics__head">
+              <th className="statistics__title">
+                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Category)}>
+                  Category
+                </button>
+              </th>
+              <th className="statistics__title">
+                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Word)}>
+                  Word
+                </button>
+              </th>
+              <th className="statistics__title">
+                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Translation)}>
+                  Translation
+                </button>
+              </th>
+              <th className="statistics__title">
+                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.TrainClicks)}>
+                  Trained
+                </button>
+              </th>
+              <th className="statistics__title">
+                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Guesses)}>
+                  Correct
+                </button>
+              </th>
+              <th className="statistics__title">
+                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Mistakes)}>
+                  Mistakes
+                </button>
+              </th>
+              <th className="statistics__title">
+                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Accuracy)}>
+                  Accuracy %
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody className="statistics__body">
+            {table.map(item => {
+              return (
+                <tr className="statistics__row" key={item.id}>
+                  <td className="statistics__item">{item.category}</td>
+                  <td className="statistics__item">{item.word}</td>
+                  <td className="statistics__item">{item.translation}</td>
+                  <td className="statistics__item">{item.trainClicks}</td>
+                  <td className="statistics__item">{item.guesses}</td>
+                  <td className="statistics__item">{item.mistakes}</td>
+                  <td className="statistics__item">{item.accuracy}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

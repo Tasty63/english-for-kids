@@ -12,15 +12,9 @@ p {
 
 :root {
   font-size: 10px;
-  @media (max-width: 1000px) {
-    font-size: 8px;
-  }
 
-  @media (max-width: 800px) {
-    font-size: 6px;
-  }
-  @media (max-width: 420px) {
-    font-size: 5px;
+  @media (max-width: $firstBreakPoint) {
+    font-size: 8px;
   }
 }
 
@@ -30,6 +24,7 @@ p {
 
 .container {
   max-width: $containerSize;
+  height: 100%;
   margin: 0 auto;
   padding: 0 1rem;
 }

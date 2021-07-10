@@ -1,6 +1,12 @@
+@import '../../scss/variables.scss';
+
 .card-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin-top: 4rem;
+
+  @media (max-width: $thirdBreakPoint) {
+    margin-top: 0;
+  }
 }

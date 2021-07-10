@@ -5,9 +5,9 @@
   letter-spacing: 1px;
   font-family: $mainFont;
   box-sizing: border-box;
-  overflow-x: auto;
+  padding-bottom: 2rem;
 
-  @media (max-width: 1000px) {
+  @media (max-width: $firstBreakPoint) {
     &__item {
       font-size: 2rem;
     }
@@ -36,6 +36,10 @@
     margin-right: 2rem;
   }
 
+  &__wrapper {
+    overflow-x: auto;
+  }
+
   &__button {
     font-family: $mainFont;
     font-weight: 600;
@@ -54,6 +58,7 @@
     border: 5px solid $menuColor;
     text-align: center;
     width: 100%;
+    overflow-x: auto;
   }
 
   &__header {
