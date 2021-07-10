@@ -20,12 +20,13 @@
     background: $trainModeColor;
     border-radius: 35px;
     transition: 0.4s;
+    box-shadow: 1px 1px 3px black;
 
     &::before {
       position: absolute;
       content: '';
-      height: 26px;
-      width: 26px;
+      height: 2.6rem;
+      width: 2.6rem;
       left: 4px;
       bottom: 4px;
       background-color: white;
