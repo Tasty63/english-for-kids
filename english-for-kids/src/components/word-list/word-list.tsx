@@ -2,7 +2,7 @@ import './word-list.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams } from 'react-router-dom';
-import { RouteParams } from '../../app.api';
+import { GameWord, RouteParams } from '../../app.api';
 import { stopGame } from '../../redux/actions';
 import { RootState } from '../../redux/store';
 import { Modes, RouteNames } from '../../utils/config';
@@ -29,7 +29,7 @@ const WordList: React.FC = () => {
   } else {
     currentCategoryWords = categories.find(category => removeSpacesfromWord(category.name) === name)!.words;
   }
-  const wordsAudioSrc = currentCategoryWords.map(wordData => wordData.audioSrc);
+  const gameWords: GameWord[] = currentCategoryWords.map(wordData => ({ word: wordData.audioSrc, id: wordData.id }));
 
   useEffect(() => {
     dispatch(stopGame());
@@ -53,7 +53,7 @@ const WordList: React.FC = () => {
       {mode === Modes.Play && isGameStarted ? (
         <RepeatButton />
       ) : (
-        mode === Modes.Play && <StartButton wordsAudioSrc={wordsAudioSrc} />
+        mode === Modes.Play && <StartButton gameWords={gameWords} />
       )}
     </>
   );

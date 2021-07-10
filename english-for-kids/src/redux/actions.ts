@@ -9,6 +9,7 @@ import {
   StatisticWord,
   MistakenWord,
   GuessedWord,
+  GameWord,
 } from '../app.api';
 import {
   TOGGLE_MENU,
@@ -78,17 +79,18 @@ export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType
   const words = getState().game.words.slice();
   const lastWordIndex = words.length - 1;
   const currentWord = words[lastWordIndex];
+  console.log(currentWord);
 
   setTimeout(() => {
-    playAudio(currentWord);
+    playAudio(currentWord.word);
     dispatch({ type: PLAY_WORD, currentWord });
   }, wordPronounceDelayMs);
 };
 
 export const startGame =
-  (wordsAudioSrc: string[]): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (gameWords: GameWord[]): ThunkAction<void, RootState, unknown, GameActionType> =>
   async dispatch => {
-    dispatch({ type: START_GAME, wordsAudioSrc });
+    dispatch({ type: START_GAME, gameWords });
     dispatch(playWord());
   };
 
@@ -97,31 +99,33 @@ export const stopGame = (): GameActionType => {
 };
 
 export const guessedWord =
-  (word: string, id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (word: GameWord): ThunkAction<void, RootState, unknown, GameActionType> =>
   async dispatch => {
     playAudio(Sounds.Correct);
-    dispatch({ type: WORD_GUESSED, guessedWord: word, id });
+    dispatch({ type: WORD_GUESSED, guessedWord: word });
   };
 
 export const notGuessedWord =
-  (word: string, id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (word: GameWord): ThunkAction<void, RootState, unknown, GameActionType> =>
   async dispatch => {
     playAudio(Sounds.Error);
-    dispatch({ type: WORD_NOT_GUESSED, mistakenWord: word, id });
+    dispatch({ type: WORD_NOT_GUESSED, mistakenWord: word });
   };
 
 export const chooseWord =
-  (word: string, id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async (dispatch, getState) => {
     const { currentWord } = getState().game;
     const mistakesAmount = getState().game.mistakenWords.length;
     const words = getState().game.words.slice();
-
-    if (currentWord && currentWord !== word) {
-      dispatch(notGuessedWord(currentWord, id));
+    if (!currentWord) {
       return;
     }
-    dispatch(guessedWord(word, id));
+    if (currentWord.id !== id) {
+      dispatch(notGuessedWord(currentWord));
+      return;
+    }
+    dispatch(guessedWord(currentWord));
 
     if (words.length) {
       dispatch(playWord());

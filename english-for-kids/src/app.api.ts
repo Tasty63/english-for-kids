@@ -58,8 +58,8 @@ export type GameWord = {
 };
 
 export type GuessedWord = {
-  word: string;
   id: string;
+  word: string;
   mistakesAmount?: number;
 };
 
@@ -88,7 +88,7 @@ export type CategoryCardProps = {
 };
 
 export type StartButtonProps = {
-  wordsAudioSrc: string[];
+  gameWords: GameWord[];
 };
 
 export type GameStarsProps = {
@@ -116,8 +116,8 @@ export type ModeState = {
 };
 export type GameState = {
   isStarted: boolean;
-  words: string[];
-  currentWord: string | null;
+  words: GameWord[];
+  currentWord: GameWord | null;
   guessedWords: GuessedWord[];
   mistakenWords: MistakenWord[];
   result: GameResults | null;
@@ -142,7 +142,7 @@ export interface IModeAction {
 
 export interface IStartGame {
   type: typeof START_GAME;
-  wordsAudioSrc: string[];
+  gameWords: GameWord[];
 }
 
 export interface IStopGame {
@@ -151,23 +151,21 @@ export interface IStopGame {
 
 export interface IPlayWord {
   type: typeof PLAY_WORD;
-  currentWord: string;
+  currentWord: GameWord;
 }
 export interface IChooseWord {
   type: typeof CHOOSE_WORD;
-  currentWord: string;
+  currentWord: GameWord;
 }
 
 export interface IWordGuessed {
   type: typeof WORD_GUESSED;
-  guessedWord: string;
-  id: string;
+  guessedWord: GameWord;
 }
 
 export interface IWordNotGuessed {
   type: typeof WORD_NOT_GUESSED;
-  mistakenWord: string;
-  id: string;
+  mistakenWord: GameWord;
 }
 
 export interface IEndGame {

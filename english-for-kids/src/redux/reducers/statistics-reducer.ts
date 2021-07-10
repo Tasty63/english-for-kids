@@ -19,7 +19,6 @@ const statisticsReducer = (state = InitialStatisticState, action: StatisticsActi
       })
       .map(word => {
         const currentMistakenWord = action.mistakenWords.find(mistakenWord => word.id === mistakenWord.id);
-
         return currentMistakenWord ? { ...word, mistakes: word.mistakes + currentMistakenWord.mistakesAmount } : word;
       });
   }
