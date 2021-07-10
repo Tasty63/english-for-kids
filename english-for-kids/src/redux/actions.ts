@@ -79,7 +79,6 @@ export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType
   const words = getState().game.words.slice();
   const lastWordIndex = words.length - 1;
   const currentWord = words[lastWordIndex];
-  console.log(currentWord);
 
   setTimeout(() => {
     playAudio(currentWord.word);
@@ -156,6 +155,7 @@ export const initStatistics = (): ThunkAction<void, RootState, unknown, Statisti
 
 export const resetStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
   dispatch({ type: RESET_STATISTIC });
+  dispatch(updateDifficultWords());
 };
 
 export const trainClick =
