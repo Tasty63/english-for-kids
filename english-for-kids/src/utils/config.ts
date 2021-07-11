@@ -1,7 +1,8 @@
 export const RegExpRemoveSpaces = /\s+/g;
 export const wordPronounceDelayMs = 500;
+export const endGameRedirectionDelayMs = 2000;
 export const lowAccuracyPercent = 50;
-export const maxDifficultWords = 8;
+export const maxDifficultWordsOnPage = 8;
 
 export enum Modes {
   Train = 'Train',

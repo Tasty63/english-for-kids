@@ -25,11 +25,13 @@ const WordList: React.FC = () => {
 
   const isTrainDifficultWords = name === RouteNames.DifficultWords;
   let currentCategoryWords;
+
   if (isTrainDifficultWords) {
     currentCategoryWords = difficultWords;
   } else {
     currentCategoryWords = categories.find(category => removeSpacesfromWord(category.name) === name)!.words;
   }
+
   const gameWords: GameWord[] = currentCategoryWords.map(wordData => ({ audio: wordData.audioSrc, id: wordData.id }));
 
   useEffect(() => {

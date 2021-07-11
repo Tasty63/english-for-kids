@@ -1,9 +1,8 @@
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const TOGGLE_MODE = 'TOGGLE_MODE';
 
 export const INIT_CATEGORIES = 'INIT_CATEGORIES';
 export const UPDATE_DIFFICULT_WORDS = 'UPDATE_DIFFICULT_WORDS';
-
-export const TOGGLE_MODE = 'TOGGLE_MODE';
 
 export const START_GAME = 'START_GAME';
 export const STOP_GAME = 'STOP_GAME';

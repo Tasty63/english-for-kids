@@ -37,7 +37,7 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
 
   return (
     <div
-      className={`word-card card ${flipped ? 'word-card_flipped' : ''} ${isGuessed ? 'word-card_guessed' : ''}`}
+      className={`word-card card ${flipped ? 'word-card_flipped' : ''}${isGuessed ? 'word-card_guessed' : ''}`}
       onClick={isGameStarted ? () => dispatch(chooseWord(id)) : event => handleTrainClick(event, audioSrc, id)}
       onMouseLeave={() => flip(toFront)}
       key={id}

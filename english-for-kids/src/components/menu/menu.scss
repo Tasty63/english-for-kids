@@ -68,4 +68,7 @@
       color: $actvieMenuLinkColor;
     }
   }
+
+  @media (max-width: $firstBreakPoint) {
+  }
 }

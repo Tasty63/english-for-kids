@@ -7,7 +7,7 @@ const GameStars: React.FC = () => {
   const mistakenWords = useSelector((state: RootState) => state.game.mistakenWords);
   const guessedWords = useSelector((state: RootState) => state.game.guessedWords);
 
-  const mistakeStars = (words: MistakenWord[]) => {
+  const getMistakeStars = (words: MistakenWord[]) => {
     return words.reduce((acc: JSX.Element[], word) => {
       for (let i = 0; i < word.mistakesAmount; i++) {
         acc.push(<div className="star star_mistake" key={`${word.id}${i}`} />);
@@ -19,7 +19,7 @@ const GameStars: React.FC = () => {
 
   return (
     <div className="stars">
-      {mistakeStars(mistakenWords)}
+      {getMistakeStars(mistakenWords)}
       {guessedWords.map((word, index) => (
         <div className="star star_guess" key={`${word}${index}`} />
       ))}

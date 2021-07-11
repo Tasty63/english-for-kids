@@ -2,7 +2,7 @@ import './pop-up.scss';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { GameResults } from '../../utils/config';
+import { endGameRedirectionDelayMs, GameResults } from '../../utils/config';
 import { RootState } from '../../redux/store';
 import { PopUpProps } from '../../app.api';
 import { stopGame } from '../../redux/actions';
@@ -20,7 +20,7 @@ const PopUp: React.FC<PopUpProps> = ({ gameResult }: PopUpProps) => {
     setTimeout(() => {
       hisory.push('/statistics');
       dispatch(stopGame());
-    }, 2000);
+    }, endGameRedirectionDelayMs);
   }, [dispatch, hisory]);
 
   return (

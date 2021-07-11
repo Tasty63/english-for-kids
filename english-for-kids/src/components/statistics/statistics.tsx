@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { StatisticTableWord, StatisticsProps } from '../../app.api';
+import { StatisticsProps } from '../../app.api';
 import { resetStatistics } from '../../redux/actions';
 import { RouteNames, SortKeys } from '../../utils/config';
 import './statistics.scss';

@@ -26,12 +26,18 @@ import {
   RESET_STATISTIC,
   UPDATE_DIFFICULT_WORDS,
 } from './action-constants';
-import { GameResults, lowAccuracyPercent, maxDifficultWords, Sounds, wordPronounceDelayMs } from '../utils/config';
+import {
+  GameResults,
+  lowAccuracyPercent,
+  maxDifficultWordsOnPage,
+  Sounds,
+  wordPronounceDelayMs,
+} from '../utils/config';
 import { getAccuracyPercentage, playAudio } from '../utils/helpers';
 
-export const toggleMenu = (): ThunkAction<void, RootState, unknown, IMenuAction> => async dispatch => {
-  dispatch({ type: TOGGLE_MENU });
-};
+export const toggleMenu = (): IMenuAction => ({ type: TOGGLE_MENU });
+
+export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
 export const initCategories = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {
   dispatch({ type: INIT_CATEGORIES });
@@ -40,21 +46,20 @@ export const initCategories = (): ThunkAction<void, RootState, unknown, Categori
 export const updateDifficultWords =
   (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async (dispatch, getState) => {
     const categoriesWords = getState().categories.list.flatMap(category => category.words);
+
     const difficultWordsStatistic = getState()
       .statistics.filter(
-        statWord =>
-          statWord.mistakes && getAccuracyPercentage(statWord.guesses, statWord.mistakes) <= lowAccuracyPercent,
+        word => word.mistakes && getAccuracyPercentage(word.guesses, word.mistakes) <= lowAccuracyPercent,
       )
       .sort((firstWord, secondWord) => secondWord.mistakes - firstWord.mistakes)
-      .slice(0, maxDifficultWords);
+      .slice(0, maxDifficultWordsOnPage);
 
     const difficultWords = categoriesWords.filter(categoryWord =>
       difficultWordsStatistic.some(wordStatistic => wordStatistic.id === categoryWord.id),
     );
+
     dispatch({ type: UPDATE_DIFFICULT_WORDS, difficultWords });
   };
-
-export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
 export const updateStatistics =
   (
@@ -96,9 +101,7 @@ export const startGame =
     dispatch(playWord());
   };
 
-export const stopGame = (): GameActionType => {
-  return { type: STOP_GAME };
-};
+export const stopGame = (): GameActionType => ({ type: STOP_GAME });
 
 export const guessedWord =
   (word: GameWord): ThunkAction<void, RootState, unknown, GameActionType> =>

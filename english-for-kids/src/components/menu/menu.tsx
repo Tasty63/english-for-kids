@@ -13,7 +13,7 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      <nav className={`header__menu menu ${isOpen ? 'menu_opened' : ''}`}>
+      <nav className={isOpen ? 'header__menu menu menu_opened' : 'header__menu menu'}>
         <ul className="menu__list">
           {categories.map(category => {
             const nameWithoutSpaces = removeSpacesfromWord(category.name);
@@ -37,7 +37,7 @@ const Menu: React.FC = () => {
         </ul>
       </nav>
       <div
-        className={`menu__wrapper ${isOpen ? 'menu__wrapper_visible' : ''}`}
+        className={isOpen ? 'menu__wrapper menu__wrapper_visible' : 'menu__wrapper'}
         onClick={() => dispatch(toggleMenu())}
       />
     </>
