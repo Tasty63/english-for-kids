@@ -37,7 +37,7 @@ export type StatisticTableWord = {
   category: string;
   word: string;
   translation: string;
-  trainClicks?: number;
+  trained?: number;
   guesses?: number;
   mistakes?: number;
   accuracy?: number;
@@ -45,7 +45,7 @@ export type StatisticTableWord = {
 
 export type StatisticWord = {
   id: string;
-  trainClicks: number;
+  trained: number;
   guesses: number;
   mistakes: number;
 };

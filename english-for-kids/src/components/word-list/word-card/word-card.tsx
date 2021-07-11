@@ -12,13 +12,12 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
   const toFront = false;
   const [flipped, flip] = useState(toFront);
 
+  const dispatch = useDispatch();
   const mode = useSelector((state: RootState) => state.mode.current);
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
   const isGuessed = useSelector((state: RootState) =>
     state.game.guessedWords.map(item => item.audio).includes(audioSrc),
   );
-
-  const dispatch = useDispatch();
 
   const playAudioOnClick = ({ target }: React.MouseEvent, audio: string): void => {
     if (!(target instanceof HTMLElement)) {

@@ -29,7 +29,7 @@ export enum SortKeys {
   Category = 'category',
   Word = 'word',
   Translation = 'translation',
-  TrainClicks = 'trainClicks',
+  TrainClicks = 'trained',
   Guesses = 'guesses',
   Mistakes = 'mistakes',
   Accuracy = 'accuracy',

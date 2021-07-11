@@ -32,7 +32,7 @@ const Statistics: React.FC = () => {
           category: category.name,
           word: categoryItem.word,
           translation: categoryItem.translation,
-          trainClicks: statWord?.trainClicks,
+          trained: statWord?.trained,
           guesses: statWord?.guesses,
           mistakes: statWord?.mistakes,
           accuracy: getAccuracyPercentage(statWord?.guesses, statWord?.mistakes),
@@ -40,24 +40,38 @@ const Statistics: React.FC = () => {
       });
     });
   };
-  const table = makeTable(categories, statistics);
 
-  if (sortConfig !== null) {
-    table.sort((first, second) => {
-      const firstKey = first[sortConfig.key];
-      const secondKey = second[sortConfig.key];
+  const sortTable = (table: StatisticTableWord[], config: SortConfigType) => {
+    return table.slice().sort((first, second) => {
+      const firstKey = first[config.key];
+      const secondKey = second[config.key];
       if (firstKey === undefined || secondKey === undefined) {
         return 0;
       }
       if (firstKey < secondKey) {
-        return sortConfig.direction === SortDirections.Asc ? -1 : 1;
+        return config.direction === SortDirections.Asc ? -1 : 1;
       }
       if (firstKey > secondKey) {
-        return sortConfig.direction === SortDirections.Asc ? 1 : -1;
+        return config.direction === SortDirections.Asc ? 1 : -1;
       }
       return 0;
     });
+  };
+
+  let table = makeTable(categories, statistics);
+  if (sortConfig !== null) {
+    table = sortTable(table, sortConfig);
   }
+
+  const tableColumns: SortKeys[] = [
+    SortKeys.Category,
+    SortKeys.Word,
+    SortKeys.Translation,
+    SortKeys.TrainClicks,
+    SortKeys.Guesses,
+    SortKeys.Mistakes,
+    SortKeys.Accuracy,
+  ];
 
   return (
     <div className="statistics">
@@ -75,54 +89,28 @@ const Statistics: React.FC = () => {
         <table className="statistics__table">
           <thead className="statistics__header">
             <tr className="statistics__head">
-              <th className="statistics__title">
-                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Category)}>
-                  Category
-                </button>
-              </th>
-              <th className="statistics__title">
-                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Word)}>
-                  Word
-                </button>
-              </th>
-              <th className="statistics__title">
-                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Translation)}>
-                  Translation
-                </button>
-              </th>
-              <th className="statistics__title">
-                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.TrainClicks)}>
-                  Trained
-                </button>
-              </th>
-              <th className="statistics__title">
-                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Guesses)}>
-                  Correct
-                </button>
-              </th>
-              <th className="statistics__title">
-                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Mistakes)}>
-                  Mistakes
-                </button>
-              </th>
-              <th className="statistics__title">
-                <button className="statistics__button" type="button" onClick={() => requestSort(SortKeys.Accuracy)}>
-                  Accuracy %
-                </button>
-              </th>
+              {tableColumns.map(column => {
+                return (
+                  <th className="statistics__title" key={column}>
+                    <button className="statistics__button" type="button" onClick={() => requestSort(column)}>
+                      {column === SortKeys.Accuracy ? `${column} %` : column}
+                    </button>
+                  </th>
+                );
+              })}
             </tr>
           </thead>
           <tbody className="statistics__body">
-            {table.map(item => {
+            {table.map(row => {
               return (
-                <tr className="statistics__row" key={item.id}>
-                  <td className="statistics__item">{item.category}</td>
-                  <td className="statistics__item">{item.word}</td>
-                  <td className="statistics__item">{item.translation}</td>
-                  <td className="statistics__item">{item.trainClicks}</td>
-                  <td className="statistics__item">{item.guesses}</td>
-                  <td className="statistics__item">{item.mistakes}</td>
-                  <td className="statistics__item">{item.accuracy}</td>
+                <tr className="statistics__row" key={row.id}>
+                  <td className="statistics__item">{row.category}</td>
+                  <td className="statistics__item">{row.word}</td>
+                  <td className="statistics__item">{row.translation}</td>
+                  <td className="statistics__item">{row.trained}</td>
+                  <td className="statistics__item">{row.guesses}</td>
+                  <td className="statistics__item">{row.mistakes}</td>
+                  <td className="statistics__item">{row.accuracy}</td>
                 </tr>
               );
             })}

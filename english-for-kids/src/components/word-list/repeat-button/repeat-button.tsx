@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { playAudio } from '../../utils/helpers';
+import { RootState } from '../../../redux/store';
+import { playAudio } from '../../../utils/helpers';
 import './repeat-button.scss';
 
 const RepeatButton: React.FC = () => {

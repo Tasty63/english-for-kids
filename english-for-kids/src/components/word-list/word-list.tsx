@@ -9,9 +9,9 @@ import { Modes, RouteNames } from '../../utils/config';
 import { removeSpacesfromWord } from '../../utils/helpers';
 import WordCard from './word-card/word-card';
 
-import RepeatButton from '../repeat-button/repeat-button';
-import StartButton from '../start-button/start-button';
-import GameStars from '../game-stars/game-stars';
+import RepeatButton from './repeat-button/repeat-button';
+import StartButton from './start-button/start-button';
+import GameStars from './game-stars/game-stars';
 
 const WordList: React.FC = () => {
   const { name } = useParams<RouteParams>();

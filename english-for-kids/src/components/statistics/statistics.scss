@@ -49,6 +49,9 @@
     background-color: transparent;
     border: none;
 
+    &::first-letter {
+      text-transform: uppercase;
+    }
     &:hover {
       cursor: pointer;
     }

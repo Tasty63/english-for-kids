@@ -1,7 +1,7 @@
 import './game-stars.scss';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import { MistakenWord } from '../../app.api';
+import { RootState } from '../../../redux/store';
+import { MistakenWord } from '../../../app.api';
 
 const GameStars: React.FC = () => {
   const mistakenWords = useSelector((state: RootState) => state.game.mistakenWords);
