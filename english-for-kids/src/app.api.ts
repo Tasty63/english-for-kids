@@ -72,6 +72,12 @@ export type CategoryCardProps = {
   preview: string;
 };
 
+export type StatisticsProps = {
+  requestSort: (key: SortKeys) => void;
+  table: StatisticTableWord[];
+  tableColumns: SortKeys[];
+};
+
 export type StartButtonProps = {
   gameWords: GameWord[];
 };

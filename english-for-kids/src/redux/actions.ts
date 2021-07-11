@@ -117,9 +117,9 @@ export const notGuessedWord =
 export const chooseWord =
   (id: string): ThunkAction<void, RootState, unknown, GameActionType> =>
   async (dispatch, getState) => {
-    const { currentWord } = getState().game;
+    const { currentWord, words } = getState().game;
     const mistakesAmount = getState().game.mistakenWords.length;
-    const words = getState().game.words.slice();
+
     if (!currentWord) {
       return;
     }

@@ -1,10 +1,8 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Category, StatisticWord, StatisticTableWord, SortConfigType } from '../../app.api';
-import { resetStatistics } from '../../redux/actions';
 import { RootState } from '../../redux/store';
-import { RouteNames, SortDirections, SortKeys } from '../../utils/config';
+import { SortDirections, SortKeys } from '../../utils/config';
 import { getAccuracyPercentage } from '../../utils/helpers';
 import Statistics from './statistics';
 import './statistics.scss';

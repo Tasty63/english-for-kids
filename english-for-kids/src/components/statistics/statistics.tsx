@@ -1,18 +1,9 @@
-import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Category, StatisticWord, StatisticTableWord, SortConfigType } from '../../app.api';
+import { StatisticTableWord, StatisticsProps } from '../../app.api';
 import { resetStatistics } from '../../redux/actions';
-import { RootState } from '../../redux/store';
-import { RouteNames, SortDirections, SortKeys } from '../../utils/config';
-import { getAccuracyPercentage } from '../../utils/helpers';
+import { RouteNames, SortKeys } from '../../utils/config';
 import './statistics.scss';
-
-export type StatisticsProps = {
-  requestSort: (key: SortKeys) => void;
-  table: StatisticTableWord[];
-  tableColumns: SortKeys[];
-};
 
 const Statistics: React.FC<StatisticsProps> = ({ requestSort, table, tableColumns }: StatisticsProps) => {
   const dispatch = useDispatch();
