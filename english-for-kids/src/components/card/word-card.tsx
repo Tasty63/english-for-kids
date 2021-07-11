@@ -3,12 +3,15 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { WordData } from '../../app.api';
 import { RootState } from '../../redux/store';
-import { Modes, toBack, toFront } from '../../utils/config';
+import { Modes } from '../../utils/config';
 import { chooseWord, trainClick } from '../../redux/actions';
 import { playAudio } from '../../utils/helpers';
 
 const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }: WordData) => {
+  const toBack = true;
+  const toFront = false;
   const [flipped, flip] = useState(toFront);
+
   const mode = useSelector((state: RootState) => state.mode.current);
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
   const isGuessed = useSelector((state: RootState) =>

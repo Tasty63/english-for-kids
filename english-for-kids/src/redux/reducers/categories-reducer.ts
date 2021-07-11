@@ -11,9 +11,11 @@ const categoriesReducer = (state = InitialCategoriesState, action: CategoriesAct
   if (action.type === INIT_CATEGORIES) {
     return { ...state, list: state.list };
   }
+
   if (action.type === UPDATE_DIFFICULT_WORDS) {
     return { ...state, difficultWords: action.difficultWords };
   }
+
   return state;
 };
 

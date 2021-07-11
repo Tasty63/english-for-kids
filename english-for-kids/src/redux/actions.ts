@@ -27,7 +27,7 @@ import {
   RESET_STATISTIC,
   UPDATE_DIFFICULT_WORDS,
 } from './action-constants';
-import { GameResults, lowAccuracy, maxDifficultWords, Sounds, wordPronounceDelayMs } from '../utils/config';
+import { GameResults, lowAccuracyPercent, maxDifficultWords, Sounds, wordPronounceDelayMs } from '../utils/config';
 import { getAccuracyPercentage, playAudio } from '../utils/helpers';
 
 export const toggleMenu = (): ThunkAction<void, RootState, unknown, IMenuAction> => async dispatch => {
@@ -43,7 +43,8 @@ export const updateDifficultWords =
     const categoriesWords = getState().categories.list.flatMap(category => category.words);
     const difficultWordsStatistic = getState()
       .statistics.filter(
-        statWord => statWord.mistakes && getAccuracyPercentage(statWord.guesses, statWord.mistakes) <= lowAccuracy,
+        statWord =>
+          statWord.mistakes && getAccuracyPercentage(statWord.guesses, statWord.mistakes) <= lowAccuracyPercent,
       )
       .sort((firstWord, secondWord) => secondWord.mistakes - firstWord.mistakes)
       .slice(0, maxDifficultWords);
@@ -143,12 +144,14 @@ export const chooseWord =
 export const initStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
   let list: StatisticWord[];
   const localStorageStatistics = localStorage.getItem('tasty63-statistics');
+
   if (localStorageStatistics) {
     list = JSON.parse(localStorageStatistics);
   } else {
     const result = await fetch('/card-statistics.json');
     list = await result.json();
   }
+
   dispatch({ type: INIT_STATISTIC, list });
   dispatch(updateDifficultWords());
 };

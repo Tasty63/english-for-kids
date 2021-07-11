@@ -16,16 +16,20 @@ const gameReducer = (state = InitialGameState, action: GameActionType): GameStat
     const shuffledWords = shuffleArray<GameWord>(action.gameWords);
     return { ...state, isStarted: true, words: shuffledWords };
   }
+
   if (action.type === STOP_GAME) {
     return { ...InitialGameState };
   }
+
   if (action.type === PLAY_WORD) {
     const remainingWords = state.words.filter(word => word !== action.currentWord);
     return { ...state, words: remainingWords, currentWord: action.currentWord };
   }
+
   if (action.type === WORD_GUESSED) {
     return { ...state, guessedWords: [...state.guessedWords, { ...action.guessedWord }] };
   }
+
   if (action.type === WORD_NOT_GUESSED) {
     const isMistakenWordsIncludes = state.mistakenWords.map(item => item.word).includes(action.mistakenWord.word);
 
@@ -37,6 +41,7 @@ const gameReducer = (state = InitialGameState, action: GameActionType): GameStat
         ),
       };
     }
+
     return {
       ...state,
       mistakenWords: [...state.mistakenWords, { ...action.mistakenWord, mistakesAmount: 1 }],

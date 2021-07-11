@@ -7,9 +7,11 @@ const statisticsReducer = (state = InitialStatisticState, action: StatisticsActi
   if (action.type === INIT_STATISTIC) {
     return [...action.list];
   }
+
   if (action.type === TRAIN_CLICK) {
     return state.map(word => (word.id === action.id ? { ...word, trainClicks: word.trainClicks + 1 } : word));
   }
+
   if (action.type === UPDATE_STATISTIC) {
     return state
       .map(word => {
@@ -22,6 +24,7 @@ const statisticsReducer = (state = InitialStatisticState, action: StatisticsActi
         return currentMistakenWord ? { ...word, mistakes: word.mistakes + currentMistakenWord.mistakesAmount } : word;
       });
   }
+
   if (action.type === RESET_STATISTIC) {
     return state.map(word => ({ ...word, guesses: 0, mistakes: 0, trainClicks: 0 }));
   }
