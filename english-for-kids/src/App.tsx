@@ -14,7 +14,7 @@ const App: React.FC = () => {
   const dispatch = useDispatch();
   const gameResult = useSelector((state: RootState) => state.game.result);
   const statistics = useSelector((state: RootState) => state.statistics);
-
+  /// START
   useEffect(() => {
     dispatch(initCategories());
     dispatch(initStatistics());
