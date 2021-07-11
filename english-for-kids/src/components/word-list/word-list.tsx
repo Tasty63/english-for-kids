@@ -23,8 +23,9 @@ const WordList: React.FC = () => {
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
   const difficultWords = useSelector((state: RootState) => state.categories.difficultWords);
 
+  const isTrainDifficultWords = name === RouteNames.DifficultWords;
   let currentCategoryWords;
-  if (name === RouteNames.DifficultWords) {
+  if (isTrainDifficultWords) {
     currentCategoryWords = difficultWords;
   } else {
     currentCategoryWords = categories.find(category => removeSpacesfromWord(category.name) === name)!.words;

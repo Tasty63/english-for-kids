@@ -8,7 +8,7 @@ import { initCategories, initStatistics } from './redux/actions';
 import WordList from './components/word-list/word-list';
 import Menu from './components/menu/menu';
 import PopUp from './components/pop-up/pop-up';
-import Statistics from './components/statistics/statistics';
+import StatisticsContainer from './components/statistics/statistics-container';
 
 const App: React.FC = () => {
   // TODO: уменьшить функции, адаптив меню
@@ -33,7 +33,7 @@ const App: React.FC = () => {
           <Menu />
           {gameResult && <PopUp gameResult={gameResult} />}
           <Route exact path="/" component={CategoryList} />
-          <Route path="/statistics" component={Statistics} />
+          <Route path="/statistics" component={StatisticsContainer} />
           <Route exact path="/category/:name" component={WordList} />
         </div>
       </div>
