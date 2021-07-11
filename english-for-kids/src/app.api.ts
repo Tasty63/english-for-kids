@@ -51,13 +51,13 @@ export type StatisticWord = {
 };
 
 export type GameWord = {
-  word: string;
+  audio: string;
   id: string;
   mistakesAmount?: number;
 };
 
 export type MistakenWord = {
-  word: string;
+  audio: string;
   id: string;
   mistakesAmount: number;
 };

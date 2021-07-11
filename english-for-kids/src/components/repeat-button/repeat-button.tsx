@@ -7,7 +7,7 @@ const RepeatButton: React.FC = () => {
   const currentWord = useSelector((state: RootState) => state.game.currentWord);
 
   return (
-    <div className="repeat-button" onClick={() => currentWord && playAudio(currentWord.word)}>
+    <div className="repeat-button" onClick={() => currentWord && playAudio(currentWord.audio)}>
       <div className="repeat-button__icon" />
     </div>
   );

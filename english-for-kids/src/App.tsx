@@ -11,7 +11,7 @@ import PopUp from './components/pop-up/pop-up';
 import Statistics from './components/statistics/statistics';
 
 const App: React.FC = () => {
-  // TODO: mixin, уменьшить функции, адаптив меню, word в аудио
+  // TODO: уменьшить функции, адаптив меню, word в аудио
   const dispatch = useDispatch();
   const gameResult = useSelector((state: RootState) => state.game.result);
   const statistics = useSelector((state: RootState) => state.statistics);

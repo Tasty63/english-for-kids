@@ -81,7 +81,7 @@ export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType
   const currentWord = words[lastWordIndex];
 
   setTimeout(() => {
-    playAudio(currentWord.word);
+    playAudio(currentWord.audio);
     dispatch({ type: PLAY_WORD, currentWord });
   }, wordPronounceDelayMs);
 };

@@ -8,9 +8,9 @@ const GameStars: React.FC = () => {
   const guessedWords = useSelector((state: RootState) => state.game.guessedWords);
 
   const mistakeStars = (words: MistakenWord[]) => {
-    return words.reduce((acc: JSX.Element[], item) => {
-      for (let i = 0; i < item.mistakesAmount; i++) {
-        acc.push(<div className="star star_mistake" key={`${item.id}${i}`} />);
+    return words.reduce((acc: JSX.Element[], word) => {
+      for (let i = 0; i < word.mistakesAmount; i++) {
+        acc.push(<div className="star star_mistake" key={`${word.id}${i}`} />);
       }
 
       return acc;

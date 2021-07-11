@@ -15,7 +15,7 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
   const mode = useSelector((state: RootState) => state.mode.current);
   const isGameStarted = useSelector((state: RootState) => state.game.isStarted);
   const isGuessed = useSelector((state: RootState) =>
-    state.game.guessedWords.map(item => item.word).includes(audioSrc),
+    state.game.guessedWords.map(item => item.audio).includes(audioSrc),
   );
 
   const dispatch = useDispatch();

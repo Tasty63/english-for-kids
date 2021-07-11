@@ -29,7 +29,7 @@ const WordList: React.FC = () => {
   } else {
     currentCategoryWords = categories.find(category => removeSpacesfromWord(category.name) === name)!.words;
   }
-  const gameWords: GameWord[] = currentCategoryWords.map(wordData => ({ word: wordData.audioSrc, id: wordData.id }));
+  const gameWords: GameWord[] = currentCategoryWords.map(wordData => ({ audio: wordData.audioSrc, id: wordData.id }));
 
   useEffect(() => {
     dispatch(stopGame());

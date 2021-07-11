@@ -31,7 +31,7 @@ const gameReducer = (state = InitialGameState, action: GameActionType): GameStat
   }
 
   if (action.type === WORD_NOT_GUESSED) {
-    const isMistakenWordsIncludes = state.mistakenWords.map(item => item.word).includes(action.mistakenWord.word);
+    const isMistakenWordsIncludes = state.mistakenWords.map(item => item.audio).includes(action.mistakenWord.audio);
 
     if (isMistakenWordsIncludes) {
       return {
