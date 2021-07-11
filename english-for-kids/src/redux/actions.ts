@@ -8,7 +8,6 @@ import {
   StatisticsActionType,
   StatisticWord,
   MistakenWord,
-  GuessedWord,
   GameWord,
 } from '../app.api';
 import {
@@ -59,7 +58,7 @@ export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
 export const updateStatistics =
   (
-    guessedWords: GuessedWord[],
+    guessedWords: GameWord[],
     mistakenWords: MistakenWord[],
   ): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
   async dispatch => {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Modes, GameResults, SortDirections, SortKeys } from './utils/config';
 import {
   TOGGLE_MENU,
@@ -57,12 +56,6 @@ export type GameWord = {
   mistakesAmount?: number;
 };
 
-export type GuessedWord = {
-  id: string;
-  word: string;
-  mistakesAmount?: number;
-};
-
 export type MistakenWord = {
   word: string;
   id: string;
@@ -72,14 +65,6 @@ export type MistakenWord = {
 export type SortConfigType = {
   direction: SortDirections;
   key: SortKeys;
-};
-
-export type WordCardProps = {
-  word: string;
-  image: string;
-  translation: string;
-  id: string;
-  playAudioOnClick: (event: React.MouseEvent) => void;
 };
 
 export type CategoryCardProps = {
@@ -107,18 +92,21 @@ export type RouteParams = {
 export type MenuState = {
   isOpen: boolean;
 };
+
 export type CategoriesState = {
   list: Category[];
   difficultWords: WordData[];
 };
+
 export type ModeState = {
   current: Modes;
 };
+
 export type GameState = {
   isStarted: boolean;
   words: GameWord[];
   currentWord: GameWord | null;
-  guessedWords: GuessedWord[];
+  guessedWords: GameWord[];
   mistakenWords: MistakenWord[];
   result: GameResults | null;
 };
@@ -177,13 +165,15 @@ export interface ITrainClick {
   type: typeof TRAIN_CLICK;
   id: string;
 }
+
 export interface IInitStatistics {
   type: typeof INIT_STATISTIC;
   list: StatisticWord[];
 }
+
 export interface IUpdateStatistics {
   type: typeof UPDATE_STATISTIC;
-  guessedWords: GuessedWord[];
+  guessedWords: GameWord[];
   mistakenWords: MistakenWord[];
 }
 

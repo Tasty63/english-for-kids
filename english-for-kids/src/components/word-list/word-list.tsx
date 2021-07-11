@@ -7,7 +7,7 @@ import { stopGame } from '../../redux/actions';
 import { RootState } from '../../redux/store';
 import { Modes, RouteNames } from '../../utils/config';
 import { removeSpacesfromWord } from '../../utils/helpers';
-import WordCard from '../card/word-card';
+import WordCard from './word-card/word-card';
 
 import RepeatButton from '../repeat-button/repeat-button';
 import StartButton from '../start-button/start-button';
@@ -38,7 +38,7 @@ const WordList: React.FC = () => {
   return (
     <>
       <GameStars />
-      <div className="card-list">
+      <div className="word-list">
         {currentCategoryWords.map(wordData => (
           <WordCard
             word={wordData.word}

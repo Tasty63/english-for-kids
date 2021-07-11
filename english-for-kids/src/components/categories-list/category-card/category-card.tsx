@@ -1,17 +1,17 @@
-import './card.scss';
+import './category-card.scss';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { CategoryCardProps } from '../../app.api';
-import { removeSpacesfromWord } from '../../utils/helpers';
-import { RootState } from '../../redux/store';
-import { Modes } from '../../utils/config';
+import { CategoryCardProps } from '../../../app.api';
+import { removeSpacesfromWord } from '../../../utils/helpers';
+import { RootState } from '../../../redux/store';
+import { Modes } from '../../../utils/config';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ name, preview }: CategoryCardProps) => {
   const nameWithoutSpaces = removeSpacesfromWord(name);
   const mode = useSelector((state: RootState) => state.mode.current);
 
   return (
-    <Link to={`/category/${nameWithoutSpaces}`} className="card">
+    <Link to={`/category/${nameWithoutSpaces}`} className="category-card card">
       <div className="card__image-wrapper">
         <img src={preview} alt={name} className="card__image" />
       </div>

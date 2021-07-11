@@ -1,6 +1,6 @@
 import './categories-list.scss';
 import { useSelector } from 'react-redux';
-import CategoryCard from '../card/category-card';
+import CategoryCard from './category-card/category-card';
 import { RootState } from '../../redux/store';
 
 const CategoryList: React.FC = () => {

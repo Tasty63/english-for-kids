@@ -28,6 +28,7 @@ const statisticsReducer = (state = InitialStatisticState, action: StatisticsActi
   if (action.type === RESET_STATISTIC) {
     return state.map(word => ({ ...word, guesses: 0, mistakes: 0, trainClicks: 0 }));
   }
+
   return state;
 };
 
