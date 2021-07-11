@@ -11,7 +11,6 @@ import PopUp from './components/pop-up/pop-up';
 import StatisticsContainer from './components/statistics/statistics-container';
 
 const App: React.FC = () => {
-  // TODO: уменьшить функции, адаптив меню
   const dispatch = useDispatch();
   const gameResult = useSelector((state: RootState) => state.game.result);
   const statistics = useSelector((state: RootState) => state.statistics);
