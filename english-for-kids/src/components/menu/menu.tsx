@@ -37,6 +37,11 @@ const Menu: React.FC = () => {
             </li>
           </ul>
         </nav>
+        <div className="menu__login">
+          <button className="menu__login-button" type="button">
+            Log In
+          </button>
+        </div>
       </div>
       <div
         className={isOpen ? 'menu__wrapper menu__wrapper_visible' : 'menu__wrapper'}

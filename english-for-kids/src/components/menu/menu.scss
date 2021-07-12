@@ -3,6 +3,9 @@
 .menu {
   position: absolute;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   top: 0;
   left: 0;
   height: 100%;
@@ -29,6 +32,14 @@
     &_visible {
       display: block;
     }
+  }
+
+  &__login {
+    font-size: 2.5rem;
+  }
+
+  &__login-button {
+    padding: 1rem 4rem;
   }
 }
 

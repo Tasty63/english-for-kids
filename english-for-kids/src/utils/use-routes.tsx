@@ -9,7 +9,7 @@ import PopUp from '../components/pop-up/pop-up';
 import StatisticsContainer from '../components/statistics/statistics-container';
 import WordList from '../components/word-list/word-list';
 
-const UseRoutes: React.FC<UseRouteProps> = ({ isAuthenticated }: UseRouteProps) => {
+const useRoutes: React.FC<UseRouteProps> = ({ isAuthenticated }: UseRouteProps) => {
   const gameResult = useSelector((state: RootState) => state.game.result);
   if (isAuthenticated) {
     return (
@@ -31,4 +31,4 @@ const UseRoutes: React.FC<UseRouteProps> = ({ isAuthenticated }: UseRouteProps) 
   );
 };
 
-export default UseRoutes;
+export default useRoutes;
