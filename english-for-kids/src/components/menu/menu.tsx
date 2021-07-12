@@ -13,29 +13,31 @@ const Menu: React.FC = () => {
 
   return (
     <>
-      <nav className={isOpen ? 'header__menu menu menu_opened' : 'header__menu menu'}>
-        <ul className="menu__list">
-          {categories.map(category => {
-            const nameWithoutSpaces = removeSpacesfromWord(category.name);
-            return (
-              <li className="menu__item" key={category.id}>
-                <NavLink
-                  to={`/category/${nameWithoutSpaces}`}
-                  className="menu__link"
-                  onClick={() => dispatch(toggleMenu())}
-                >
-                  {category.name}
-                </NavLink>
-              </li>
-            );
-          })}
-          <li className="menu__item">
-            <NavLink to="/statistics" className="menu__link" onClick={() => dispatch(toggleMenu())}>
-              Statistics
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+      <div className={isOpen ? 'header__menu menu menu_opened' : 'header__menu menu'}>
+        <nav className="header__nav nav">
+          <ul className="nav__list">
+            {categories.map(category => {
+              const nameWithoutSpaces = removeSpacesfromWord(category.name);
+              return (
+                <li className="nav__item" key={category.id}>
+                  <NavLink
+                    to={`/category/${nameWithoutSpaces}`}
+                    className="nav__link"
+                    onClick={() => dispatch(toggleMenu())}
+                  >
+                    {category.name}
+                  </NavLink>
+                </li>
+              );
+            })}
+            <li className="nav__item">
+              <NavLink to="/statistics" className="nav__link" onClick={() => dispatch(toggleMenu())}>
+                Statistics
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
+      </div>
       <div
         className={isOpen ? 'menu__wrapper menu__wrapper_visible' : 'menu__wrapper'}
         onClick={() => dispatch(toggleMenu())}

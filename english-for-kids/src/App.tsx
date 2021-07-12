@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { RootState } from './redux/store';
 import { initCategories, initStatistics } from './redux/actions';
 import UseRoutes from './utils/use-routes';
@@ -20,7 +21,9 @@ const App: React.FC = () => {
   return (
     <div className="app">
       <div className="container">
-        <UseRoutes isAuthenticated={false} />
+        <Router>
+          <UseRoutes isAuthenticated={false} />
+        </Router>
       </div>
     </div>
   );

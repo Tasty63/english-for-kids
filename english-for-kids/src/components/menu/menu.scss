@@ -6,12 +6,12 @@
   top: 0;
   left: 0;
   height: 100%;
+  padding: 10rem 0;
   z-index: 2;
   font-family: $mainFont;
   background: $menuColor;
   transform: translateX(-100%);
   transition: transform 0.7s;
-
   &_opened {
     transform: translateX(0);
   }
@@ -30,7 +30,9 @@
       display: block;
     }
   }
+}
 
+.nav {
   &__list {
     display: flex;
     flex-direction: column;
@@ -39,7 +41,6 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    padding: 10rem 0;
     margin: 0;
   }
 
@@ -67,8 +68,5 @@
     &.active {
       color: $actvieMenuLinkColor;
     }
-  }
-
-  @media (max-width: $firstBreakPoint) {
   }
 }
