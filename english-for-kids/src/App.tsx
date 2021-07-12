@@ -1,20 +1,13 @@
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { RootState } from './redux/store';
-import Header from './components/header/Header';
-import CategoryList from './components/categories-list/categories-list';
 import { initCategories, initStatistics } from './redux/actions';
-import WordList from './components/word-list/word-list';
-import Menu from './components/menu/menu';
-import PopUp from './components/pop-up/pop-up';
-import StatisticsContainer from './components/statistics/statistics-container';
+import UseRoutes from './utils/use-routes';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const gameResult = useSelector((state: RootState) => state.game.result);
   const statistics = useSelector((state: RootState) => state.statistics);
-  /// START
+
   useEffect(() => {
     dispatch(initCategories());
     dispatch(initStatistics());
@@ -25,18 +18,11 @@ const App: React.FC = () => {
   };
 
   return (
-    <Router>
-      <div className="app">
-        <div className="container">
-          <Header />
-          <Menu />
-          {gameResult && <PopUp gameResult={gameResult} />}
-          <Route exact path="/" component={CategoryList} />
-          <Route path="/statistics" component={StatisticsContainer} />
-          <Route exact path="/category/:name" component={WordList} />
-        </div>
+    <div className="app">
+      <div className="container">
+        <UseRoutes isAuthenticated={false} />
       </div>
-    </Router>
+    </div>
   );
 };
 

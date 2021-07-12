@@ -91,6 +91,10 @@ export type PopUpProps = {
   gameResult: GameResults;
 };
 
+export type UseRouteProps = {
+  isAuthenticated: boolean;
+};
+
 export type RouteParams = {
   name: string;
 };
