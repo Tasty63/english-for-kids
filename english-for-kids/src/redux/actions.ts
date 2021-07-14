@@ -12,7 +12,7 @@ import {
 } from '../app.api';
 import {
   TOGGLE_MENU,
-  INIT_CATEGORIES,
+  GET_CATEGORIES,
   TOGGLE_MODE,
   START_GAME,
   PLAY_WORD,
@@ -20,10 +20,7 @@ import {
   WORD_NOT_GUESSED,
   STOP_GAME,
   GET_STATISTIC,
-  TRAIN_CLICK,
   END_GAME,
-  UPDATE_STATISTIC,
-  RESET_STATISTIC,
   UPDATE_DIFFICULT_WORDS,
 } from './action-constants';
 import {
@@ -40,8 +37,11 @@ export const toggleMenu = (): IMenuAction => ({ type: TOGGLE_MENU });
 
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
-export const initCategories = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {
-  dispatch({ type: INIT_CATEGORIES });
+export const getCategories = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {
+  const response = await fetch(`${serverURL}/api/category`);
+  const list = await response.json();
+
+  dispatch({ type: GET_CATEGORIES, list });
 };
 
 export const updateDifficultWords =
@@ -76,7 +76,7 @@ export const updateStatistics =
     mistakenWords: MistakenWord[],
   ): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
   async (dispatch, getState) => {
-    const newStatistics = getState()
+    const playedCategoryStatistics = getState()
       .statistics.map(word => {
         return guessedWords.some(guessWord => word.id === guessWord.id) ? { ...word, guesses: word.guesses + 1 } : word;
       })
@@ -85,15 +85,14 @@ export const updateStatistics =
         return currentMistakenWord ? { ...word, mistakes: word.mistakes + currentMistakenWord.mistakesAmount } : word;
       });
 
-    const response = await fetch(`${serverURL}/api/statistics`, {
+    await fetch(`${serverURL}/api/statistics`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
-      body: JSON.stringify(newStatistics),
+      body: JSON.stringify(playedCategoryStatistics),
     });
     dispatch(getStatistics());
-    dispatch(updateDifficultWords());
   };
 
 export const endGame =
@@ -172,7 +171,7 @@ export const chooseWord =
   };
 
 export const resetStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
-  const response = await fetch(`${serverURL}/api/statistics/reset`, {
+  await fetch(`${serverURL}/api/statistics/reset`, {
     method: 'PUT',
   });
   dispatch(getStatistics());
@@ -184,7 +183,7 @@ export const trainClick =
     const clickedWord = getState().statistics.find(word => word.id === id)!;
     clickedWord.trained += 1;
 
-    const response = await fetch(`${serverURL}/api/statistics/${id}`, {
+    await fetch(`${serverURL}/api/statistics/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

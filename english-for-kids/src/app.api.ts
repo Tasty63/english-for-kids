@@ -1,7 +1,7 @@
 import { Modes, GameResults, SortDirections, SortKeys } from './utils/config';
 import {
   TOGGLE_MENU,
-  INIT_CATEGORIES,
+  GET_CATEGORIES,
   TOGGLE_MODE,
   START_GAME,
   PLAY_WORD,
@@ -9,12 +9,10 @@ import {
   WORD_GUESSED,
   WORD_NOT_GUESSED,
   STOP_GAME,
-  TRAIN_CLICK,
   GET_STATISTIC,
   END_GAME,
-  UPDATE_STATISTIC,
-  RESET_STATISTIC,
   UPDATE_DIFFICULT_WORDS,
+  TRAIN_CLICK,
 } from './redux/action-constants';
 
 export type Category = {
@@ -126,8 +124,9 @@ export interface IMenuAction {
   type: typeof TOGGLE_MENU;
 }
 
-export interface IInitCategories {
-  type: typeof INIT_CATEGORIES;
+export interface IGetCategories {
+  type: typeof GET_CATEGORIES;
+  list: Category[];
 }
 
 export interface IGetDifficultWords {
@@ -177,17 +176,9 @@ export interface ITrainClick {
   id: string;
 }
 
-export interface IInitStatistics {
+export interface IGetStatistics {
   type: typeof GET_STATISTIC;
   statistics: StatisticWord[];
-}
-
-export interface IUpdateStatistics {
-  type: typeof UPDATE_STATISTIC;
-}
-
-export interface IResetStatistic {
-  type: typeof RESET_STATISTIC;
 }
 
 export type GameActionType =
@@ -199,5 +190,5 @@ export type GameActionType =
   | IWordNotGuessed
   | IEndGame;
 
-export type StatisticsActionType = IInitStatistics | ITrainClick | IUpdateStatistics | IResetStatistic;
-export type CategoriesActionType = IInitCategories | IGetDifficultWords;
+export type StatisticsActionType = IGetStatistics | ITrainClick;
+export type CategoriesActionType = IGetCategories | IGetDifficultWords;

@@ -1,5 +1,5 @@
 import { StatisticsActionType, StatisticWord } from '../../app.api';
-import { TRAIN_CLICK, GET_STATISTIC, UPDATE_STATISTIC, RESET_STATISTIC } from '../action-constants';
+import { GET_STATISTIC } from '../action-constants';
 
 const InitialStatisticState: StatisticWord[] = [];
 

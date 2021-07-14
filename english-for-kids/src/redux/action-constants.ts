@@ -1,7 +1,7 @@
 export const TOGGLE_MENU = 'TOGGLE_MENU';
 export const TOGGLE_MODE = 'TOGGLE_MODE';
 
-export const INIT_CATEGORIES = 'INIT_CATEGORIES';
+export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const UPDATE_DIFFICULT_WORDS = 'UPDATE_DIFFICULT_WORDS';
 
 export const START_GAME = 'START_GAME';
@@ -14,5 +14,3 @@ export const END_GAME = 'END_GAME';
 
 export const GET_STATISTIC = 'GET_STATISTIC';
 export const TRAIN_CLICK = 'TRAIN_CLICK';
-export const UPDATE_STATISTIC = 'UPDATE_STATISTIC';
-export const RESET_STATISTIC = 'RESET_STATISTIC';
