@@ -5,7 +5,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { GameWord, RouteParams } from '../../app.api';
 import { stopGame } from '../../redux/actions';
 import { RootState } from '../../redux/store';
-import { Modes, RouteNames } from '../../utils/config';
+import { Modes, RouteNames, serverURL } from '../../utils/config';
 import { removeSpacesfromWord } from '../../utils/helpers';
 import WordCard from './word-card/word-card';
 
@@ -33,7 +33,7 @@ const WordList: React.FC = () => {
   }
 
   const gameWords: GameWord[] | undefined = currentCategoryWords?.map(wordData => ({
-    audio: wordData.audioSrc,
+    audio: `${serverURL}${wordData.audioSrc}`,
     id: wordData.id,
   }));
 
@@ -50,7 +50,7 @@ const WordList: React.FC = () => {
             word={wordData.word}
             image={wordData.image}
             translation={wordData.translation}
-            audioSrc={wordData.audioSrc}
+            audioSrc={`${serverURL}${wordData.audioSrc}`}
             id={wordData.id}
             key={wordData.id}
           />

@@ -54,7 +54,7 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
       </div>
       <div className="word-card__back">
         <div className="card__image-wrapper">
-          <img src={image} alt={word} className="card__image" />
+          <img src={`${serverURL}${image}`} alt={word} className="card__image" />
         </div>
         <footer className="card__footer">
           <span className="card__name">{translation}</span>
