@@ -1,6 +1,5 @@
 import { UPDATE_DIFFICULT_WORDS, GET_CATEGORIES } from '../action-constants';
 import { CategoriesActionType, CategoriesState } from '../../app.api';
-import cardCategories from '../../categories-data';
 
 const InitialCategoriesState: CategoriesState = {
   list: [],

@@ -116,9 +116,9 @@ export const playWord = (): ThunkAction<void, RootState, unknown, GameActionType
 };
 
 export const startGame =
-  (gameWords: GameWord[]): ThunkAction<void, RootState, unknown, GameActionType> =>
+  (gameWords: GameWord[] | undefined): ThunkAction<void, RootState, unknown, GameActionType> =>
   async dispatch => {
-    if (!gameWords.length) {
+    if (!gameWords || !gameWords.length) {
       return;
     }
     dispatch({ type: START_GAME, gameWords });

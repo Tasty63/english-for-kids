@@ -29,10 +29,13 @@ const WordList: React.FC = () => {
   if (isTrainDifficultWords) {
     currentCategoryWords = difficultWords;
   } else {
-    currentCategoryWords = categories.find(category => removeSpacesfromWord(category.name) === name)!.words;
+    currentCategoryWords = categories.find(category => removeSpacesfromWord(category.name) === name)?.words;
   }
 
-  const gameWords: GameWord[] = currentCategoryWords.map(wordData => ({ audio: wordData.audioSrc, id: wordData.id }));
+  const gameWords: GameWord[] | undefined = currentCategoryWords?.map(wordData => ({
+    audio: wordData.audioSrc,
+    id: wordData.id,
+  }));
 
   useEffect(() => {
     dispatch(stopGame());
@@ -42,7 +45,7 @@ const WordList: React.FC = () => {
     <>
       <GameStars />
       <div className="word-list">
-        {currentCategoryWords.map(wordData => (
+        {currentCategoryWords?.map(wordData => (
           <WordCard
             word={wordData.word}
             image={wordData.image}

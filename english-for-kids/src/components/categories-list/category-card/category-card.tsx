@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { CategoryCardProps } from '../../../app.api';
 import { removeSpacesfromWord } from '../../../utils/helpers';
 import { RootState } from '../../../redux/store';
-import { Modes } from '../../../utils/config';
+import { Modes, serverURL } from '../../../utils/config';
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ name, preview }: CategoryCardProps) => {
   const nameWithoutSpaces = removeSpacesfromWord(name);
@@ -13,7 +13,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ name, preview }: CategoryCa
   return (
     <Link to={`/category/${nameWithoutSpaces}`} className="category-card card">
       <div className="card__image-wrapper">
-        <img src={preview} alt={name} className="card__image" />
+        <img src={`${serverURL}${preview}`} alt={name} className="card__image" />
       </div>
       <footer className={mode === Modes.Train ? 'card__footer' : 'card__footer card__footer_blue'}>
         <span className="card__name">{name}</span>

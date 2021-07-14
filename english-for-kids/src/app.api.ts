@@ -78,7 +78,7 @@ export type StatisticsProps = {
 };
 
 export type StartButtonProps = {
-  gameWords: GameWord[];
+  gameWords: GameWord[] | undefined;
 };
 
 export type GameStarsProps = {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { WordData } from '../../../app.api';
 import { RootState } from '../../../redux/store';
-import { Modes } from '../../../utils/config';
+import { Modes, serverURL } from '../../../utils/config';
 import { chooseWord, trainClick } from '../../../redux/actions';
 import { playAudio } from '../../../utils/helpers';
 
@@ -45,7 +45,7 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
       <div className="word-card__translucent-background" />
       <div className={`word-card__front ${mode === Modes.Play ? 'word-card__front_play' : ''}`}>
         <div className="card__image-wrapper">
-          <img src={image} alt={word} className="card__image" />
+          <img src={`${serverURL}${image}`} alt={word} className="card__image" />
         </div>
         <footer className="card__footer">
           <span className="card__name">{word}</span>
