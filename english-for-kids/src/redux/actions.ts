@@ -19,7 +19,7 @@ import {
   WORD_GUESSED,
   WORD_NOT_GUESSED,
   STOP_GAME,
-  INIT_STATISTIC,
+  GET_STATISTIC,
   TRAIN_CLICK,
   END_GAME,
   UPDATE_STATISTIC,
@@ -30,6 +30,7 @@ import {
   GameResults,
   lowAccuracyPercent,
   maxDifficultWordsOnPage,
+  serverURL,
   Sounds,
   wordPronounceDelayMs,
 } from '../utils/config';
@@ -61,13 +62,37 @@ export const updateDifficultWords =
     dispatch({ type: UPDATE_DIFFICULT_WORDS, difficultWords });
   };
 
+export const getStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
+  const result = await fetch(`${serverURL}/api/statistics`);
+  const statistics: StatisticWord[] = await result.json();
+
+  dispatch({ type: GET_STATISTIC, statistics });
+  dispatch(updateDifficultWords());
+};
+
 export const updateStatistics =
   (
     guessedWords: GameWord[],
     mistakenWords: MistakenWord[],
   ): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
-  async dispatch => {
-    dispatch({ type: UPDATE_STATISTIC, guessedWords, mistakenWords });
+  async (dispatch, getState) => {
+    const newStatistics = getState()
+      .statistics.map(word => {
+        return guessedWords.some(guessWord => word.id === guessWord.id) ? { ...word, guesses: word.guesses + 1 } : word;
+      })
+      .map(word => {
+        const currentMistakenWord = mistakenWords.find(mistakenWord => word.id === mistakenWord.id);
+        return currentMistakenWord ? { ...word, mistakes: word.mistakes + currentMistakenWord.mistakesAmount } : word;
+      });
+
+    const response = await fetch(`${serverURL}/api/statistics`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(newStatistics),
+    });
+    dispatch(getStatistics());
     dispatch(updateDifficultWords());
   };
 
@@ -146,28 +171,25 @@ export const chooseWord =
     playAudio(Sounds.Success);
   };
 
-export const initStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
-  let list: StatisticWord[];
-  const localStorageStatistics = localStorage.getItem('tasty63-statistics');
-
-  if (localStorageStatistics) {
-    list = JSON.parse(localStorageStatistics);
-  } else {
-    const result = await fetch('/card-statistics.json');
-    list = await result.json();
-  }
-
-  dispatch({ type: INIT_STATISTIC, list });
-  dispatch(updateDifficultWords());
-};
-
 export const resetStatistics = (): ThunkAction<void, RootState, unknown, StatisticsActionType> => async dispatch => {
-  dispatch({ type: RESET_STATISTIC });
-  dispatch(updateDifficultWords());
+  const response = await fetch(`${serverURL}/api/statistics/reset`, {
+    method: 'PUT',
+  });
+  dispatch(getStatistics());
 };
 
 export const trainClick =
   (id: string): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
-  async dispatch => {
-    dispatch({ type: TRAIN_CLICK, id });
+  async (dispatch, getState) => {
+    const clickedWord = getState().statistics.find(word => word.id === id)!;
+    clickedWord.trained += 1;
+
+    const response = await fetch(`${serverURL}/api/statistics/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(clickedWord),
+    });
+    dispatch(getStatistics());
   };

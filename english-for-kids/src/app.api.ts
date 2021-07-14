@@ -10,7 +10,7 @@ import {
   WORD_NOT_GUESSED,
   STOP_GAME,
   TRAIN_CLICK,
-  INIT_STATISTIC,
+  GET_STATISTIC,
   END_GAME,
   UPDATE_STATISTIC,
   RESET_STATISTIC,
@@ -44,6 +44,7 @@ export type StatisticTableWord = {
 };
 
 export type StatisticWord = {
+  _id?: string;
   id: string;
   trained: number;
   guesses: number;
@@ -177,14 +178,12 @@ export interface ITrainClick {
 }
 
 export interface IInitStatistics {
-  type: typeof INIT_STATISTIC;
-  list: StatisticWord[];
+  type: typeof GET_STATISTIC;
+  statistics: StatisticWord[];
 }
 
 export interface IUpdateStatistics {
   type: typeof UPDATE_STATISTIC;
-  guessedWords: GameWord[];
-  mistakenWords: MistakenWord[];
 }
 
 export interface IResetStatistic {

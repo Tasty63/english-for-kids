@@ -12,7 +12,7 @@ export const WORD_GUESSED = 'WORD_GUESSED';
 export const WORD_NOT_GUESSED = 'WORD_NOT_GUESSED';
 export const END_GAME = 'END_GAME';
 
-export const INIT_STATISTIC = 'INIT_STATISTIC';
+export const GET_STATISTIC = 'GET_STATISTIC';
 export const TRAIN_CLICK = 'TRAIN_CLICK';
 export const UPDATE_STATISTIC = 'UPDATE_STATISTIC';
 export const RESET_STATISTIC = 'RESET_STATISTIC';
