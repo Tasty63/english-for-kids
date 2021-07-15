@@ -9,6 +9,7 @@ import {
   StatisticWord,
   MistakenWord,
   GameWord,
+  LoginActionType,
 } from '../app.api';
 import {
   TOGGLE_MENU,
@@ -22,6 +23,7 @@ import {
   GET_STATISTIC,
   END_GAME,
   UPDATE_DIFFICULT_WORDS,
+  TOGGLE_LOGIN_POPUP,
 } from './action-constants';
 import {
   GameResults,
@@ -34,7 +36,7 @@ import {
 import { getAccuracyPercentage, playAudio } from '../utils/helpers';
 
 export const toggleMenu = (): IMenuAction => ({ type: TOGGLE_MENU });
-
+export const toggleLoginPopUp = (): LoginActionType => ({ type: TOGGLE_LOGIN_POPUP });
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
 
 export const getCategories = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {

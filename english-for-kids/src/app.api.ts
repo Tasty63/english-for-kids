@@ -13,6 +13,7 @@ import {
   END_GAME,
   UPDATE_DIFFICULT_WORDS,
   TRAIN_CLICK,
+  TOGGLE_LOGIN_POPUP,
 } from './redux/action-constants';
 
 export type Category = {
@@ -86,7 +87,7 @@ export type GameStarsProps = {
   guesses: [];
 };
 
-export type PopUpProps = {
+export type GamePopUpProps = {
   gameResult: GameResults;
 };
 
@@ -100,6 +101,11 @@ export type RouteParams = {
 
 export type MenuState = {
   isOpen: boolean;
+};
+
+export type LoginState = {
+  isPopUpOpened: boolean;
+  isLogged: boolean;
 };
 
 export type CategoriesState = {
@@ -181,6 +187,10 @@ export interface IGetStatistics {
   statistics: StatisticWord[];
 }
 
+export interface IToggleLoginPopUp {
+  type: typeof TOGGLE_LOGIN_POPUP;
+}
+
 export type GameActionType =
   | IStartGame
   | IStopGame
@@ -192,3 +202,4 @@ export type GameActionType =
 
 export type StatisticsActionType = IGetStatistics | ITrainClick;
 export type CategoriesActionType = IGetCategories | IGetDifficultWords;
+export type LoginActionType = IToggleLoginPopUp;

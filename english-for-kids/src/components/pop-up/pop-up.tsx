@@ -1,35 +1,27 @@
-import './pop-up.scss';
-import { useEffect } from 'react';
+import React, { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { endGameRedirectionDelayMs, GameResults } from '../../utils/config';
+import { toggleLoginPopUp } from '../../redux/actions';
 import { RootState } from '../../redux/store';
-import { PopUpProps } from '../../app.api';
-import { stopGame } from '../../redux/actions';
+import './pop-up.scss';
 
-const PopUp: React.FC<PopUpProps> = ({ gameResult }: PopUpProps) => {
-  const mistakenWords = useSelector((state: RootState) => state.game.mistakenWords);
-  const mistakesAmount = mistakenWords.reduce((acc: number, item) => {
-    return acc + item.mistakesAmount;
-  }, 0);
+export type PopUpProps = {
+  children: ReactNode;
+};
 
+const PopUp: React.FC<PopUpProps> = ({ children }: PopUpProps) => {
+  const isPopupOpened = useSelector((state: RootState) => state.login.isPopUpOpened);
   const dispatch = useDispatch();
-  const hisory = useHistory();
-
-  useEffect(() => {
-    setTimeout(() => {
-      hisory.push('/statistics');
-      dispatch(stopGame());
-    }, endGameRedirectionDelayMs);
-  }, [dispatch, hisory]);
 
   return (
-    <div className="pop-up">
-      <div className="pop-up__content">
-        <img src={gameResult === GameResults.Win ? '/images/success.jpg' : '/images/failure.jpg'} alt={gameResult} />
-        {gameResult === GameResults.Lose && <div className="pop-up__fails">{mistakesAmount} Mistakes</div>}
+    <div
+      className={`pop-up ${isPopupOpened ? 'pop-up_visible' : 'pop-up_hidden'}`}
+      onClick={() => dispatch(toggleLoginPopUp())}
+    >
+      <div className="pop-up__content" onClick={event => event.stopPropagation()}>
+        {children}
       </div>
     </div>
   );
 };
+
 export default PopUp;

@@ -11,12 +11,8 @@
   top: 0;
   left: 0;
 
-  &_hidden {
-    transform: scale(0);
-  }
-
-  &_visible {
-    transform: scale(1);
+  &_white {
+    background: white;
   }
 
   &__content {
@@ -26,6 +22,5 @@
     flex-direction: column;
     font-size: 3rem;
     font-family: $mainFont;
-    background: white;
   }
 }

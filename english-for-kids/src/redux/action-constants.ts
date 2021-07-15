@@ -14,3 +14,5 @@ export const END_GAME = 'END_GAME';
 
 export const GET_STATISTIC = 'GET_STATISTIC';
 export const TRAIN_CLICK = 'TRAIN_CLICK';
+
+export const TOGGLE_LOGIN_POPUP = 'TOGGLE_LOGIN_POPUP';
