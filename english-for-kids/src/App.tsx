@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { getCategories, getStatistics } from './redux/actions';
+import { getCategories, getStatistics, initLogin } from './redux/actions';
 import useRoutes from './utils/use-routes';
 
 const App: React.FC = () => {
@@ -11,6 +11,7 @@ const App: React.FC = () => {
   useEffect(() => {
     dispatch(getCategories());
     dispatch(getStatistics());
+    dispatch(initLogin());
   }, [dispatch]);
 
   return (

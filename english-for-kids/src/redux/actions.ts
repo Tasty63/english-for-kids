@@ -10,6 +10,8 @@ import {
   MistakenWord,
   GameWord,
   LoginActionType,
+  LoginFormType,
+  UserData,
 } from '../app.api';
 import {
   TOGGLE_MENU,
@@ -24,6 +26,10 @@ import {
   END_GAME,
   UPDATE_DIFFICULT_WORDS,
   TOGGLE_LOGIN_POPUP,
+  LOGIN_FAILED,
+  LOGIN_SUCCEED,
+  LOGOUT,
+  INIT_LOGIN,
 } from './action-constants';
 import {
   GameResults,
@@ -31,6 +37,7 @@ import {
   maxDifficultWordsOnPage,
   serverURL,
   Sounds,
+  userDataStorageName,
   wordPronounceDelayMs,
 } from '../utils/config';
 import { getAccuracyPercentage, playAudio } from '../utils/helpers';
@@ -38,6 +45,56 @@ import { getAccuracyPercentage, playAudio } from '../utils/helpers';
 export const toggleMenu = (): IMenuAction => ({ type: TOGGLE_MENU });
 export const toggleLoginPopUp = (): LoginActionType => ({ type: TOGGLE_LOGIN_POPUP });
 export const toggleMode = (): IModeAction => ({ type: TOGGLE_MODE });
+
+export const initLogin = (): ThunkAction<void, RootState, unknown, LoginActionType> => async dispatch => {
+  const jsonUserData = localStorage.getItem(userDataStorageName);
+  if (!jsonUserData) {
+    return;
+  }
+  const userData = JSON.parse(jsonUserData);
+
+  dispatch({ type: INIT_LOGIN, userData });
+};
+
+export const logout = (): ThunkAction<void, RootState, unknown, LoginActionType> => async dispatch => {
+  localStorage.removeItem(userDataStorageName);
+  dispatch({ type: LOGOUT });
+};
+
+export const loginSucceed =
+  (userData: UserData): ThunkAction<void, RootState, unknown, LoginActionType> =>
+  async dispatch => {
+    localStorage.setItem(userDataStorageName, JSON.stringify(userData));
+    dispatch({ type: LOGIN_SUCCEED, userData });
+  };
+
+export const loginFailed =
+  (message: string): ThunkAction<void, RootState, unknown, LoginActionType> =>
+  async dispatch => {
+    dispatch({ type: LOGIN_FAILED, message });
+  };
+
+export const tryLogin =
+  (form: LoginFormType): ThunkAction<void, RootState, unknown, LoginActionType> =>
+  async dispatch => {
+    const response = await fetch(`${serverURL}/api/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(form),
+    });
+
+    if (!response.ok) {
+      const message = await response.json();
+      dispatch(loginFailed(message));
+      return;
+    }
+
+    const result: UserData = await response.json();
+
+    dispatch(loginSucceed(result));
+  };
 
 export const getCategories = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {
   const response = await fetch(`${serverURL}/api/category`);

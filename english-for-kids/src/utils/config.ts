@@ -4,6 +4,7 @@ export const endGameRedirectionDelayMs = 2000;
 export const lowAccuracyPercent = 50;
 export const maxDifficultWordsOnPage = 8;
 export const serverURL = 'http://localhost:5000';
+export const userDataStorageName = 'userData';
 
 export enum Modes {
   Train = 'Train',

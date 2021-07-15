@@ -10,13 +10,15 @@ import StatisticsContainer from '../components/statistics/statistics-container';
 import WordList from '../components/word-list/word-list';
 import PopUp from '../components/pop-up/pop-up';
 import LoginForm from '../components/login-form/login-form';
+import EditCategories from '../components/admin/edit-categories/edit-categories';
 
 const useRoutes: React.FC<UseRouteProps> = ({ isAuthenticated }: UseRouteProps) => {
   const gameResult = useSelector((state: RootState) => state.game.result);
-  if (isAuthenticated) {
+  const isLogged = useSelector((state: RootState) => state.login.isLogged);
+  if (isLogged) {
     return (
       <>
-        <Route exact path="/admin" />
+        <Route exact path="/" component={EditCategories} />
         <Route exact path="/admin/category/:name" />
       </>
     );

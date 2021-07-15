@@ -14,7 +14,12 @@ import {
   UPDATE_DIFFICULT_WORDS,
   TRAIN_CLICK,
   TOGGLE_LOGIN_POPUP,
+  LOGIN_FAILED,
+  LOGIN_SUCCEED,
+  LOGOUT,
+  INIT_LOGIN,
 } from './redux/action-constants';
+import { ReactNode } from 'react';
 
 export type Category = {
   id: string;
@@ -62,6 +67,11 @@ export type MistakenWord = {
   mistakesAmount: number;
 };
 
+export type UserData = {
+  token: string | null;
+  userId: string | null;
+};
+
 export type SortConfigType = {
   direction: SortDirections;
   key: SortKeys;
@@ -99,6 +109,15 @@ export type RouteParams = {
   name: string;
 };
 
+export type PopUpProps = {
+  children: ReactNode;
+};
+
+export type LoginFormType = {
+  username: string;
+  password: string;
+};
+
 export type MenuState = {
   isOpen: boolean;
 };
@@ -106,6 +125,8 @@ export type MenuState = {
 export type LoginState = {
   isPopUpOpened: boolean;
   isLogged: boolean;
+  message?: string;
+  userData: UserData;
 };
 
 export type CategoriesState = {
@@ -191,6 +212,22 @@ export interface IToggleLoginPopUp {
   type: typeof TOGGLE_LOGIN_POPUP;
 }
 
+export interface ILoginFailed {
+  type: typeof LOGIN_FAILED;
+  message: string;
+}
+export interface ILoginSucceed {
+  type: typeof LOGIN_SUCCEED;
+  userData: UserData;
+}
+export interface ILogout {
+  type: typeof LOGOUT;
+}
+export interface IInitLogin {
+  type: typeof INIT_LOGIN;
+  userData: UserData;
+}
+
 export type GameActionType =
   | IStartGame
   | IStopGame
@@ -202,4 +239,4 @@ export type GameActionType =
 
 export type StatisticsActionType = IGetStatistics | ITrainClick;
 export type CategoriesActionType = IGetCategories | IGetDifficultWords;
-export type LoginActionType = IToggleLoginPopUp;
+export type LoginActionType = IInitLogin | IToggleLoginPopUp | ILoginFailed | ILoginSucceed | ILogout;
