@@ -86,7 +86,7 @@ export const tryLogin =
     });
 
     if (!response.ok) {
-      const message = await response.json();
+      const { message } = await response.json();
       dispatch(loginFailed(message));
       return;
     }

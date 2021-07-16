@@ -1,0 +1,45 @@
+@import '../../scss/variables.scss';
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 7rem;
+  font-size: 2.5rem;
+  background: $adminColor;
+
+  @media (max-width: $thirdBreakPoint) {
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__link {
+    color: white;
+    text-decoration: none;
+    transition: transform 0.3s;
+
+    &:not(:last-child) {
+      margin-right: 15rem;
+    }
+
+    &.active {
+      text-decoration: underline;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__logout-button {
+    border: none;
+    color: white;
+    background: transparent;
+
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@import '../../../scss/variables.scss';
+@import '../../../scss/index.scss';
+
+.new-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  flex-basis: calc(25% - 2rem);
+  width: 100%;
+  margin-bottom: 5rem;
+  position: relative;
+  height: 26rem;
+  border-radius: 15px;
+  border: 2px solid $adminColor;
+  font-size: 2.5rem;
+  font-family: $mainFont;
+
+  @media (max-width: $secondBreakPoint) {
+    flex-basis: calc(100% / 3 - 2rem);
+  }
+
+  @media (max-width: $thirdBreakPoint) {
+    flex-basis: calc(50% - 2rem);
+  }
+
+  &__title {
+    font-family: $logoFont;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 30rem;
+    overflow: hidden;
+    font-size: 3rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  &__button {
+    font-size: 10rem;
+    border-radius: 50%;
+    font-family: $switchFont;
+    color: rgba($color: #000000, $alpha: 0.5);
+    border: 5px solid rgba($color: #000000, $alpha: 0.5);
+    background: transparent;
+    padding: 0 3rem;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+}

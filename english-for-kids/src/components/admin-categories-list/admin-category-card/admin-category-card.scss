@@ -1,0 +1,78 @@
+@import '../../../scss/variables.scss';
+@import '../../../scss/index.scss';
+
+.admin-category-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 2rem;
+  box-sizing: border-box;
+  flex-basis: calc(25% - 2rem);
+  width: 100%;
+  margin-bottom: 5rem;
+  position: relative;
+  height: 26rem;
+  border-radius: 15px;
+  border: 2px solid $adminColor;
+  font-size: 2.5rem;
+  font-family: $mainFont;
+
+  @media (max-width: $secondBreakPoint) {
+    flex-basis: calc(100% / 3 - 2rem);
+  }
+
+  @media (max-width: $thirdBreakPoint) {
+    flex-basis: calc(50% - 2rem);
+  }
+
+  &__title {
+    font-size: 3rem;
+    text-align: center;
+    align-self: center;
+    font-family: $logoFont;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: 30rem;
+    overflow: hidden;
+  }
+
+  &__words-info {
+    padding-left: 4rem;
+    text-transform: uppercase;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    transition: transform 0.3s;
+
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+
+  &__footer {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  &__update-button,
+  &__add-word-button {
+    padding: 0.5rem 2rem;
+    box-sizing: border-box;
+    background: transparent;
+    border-radius: 5px;
+    border: 2px solid $adminColor;
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+}

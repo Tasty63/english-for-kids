@@ -1,6 +1,6 @@
 @import './fonts.scss';
 
-$containerSize: 1400px;
+$containerSize: 1500px;
 $firstBreakPoint: 1000px;
 $secondBreakPoint: 780px;
 $thirdBreakPoint: 550px;
@@ -13,6 +13,7 @@ $switchFont: 'Roboto-Light', sans-serif;
 $logoColor: linear-gradient(90deg, #ff7676 1.04%, #b8f900 44.07%, #6af0c8 65.4%, #71c2ef 96.59%);
 $trainModeColor: linear-gradient(90deg, #ffcc00 29.23%, rgba(255, 204, 0, 0.56) 76.1%); // #ffcc00;
 $playModeColor: linear-gradient(90deg, rgba(41, 184, 250, 1) 0%, rgba(0, 212, 255, 1) 100%); //#29b8fa
+$adminColor: #29b8fa;
 $menuColor: #ffe175;
 $actvieMenuLinkColor: #f8c81c;
 $menuLinkColor: white;

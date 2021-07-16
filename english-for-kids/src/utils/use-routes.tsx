@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Route } from 'react-router-dom';
-import { UseRouteProps } from '../app.api';
+import { Redirect, Route } from 'react-router-dom';
 import { RootState } from '../redux/store';
 import CategoryList from '../components/categories-list/categories-list';
 import Header from '../components/header/Header';
@@ -10,21 +9,27 @@ import StatisticsContainer from '../components/statistics/statistics-container';
 import WordList from '../components/word-list/word-list';
 import PopUp from '../components/pop-up/pop-up';
 import LoginForm from '../components/login-form/login-form';
-import EditCategories from '../components/admin/edit-categories/edit-categories';
+import EditCategories from '../components/admin-categories-list/admin-categories-list';
+import AdminHeader from '../components/admin-header/admin-header';
 
-const useRoutes: React.FC<UseRouteProps> = ({ isAuthenticated }: UseRouteProps) => {
+const useRoutes = (): JSX.Element => {
   const gameResult = useSelector((state: RootState) => state.game.result);
   const isLogged = useSelector((state: RootState) => state.login.isLogged);
+
   if (isLogged) {
     return (
       <>
-        <Route exact path="/" component={EditCategories} />
-        <Route exact path="/admin/category/:name" />
+        <AdminHeader />
+        <div className="container">
+          <Route exact path="/admin/categories" component={EditCategories} />
+          <Route exact path="/admin/categories/:name" />
+          <Redirect to="/admin/categories" />
+        </div>
       </>
     );
   }
   return (
-    <>
+    <div className="container">
       <Header />
       <Menu />
       {gameResult && <GamePopUp gameResult={gameResult} />}
@@ -34,7 +39,8 @@ const useRoutes: React.FC<UseRouteProps> = ({ isAuthenticated }: UseRouteProps) 
       <Route exact path="/" component={CategoryList} />
       <Route path="/statistics" component={StatisticsContainer} />
       <Route exact path="/category/:name" component={WordList} />
-    </>
+      <Redirect to="/" />
+    </div>
   );
 };
 

@@ -82,6 +82,11 @@ export type CategoryCardProps = {
   preview: string;
 };
 
+export type CategoryEditCardProps = {
+  name: string;
+  wordsAmount: number;
+}
+
 export type StatisticsProps = {
   requestSort: (key: SortKeys) => void;
   table: StatisticTableWord[];

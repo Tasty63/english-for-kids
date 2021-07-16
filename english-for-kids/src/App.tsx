@@ -6,7 +6,7 @@ import useRoutes from './utils/use-routes';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
-  const appRoutes = useRoutes({ isAuthenticated: false });
+  const appRoutes = useRoutes();
 
   useEffect(() => {
     dispatch(getCategories());
@@ -16,9 +16,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <div className="app">
-        <div className="container">{appRoutes}</div>
-      </div>
+      <div className="app">{appRoutes}</div>
     </Router>
   );
 };
