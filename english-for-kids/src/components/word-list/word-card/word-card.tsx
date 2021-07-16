@@ -45,7 +45,7 @@ const WordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }
       <div className="word-card__translucent-background" />
       <div className={`word-card__front ${mode === Modes.Play ? 'word-card__front_play' : ''}`}>
         <div className="card__image-wrapper">
-          <img src={`${serverURL}${image}`} alt={word} className="card__image" />
+          <img src={image} alt={word} className="card__image" />
         </div>
         <footer className="card__footer">
           <span className="card__name">{word}</span>

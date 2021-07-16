@@ -1,4 +1,4 @@
-import './new-categoty-card.scss';
+import './new-category-card.scss';
 
 const NewCategoryCard: React.FC = () => {
   return (

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { logout } from '../../redux/actions';
 import './admin-header.scss';
 
@@ -9,10 +9,10 @@ const AdminHeader: React.FC = () => {
   return (
     <div className="admin-header">
       <div className="admin-header__links">
-        <Link to="/admin/categories" className="admin-header__link">
+        <Link to="/admin" className="admin-header__link">
           Categories
         </Link>
-        <Link to="/admin/categories" className="admin-header__link">
+        <Link to="/admin" className="admin-header__link">
           Words
         </Link>
       </div>

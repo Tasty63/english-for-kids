@@ -10,7 +10,12 @@ const AdminCategoryList: React.FC = () => {
   return (
     <div className="card-list">
       {categories.map(category => (
-        <AdminCategoryCard name={category.name} wordsAmount={category.words.length} key={category.id} />
+        <AdminCategoryCard
+          name={category.name}
+          wordsAmount={category.words.length}
+          preview={category.preview}
+          key={category.id}
+        />
       ))}
       <NewCategoryCard />
     </div>

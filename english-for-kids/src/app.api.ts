@@ -85,7 +85,8 @@ export type CategoryCardProps = {
 export type CategoryEditCardProps = {
   name: string;
   wordsAmount: number;
-}
+  preview: string;
+};
 
 export type StatisticsProps = {
   requestSort: (key: SortKeys) => void;

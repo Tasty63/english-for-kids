@@ -9,8 +9,9 @@ import StatisticsContainer from '../components/statistics/statistics-container';
 import WordList from '../components/word-list/word-list';
 import PopUp from '../components/pop-up/pop-up';
 import LoginForm from '../components/login-form/login-form';
-import EditCategories from '../components/admin-categories-list/admin-categories-list';
+import AdminCategoryList from '../components/admin-categories-list/admin-categories-list';
 import AdminHeader from '../components/admin-header/admin-header';
+import AdminWordList from '../components/admin-word-list/admin-word-list';
 
 const useRoutes = (): JSX.Element => {
   const gameResult = useSelector((state: RootState) => state.game.result);
@@ -21,9 +22,9 @@ const useRoutes = (): JSX.Element => {
       <>
         <AdminHeader />
         <div className="container">
-          <Route exact path="/admin/categories" component={EditCategories} />
-          <Route exact path="/admin/categories/:name" />
-          <Redirect to="/admin/categories" />
+          <Route exact path="/admin" component={AdminCategoryList} />
+          <Route exact path="/admin/category/:name" component={AdminWordList} />
+          <Redirect to="/admin" />
         </div>
       </>
     );

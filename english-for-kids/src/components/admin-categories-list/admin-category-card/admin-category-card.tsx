@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CategoryEditCardProps } from '../../../app.api';
 import { removeSpacesfromWord } from '../../../utils/helpers';
 
-const AdminCategoryCard: React.FC<CategoryEditCardProps> = ({ name, wordsAmount }: CategoryEditCardProps) => {
+const AdminCategoryCard: React.FC<CategoryEditCardProps> = ({ name, wordsAmount, preview }: CategoryEditCardProps) => {
   const nameWithoutSpaces = removeSpacesfromWord(name);
 
   return (
@@ -18,7 +18,9 @@ const AdminCategoryCard: React.FC<CategoryEditCardProps> = ({ name, wordsAmount 
           Update
         </button>
         <button className="admin-category-card__add-word-button" type="button">
-          Add word
+          <Link to={`/admin/category/${nameWithoutSpaces}`} className="admin-category-card__link">
+            Add word
+          </Link>
         </button>
       </footer>
     </div>

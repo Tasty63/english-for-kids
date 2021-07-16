@@ -1,0 +1,43 @@
+@import '../../../scss/variables.scss';
+@import '../../../scss/index.scss';
+
+.admin-word-card {
+  @include admin-card();
+
+  &__image {
+    width: 100%;
+    max-width: 20rem;
+    object-fit: cover;
+  }
+
+  &__image-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__image-text {
+    align-self: flex-start;
+  }
+
+  &__name,
+  &__translation,
+  &__sound,
+  &__image-container {
+    margin-bottom: 1rem;
+  }
+
+  &__button {
+    align-self: center;
+    box-sizing: border-box;
+    padding: 0.5rem 4rem;
+    background-color: transparent;
+    border: 1px solid $adminColor;
+    transition: transform 0.3s;
+    &:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+  }
+}
