@@ -18,7 +18,7 @@ const GamePopUp: React.FC<GamePopUpProps> = ({ gameResult }: GamePopUpProps) => 
 
   useEffect(() => {
     setTimeout(() => {
-      history.push('/statistics');
+      history.push('/');
       dispatch(stopGame());
     }, endGameRedirectionDelayMs);
   }, [dispatch, history]);

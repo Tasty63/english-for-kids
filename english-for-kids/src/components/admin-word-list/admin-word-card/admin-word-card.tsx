@@ -10,7 +10,7 @@ export type AdminWordForm = {
 };
 
 const AdminWordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }: WordData) => {
-  const [isEdited, setEdit] = useState(false);
+  const [isEditing, setEdit] = useState(false);
   const [form, setForm] = useState<AdminWordForm>({
     word,
     image,
@@ -18,13 +18,14 @@ const AdminWordCard: React.FC<WordData> = ({ word, image, translation, audioSrc,
     audioSrc,
   });
 
-  const handleSubmitChanges = () => {
+  const handleSubmitChanges = (event: React.MouseEvent) => {
+    event?.preventDefault();
     setEdit(false);
   };
 
   return (
     <>
-      {isEdited ? (
+      {isEditing ? (
         <form className="admin-word-card">
           <input className="admin-word-card__name" type="text" value={word} />
           <input className="admin-word-card__translation" type="text" name="translation" value={translation} />

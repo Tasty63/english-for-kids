@@ -4,7 +4,7 @@
 .new-card {
   @include admin-card();
   align-items: center;
-  height: 26rem;
+  height: 35rem;
 
   &__title {
     font-family: $logoFont;
@@ -32,5 +32,11 @@
       transform: scale(1.1);
       cursor: pointer;
     }
+  }
+
+  &__image {
+    width: 100%;
+    max-width: 20rem;
+    object-fit: cover;
   }
 }

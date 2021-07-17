@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginFormType } from '../../app.api';
-import { tryLogin } from '../../redux/actions';
+import { toggleLoginPopUp, tryLogin } from '../../redux/actions';
 import { RootState } from '../../redux/store';
 
 const LoginForm: React.FC = () => {
@@ -22,10 +22,11 @@ const LoginForm: React.FC = () => {
   const handleSubmit = (event: React.MouseEvent, formData: LoginFormType) => {
     event.preventDefault();
     dispatch(tryLogin(formData));
+    dispatch(toggleLoginPopUp());
   };
 
   return (
-    <div className="login-form">
+    <form className="login-form">
       {message && <div className="login-form__message">{message}</div>}
       <div className="login-form__field">
         <input
@@ -55,7 +56,7 @@ const LoginForm: React.FC = () => {
           Log In
         </button>
       </footer>
-    </div>
+    </form>
   );
 };
 export default LoginForm;

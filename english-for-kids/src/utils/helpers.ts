@@ -27,8 +27,11 @@ export const getAccuracyPercentage = (corrects?: number, mistakes?: number): num
   if (!corrects) {
     return minPercent;
   }
+
   if (!mistakes) {
     return maxPercent;
   }
-  return Math.floor(maxPercent / ((corrects + mistakes) / corrects));
+
+  const percentageFormula = maxPercent / ((corrects + mistakes) / corrects);
+  return Math.floor(percentageFormula);
 };

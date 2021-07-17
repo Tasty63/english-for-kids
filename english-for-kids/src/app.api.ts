@@ -124,6 +124,11 @@ export type LoginFormType = {
   password: string;
 };
 
+export type CategoryForm = {
+  name: string;
+  previewFile: File | null;
+};
+
 export type MenuState = {
   isOpen: boolean;
 };
