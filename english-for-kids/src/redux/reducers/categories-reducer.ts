@@ -1,4 +1,10 @@
-import { UPDATE_DIFFICULT_WORDS, GET_CATEGORIES, CREATE_CATEGORY, DELETE_CATEGORY } from '../action-constants';
+import {
+  UPDATE_DIFFICULT_WORDS,
+  GET_CATEGORIES,
+  CREATE_CATEGORY,
+  DELETE_CATEGORY,
+  UPDATE_CATEGORY,
+} from '../action-constants';
 import { CategoriesActionType, CategoriesState } from '../../app.api';
 
 const InitialCategoriesState: CategoriesState = {
@@ -16,6 +22,10 @@ const categoriesReducer = (state = InitialCategoriesState, action: CategoriesAct
   }
 
   if (action.type === DELETE_CATEGORY) {
+    return { ...state, list: action.list };
+  }
+
+  if (action.type === UPDATE_CATEGORY) {
     return { ...state, list: action.list };
   }
 

@@ -107,7 +107,7 @@ export const getCategories = (): ThunkAction<void, RootState, unknown, Categorie
 };
 
 export const createCategory =
-  ({ categoryName, image }: CategoryForm): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
+  (categoryName: string, image: Blob | null): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
   async dispatch => {
     const formData = new FormData();
 
@@ -130,6 +130,36 @@ export const deleteCategory =
   async dispatch => {
     const response = await fetch(`${serverURL}/api/category/${id}`, {
       method: 'DELETE',
+    });
+    const list = await response.json();
+
+    dispatch({ type: DELETE_CATEGORY, list });
+  };
+
+export const updateCategory =
+  (
+    id: string,
+    categoryName?: string,
+    image?: Blob | null,
+  ): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
+  async dispatch => {
+    if (!image && !categoryName) {
+      return;
+    }
+
+    const formData = new FormData();
+
+    if (image) {
+      formData.append('image', image);
+    }
+
+    if (categoryName) {
+      formData.append('categoryName', categoryName);
+    }
+
+    const response = await fetch(`${serverURL}/api/category/${id}`, {
+      method: 'PUT',
+      body: formData,
     });
     const list = await response.json();
 

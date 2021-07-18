@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeSpacesfromWord } from '../../../utils/helpers';
-import { deleteCategory } from '../../../redux/actions';
-import { AdminCategoryCardProps } from '../../../app.api';
+import { deleteCategory, updateCategory } from '../../../redux/actions';
+import { AdminCategoryCardProps, CategoryForm } from '../../../app.api';
+import AdminCardForm from '../admin-card-form';
 
 const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
   id,
@@ -13,22 +14,28 @@ const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
   preview,
 }: AdminCategoryCardProps) => {
   const [isEditing, setEdit] = useState(false);
+  const [previewImage, setPreview] = useState<string | null>(preview);
+
   const nameWithoutSpaces = removeSpacesfromWord(name);
   const dispatch = useDispatch();
+
+  const handleSubmitChanges = (event: React.FormEvent, categoryName: string, image: Blob | null) => {
+    event?.preventDefault();
+    dispatch(updateCategory(id, categoryName, image));
+    setEdit(false);
+  };
 
   return (
     <>
       {isEditing ? (
-        <form className="new-card">
-          <input className="new-card__input" type="text" placeholder="name" value={name} />
-          <input className="new-card__input" type="text" />
-          <button className="new-card__submit" type="submit">
-            Submit
-          </button>
-          <button className="new-card__cancel" type="button" onClick={() => setEdit(false)}>
-            Cancel
-          </button>
-        </form>
+        <AdminCardForm
+          name={name}
+          preview={preview}
+          setEdit={setEdit}
+          previewImage={previewImage}
+          setPreview={setPreview}
+          handleSubmit={handleSubmitChanges}
+        />
       ) : (
         <div className="admin-category-card">
           <h5 className="admin-category-card__title">{name}</h5>
@@ -41,7 +48,7 @@ const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
           </button>
           <div className="admin-category-card__words-info">
             Words: {wordsAmount}
-            <img src={preview} alt="preview" className="admin-category-card__preview" />
+            <img src={previewImage || ''} alt="preview" className="admin-category-card__preview" />
           </div>
           <footer className="admin-category-card__footer">
             <button

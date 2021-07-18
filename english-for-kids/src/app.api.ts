@@ -178,6 +178,7 @@ export interface ICreateCategory {
 
 export interface IUpdateCategory {
   type: typeof UPDATE_CATEGORY;
+  list: Category[];
 }
 
 export interface IDeleteCategory {
