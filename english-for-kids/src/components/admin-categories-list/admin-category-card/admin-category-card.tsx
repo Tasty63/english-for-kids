@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { removeSpacesfromWord } from '../../../utils/helpers';
 import { deleteCategory, updateCategory } from '../../../redux/actions';
 import { AdminCategoryCardProps, CategoryForm } from '../../../app.api';
-import AdminCardForm from '../admin-card-form';
+import CardCategoryForm from '../card-category-form/card-category-form';
 
 const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
   id,
@@ -28,9 +28,9 @@ const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
   return (
     <>
       {isEditing ? (
-        <AdminCardForm
+        <CardCategoryForm
           name={name}
-          preview={preview}
+          initialPreview={preview}
           setEdit={setEdit}
           previewImage={previewImage}
           setPreview={setPreview}
@@ -46,9 +46,9 @@ const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
           >
             X
           </button>
-          <div className="admin-category-card__words-info">
-            Words: {wordsAmount}
-            <img src={previewImage || ''} alt="preview" className="admin-category-card__preview" />
+          <div className="admin-category-card__info">
+            <div className="admin-category-card__amount">Words: {wordsAmount}</div>
+            <img src={previewImage || ''} alt="preview" className="admin-category-card__image" />
           </div>
           <footer className="admin-category-card__footer">
             <button

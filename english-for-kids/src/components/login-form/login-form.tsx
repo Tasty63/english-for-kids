@@ -1,3 +1,4 @@
+import './login-form.scss';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginFormType } from '../../app.api';
@@ -6,6 +7,7 @@ import { RootState } from '../../redux/store';
 
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch();
+
   const [form, setForm] = useState<LoginFormType>({
     username: 'admin',
     password: 'admin',
@@ -27,8 +29,12 @@ const LoginForm: React.FC = () => {
 
   return (
     <form className="login-form">
+      <h5 className="login-form__title">Login</h5>
       {message && <div className="login-form__message">{message}</div>}
       <div className="login-form__field">
+        <label htmlFor="username" className="login-form__label">
+          Username:
+        </label>
         <input
           type="text"
           name="username"
@@ -36,9 +42,11 @@ const LoginForm: React.FC = () => {
           value={form.username}
           onChange={handleChange}
         />
-        <label htmlFor="username">username</label>
       </div>
       <div className="login-form__field">
+        <label htmlFor="password" className="login-form__label">
+          password
+        </label>
         <input
           type="password"
           name="password"
@@ -46,13 +54,20 @@ const LoginForm: React.FC = () => {
           value={form.password}
           onChange={handleChange}
         />
-        <label htmlFor="password">password</label>
       </div>
       <footer className="login-form__footer">
-        <button className="login-form__button" type="button">
+        <button
+          className="login-form__button login-form__button_cancel"
+          type="button"
+          onClick={() => dispatch(toggleLoginPopUp())}
+        >
           Cancel
         </button>
-        <button className="login-form__button" type="submit" onClick={event => handleSubmit(event, form)}>
+        <button
+          className="login-form__button login-form__button_submit"
+          type="submit"
+          onClick={event => handleSubmit(event, form)}
+        >
           Log In
         </button>
       </footer>

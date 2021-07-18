@@ -1,30 +1,20 @@
+import './card-category-form.scss';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { CategoryForm } from '../../app.api';
-import { updateCategory } from '../../redux/actions';
+import { CardCategoryFormProps, CategoryForm } from '../../../app.api';
 
-export type CardFormProps = {
-  name?: string;
-  preview?: string;
-  setEdit: (state: boolean) => void;
-  setPreview: (file: string | null) => void;
-  previewImage?: string | null;
-  handleSubmit: (event: React.FormEvent, categoryName: string, image: Blob | null) => void;
-};
-
-const AdminCardForm: React.FC<CardFormProps> = ({
+const CardCategoryForm: React.FC<CardCategoryFormProps> = ({
   name,
   setEdit,
-  preview,
+  initialPreview,
   setPreview,
   handleSubmit,
   previewImage,
-}: CardFormProps) => {
+}: CardCategoryFormProps) => {
   const [form, setForm] = useState<CategoryForm>({
     categoryName: name || '',
     image: null,
   });
-  const dispatch = useDispatch();
 
   const handleChange = ({ target }: React.ChangeEvent) => {
     if (target instanceof HTMLInputElement) {
@@ -60,40 +50,43 @@ const AdminCardForm: React.FC<CardFormProps> = ({
 
   const handleCancel = () => {
     setEdit(false);
-    preview ? setPreview(preview) : setPreview('');
+    initialPreview ? setPreview(initialPreview) : setPreview('');
   };
 
   return (
-    <form className="new-card" onSubmit={event => handleSubmit(event, form.categoryName, form.image)}>
+    <form className="card-form" onSubmit={event => handleSubmit(event, form.categoryName, form.image)}>
       <input
-        className="new-card__input"
+        className="card-form__input"
         type="text"
         name="categoryName"
+        placeholder="Name"
         value={form.categoryName}
         onChange={handleChange}
       />
-      <div className="new-card__preview">
-        <label htmlFor="preview" className="new-card__label">
-          Choose preview
+      <div className="card-form__wrapper">
+        <label htmlFor="preview" className="card-form__label">
+          Choose preview:
         </label>
         <input
-          className="new-card__input-image"
+          className="card-form__input-image"
           type="file"
           name="preview"
           accept=".png,.jpg,.jpeg,.svg"
           onChange={getFile}
         />
 
-        {previewImage && <img src={previewImage} alt="Preview" className="new-card__image" />}
+        <img src={previewImage || '/images/upload.jpg'} alt="preview" className="card-form__image" />
       </div>
-      <button className="new-card__submit" type="submit">
-        Submit
-      </button>
-      <button className="new-card__cancel" type="button" onClick={handleCancel}>
-        Cancel
-      </button>
+      <div className="card-form__footer">
+        <button className="card-form__submit" type="submit">
+          Submit
+        </button>
+        <button className="card-form__cancel" type="button" onClick={handleCancel}>
+          Cancel
+        </button>
+      </div>
     </form>
   );
 };
 
-export default AdminCardForm;
+export default CardCategoryForm;

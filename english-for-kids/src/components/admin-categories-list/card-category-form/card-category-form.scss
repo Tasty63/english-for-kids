@@ -1,0 +1,52 @@
+@import '../../../scss/variables.scss';
+@import '../../../scss/index.scss';
+
+.card-form {
+  @include admin-card();
+  border: 3px dashed $adminColor;
+
+  &__input {
+    border: none;
+    border-bottom: 2px solid $additionalAdminColor;
+    outline: none;
+  }
+
+  &__wrapper {
+    position: relative;
+  }
+
+  &__input-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    opacity: 0;
+
+    &:hover {
+      cursor: pointer;
+
+      & + .card-form__image {
+        border: 5px solid $additionalAdminColor;
+      }
+    }
+  }
+
+  &__image {
+    box-sizing: border-box;
+    border: 5px solid transparent;
+    transition: border 0.3s;
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  &__submit,
+  &__cancel {
+    @include admin-button();
+  }
+}

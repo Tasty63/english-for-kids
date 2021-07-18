@@ -92,6 +92,15 @@ export type AdminCategoryCardProps = {
   id: string;
 };
 
+export type CardCategoryFormProps = {
+  name?: string;
+  initialPreview?: string;
+  setEdit: (state: boolean) => void;
+  setPreview: (file: string | null) => void;
+  previewImage?: string | null;
+  handleSubmit: (event: React.FormEvent, categoryName: string, image: Blob | null) => void;
+};
+
 export type StatisticsProps = {
   requestSort: (key: SortKeys) => void;
   table: StatisticTableWord[];

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { CategoryForm } from '../../../app.api';
 import { createCategory } from '../../../redux/actions';
-import AdminCardForm from '../admin-card-form';
+import CardCategoryForm from '../card-category-form/card-category-form';
 import './new-category-card.scss';
 
 const NewCategoryCard: React.FC = () => {
@@ -19,7 +18,7 @@ const NewCategoryCard: React.FC = () => {
   return (
     <>
       {isEditing ? (
-        <AdminCardForm
+        <CardCategoryForm
           setEdit={setEdit}
           setPreview={setPreview}
           handleSubmit={handleSubmitChanges}

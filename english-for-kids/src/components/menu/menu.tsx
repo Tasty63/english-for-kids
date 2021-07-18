@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { removeSpacesfromWord } from '../../utils/helpers';
-import { toggleLoginPopUp, toggleMenu } from '../../redux/actions';
+import { toggleMenu } from '../../redux/actions';
+import LoginButton from './login-button/login-button';
 
 const Menu: React.FC = () => {
   const isOpen = useSelector((state: RootState) => state.menu.isOpen);
@@ -37,11 +38,7 @@ const Menu: React.FC = () => {
             </li>
           </ul>
         </nav>
-        <div className="menu__login">
-          <button className="menu__login-button" type="button" onClick={() => dispatch(toggleLoginPopUp())}>
-            Log In
-          </button>
-        </div>
+        <LoginButton />
       </div>
       <div
         className={isOpen ? 'menu__wrapper menu__wrapper_visible' : 'menu__wrapper'}

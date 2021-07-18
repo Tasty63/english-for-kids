@@ -3,35 +3,30 @@
 
 .admin-category-card {
   @include admin-card();
-  height: 26rem;
 
-  &__title {
-    font-size: 3rem;
-    text-align: center;
-    align-self: center;
-    font-family: $logoFont;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 30rem;
-    overflow: hidden;
+  &__amount {
+    margin-bottom: 1.5rem;
   }
 
-  &__words-info {
-    padding-left: 4rem;
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-transform: uppercase;
+    margin-bottom: 1.5rem;
   }
 
   &__close-button {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
-    border-radius: 50%;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 2.5rem;
     background: transparent;
     border: none;
-    transition: transform 0.3s;
+    transition: transform 0.1s linear;
 
     &:hover {
-      transform: scale(1.1);
+      transform: scale(1.3);
       cursor: pointer;
     }
   }
@@ -44,27 +39,11 @@
 
   &__update-button,
   &__add-word-button {
-    padding: 0.5rem 2rem;
-    box-sizing: border-box;
-    background: transparent;
-    border-radius: 5px;
-    border: 2px solid $adminColor;
-    transition: transform 0.3s;
-    text-decoration: none;
-    &:hover {
-      transform: scale(1.1);
-      cursor: pointer;
-    }
+    @include admin-button();
   }
 
   &__link {
     text-decoration: none;
     color: black;
-  }
-
-  &__preview {
-    width: 10rem;
-    height: 10rem;
-    object-fit: cover;
   }
 }

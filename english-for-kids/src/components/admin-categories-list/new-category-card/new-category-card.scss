@@ -4,26 +4,15 @@
 .new-card {
   @include admin-card();
   align-items: center;
-  height: 35rem;
-
-  &__title {
-    font-family: $logoFont;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 30rem;
-    overflow: hidden;
-    font-size: 3rem;
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-  }
+  justify-content: center;
+  border: 3px dashed $adminColor;
 
   &__button {
     font-size: 10rem;
     border-radius: 50%;
     font-family: $switchFont;
-    color: rgba($color: #000000, $alpha: 0.5);
-    border: 5px solid rgba($color: #000000, $alpha: 0.5);
+    color: $additionalAdminColor;
+    border: 3px solid $additionalAdminColor;
     background: transparent;
     padding: 0 3rem;
     transition: transform 0.3s;
@@ -32,11 +21,5 @@
       transform: scale(1.1);
       cursor: pointer;
     }
-  }
-
-  &__image {
-    width: 100%;
-    max-width: 20rem;
-    object-fit: cover;
   }
 }
