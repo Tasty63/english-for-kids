@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeSpacesfromWord } from '../../../utils/helpers';
 import { deleteCategory, updateCategory } from '../../../redux/actions';
-import { AdminCategoryCardProps, CategoryForm } from '../../../app.api';
+import { AdminCategoryCardProps } from '../../../app.api';
 import CardCategoryForm from '../card-category-form/card-category-form';
 
 const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({

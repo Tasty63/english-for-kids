@@ -12,7 +12,6 @@ import {
   LoginActionType,
   LoginFormType,
   UserData,
-  CategoryForm,
 } from '../app.api';
 import {
   TOGGLE_MENU,

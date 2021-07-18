@@ -1,6 +1,5 @@
 import './card-category-form.scss';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { CardCategoryFormProps, CategoryForm } from '../../../app.api';
 
 const CardCategoryForm: React.FC<CardCategoryFormProps> = ({
