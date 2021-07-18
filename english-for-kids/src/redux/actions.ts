@@ -12,6 +12,7 @@ import {
   LoginActionType,
   LoginFormType,
   UserData,
+  CategoryForm,
 } from '../app.api';
 import {
   TOGGLE_MENU,
@@ -30,6 +31,8 @@ import {
   LOGIN_SUCCEED,
   LOGOUT,
   INIT_LOGIN,
+  CREATE_CATEGORY,
+  DELETE_CATEGORY,
 } from './action-constants';
 import {
   GameResults,
@@ -102,6 +105,36 @@ export const getCategories = (): ThunkAction<void, RootState, unknown, Categorie
 
   dispatch({ type: GET_CATEGORIES, list });
 };
+
+export const createCategory =
+  ({ categoryName, image }: CategoryForm): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
+  async dispatch => {
+    const formData = new FormData();
+
+    if (image) {
+      formData.append('image', image);
+    }
+    formData.append('categoryName', categoryName);
+
+    const response = await fetch(`${serverURL}/api/category/create`, {
+      method: 'POST',
+      body: formData,
+    });
+    const list = await response.json();
+
+    dispatch({ type: CREATE_CATEGORY, list });
+  };
+
+export const deleteCategory =
+  (id: string): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
+  async dispatch => {
+    const response = await fetch(`${serverURL}/api/category/${id}`, {
+      method: 'DELETE',
+    });
+    const list = await response.json();
+
+    dispatch({ type: DELETE_CATEGORY, list });
+  };
 
 export const updateDifficultWords =
   (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async (dispatch, getState) => {

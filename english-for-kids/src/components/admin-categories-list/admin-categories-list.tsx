@@ -14,7 +14,8 @@ const AdminCategoryList: React.FC = () => {
           name={category.name}
           wordsAmount={category.words.length}
           preview={category.preview}
-          key={category.id}
+          id={category._id}
+          key={category._id}
         />
       ))}
       <NewCategoryCard />

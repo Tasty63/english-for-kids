@@ -18,11 +18,14 @@ import {
   LOGIN_SUCCEED,
   LOGOUT,
   INIT_LOGIN,
+  CREATE_CATEGORY,
+  UPDATE_CATEGORY,
+  DELETE_CATEGORY,
 } from './redux/action-constants';
 import { ReactNode } from 'react';
 
 export type Category = {
-  id: string;
+  _id: string;
   name: string;
   preview: string;
   words: WordData[];
@@ -82,10 +85,11 @@ export type CategoryCardProps = {
   preview: string;
 };
 
-export type CategoryEditCardProps = {
+export type AdminCategoryCardProps = {
   name: string;
   wordsAmount: number;
   preview: string;
+  id: string;
 };
 
 export type StatisticsProps = {
@@ -125,8 +129,8 @@ export type LoginFormType = {
 };
 
 export type CategoryForm = {
-  name: string;
-  previewFile: File | null;
+  categoryName: string;
+  image: Blob | null;
 };
 
 export type MenuState = {
@@ -164,6 +168,20 @@ export interface IMenuAction {
 
 export interface IGetCategories {
   type: typeof GET_CATEGORIES;
+  list: Category[];
+}
+
+export interface ICreateCategory {
+  type: typeof CREATE_CATEGORY;
+  list: Category[];
+}
+
+export interface IUpdateCategory {
+  type: typeof UPDATE_CATEGORY;
+}
+
+export interface IDeleteCategory {
+  type: typeof DELETE_CATEGORY;
   list: Category[];
 }
 
@@ -249,5 +267,10 @@ export type GameActionType =
   | IEndGame;
 
 export type StatisticsActionType = IGetStatistics | ITrainClick;
-export type CategoriesActionType = IGetCategories | IGetDifficultWords;
+export type CategoriesActionType =
+  | IGetCategories
+  | IGetDifficultWords
+  | ICreateCategory
+  | IUpdateCategory
+  | IDeleteCategory;
 export type LoginActionType = IInitLogin | IToggleLoginPopUp | ILoginFailed | ILoginSucceed | ILogout;

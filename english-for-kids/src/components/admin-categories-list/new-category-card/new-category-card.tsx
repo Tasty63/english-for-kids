@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { CategoryForm } from '../../../app.api';
+import { createCategory } from '../../../redux/actions';
 import './new-category-card.scss';
 
 const NewCategoryCard: React.FC = () => {
   const [isEditing, setEdit] = useState(false);
   const [form, setForm] = useState<CategoryForm>({
-    name: '',
-    previewFile: null,
+    categoryName: '',
+    image: null,
   });
-  const [image, setImage] = useState<string | null>('');
+  const [preview, setPreview] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   const handleChange = ({ target }: React.ChangeEvent) => {
     if (target instanceof HTMLInputElement) {
@@ -18,9 +21,29 @@ const NewCategoryCard: React.FC = () => {
 
   const handleSubmitChanges = (event: React.FormEvent) => {
     event?.preventDefault();
+    dispatch(createCategory(form));
+    setEdit(false);
+    setPreview(null);
   };
 
-  const getFiles = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCancel = () => {
+    setPreview(null);
+    setEdit(false);
+  };
+
+  const image = (file: Blob) => {
+    const reader = new FileReader();
+
+    reader.onloadend = ({ target }) => {
+      if (target && !(target.result instanceof ArrayBuffer)) {
+        setPreview(target.result);
+      }
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const getFile = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) {
       return;
     }
@@ -30,24 +53,21 @@ const NewCategoryCard: React.FC = () => {
       return;
     }
 
-    setForm({ ...form, previewFile: file });
-
-    const reader = new FileReader();
-    reader.onloadend = ({ target }) => {
-      if (target && !(target.result instanceof ArrayBuffer)) {
-        setImage(target.result);
-        console.log(target);
-      }
-    };
-
-    reader.readAsDataURL(file);
+    setForm({ ...form, image: file });
+    image(file);
   };
 
   return (
     <>
       {isEditing ? (
         <form className="new-card" onSubmit={handleSubmitChanges}>
-          <input className="new-card__input" type="text" placeholder="name" onChange={handleChange} />
+          <input
+            className="new-card__input"
+            type="text"
+            name="categoryName"
+            placeholder="name"
+            onChange={handleChange}
+          />
           <div className="new-card__preview">
             <label htmlFor="preview" className="new-card__label">
               Choose preview
@@ -57,15 +77,15 @@ const NewCategoryCard: React.FC = () => {
               type="file"
               name="preview"
               accept=".png,.jpg,.jpeg,.svg"
-              onChange={getFiles}
+              onChange={getFile}
             />
 
-            {image && <img src={image} alt="" className="new-card__image" />}
+            {preview && <img src={preview} alt="" className="new-card__image" />}
           </div>
           <button className="new-card__submit" type="submit">
             Submit
           </button>
-          <button className="new-card__cancel" type="button" onClick={() => setEdit(false)}>
+          <button className="new-card__cancel" type="button" onClick={handleCancel}>
             Cancel
           </button>
         </form>

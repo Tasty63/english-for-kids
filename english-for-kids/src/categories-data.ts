@@ -2,7 +2,7 @@ import { Category } from './app.api';
 
 const categories: Category[] = [
   {
-    id: '1',
+    _id: '1',
     name: 'Action (set A)',
     preview: 'https://res.cloudinary.com/tasty63/image/upload/v1626443166/images/dive_l2cgog.jpg',
     words: [
@@ -65,7 +65,7 @@ const categories: Category[] = [
     ],
   },
   {
-    id: '2',
+    _id: '2',
     name: 'Action (set B)',
     preview: 'https://res.cloudinary.com/tasty63/image/upload/v1626443099/images/run_m46oqr.jpg',
     words: [
@@ -128,7 +128,7 @@ const categories: Category[] = [
     ],
   },
   {
-    id: '3',
+    _id: '3',
     name: 'Animal (set A)',
     preview: 'https://res.cloudinary.com/tasty63/image/upload/v1626443150/images/chick_kulnb2.jpg',
     words: [
@@ -191,7 +191,7 @@ const categories: Category[] = [
     ],
   },
   {
-    id: '4',
+    _id: '4',
     name: 'Animal (set B)',
     preview: 'https://res.cloudinary.com/tasty63/image/upload/v1626443054/images/dolphin_kmn250.jpg',
     words: [
@@ -254,7 +254,7 @@ const categories: Category[] = [
     ],
   },
   {
-    id: '5',
+    _id: '5',
     name: 'Clothes',
     preview: 'https://res.cloudinary.com/tasty63/image/upload/v1626443144/images/boot_zmzbzf.jpg',
     words: [
@@ -317,7 +317,7 @@ const categories: Category[] = [
     ],
   },
   {
-    id: '6',
+    _id: '6',
     name: 'Emotions',
     preview: 'https://res.cloudinary.com/tasty63/image/upload/v1626443071/images/happy_dfosbq.jpg',
     words: [
@@ -380,7 +380,7 @@ const categories: Category[] = [
     ],
   },
   {
-    id: '7',
+    _id: '7',
     name: 'Fruits',
     preview: '/images/fruits/apple.jpg',
     words: [
@@ -443,7 +443,7 @@ const categories: Category[] = [
     ],
   },
   {
-    id: '8',
+    _id: '8',
     name: 'Vegetables',
     preview: '/images/vegetables/carrot.jpg',
     words: [

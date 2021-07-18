@@ -24,6 +24,7 @@
     "no-plusplus": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
     "react/no-array-index-key": 0,
+    "no-underscore-dangle": 0,
     "max-len": [
       "error",
       {

@@ -9,7 +9,7 @@ const CategoryList: React.FC = () => {
   return (
     <div className="card-list">
       {categories.map(category => (
-        <CategoryCard name={category.name} preview={category.preview} key={category.id} />
+        <CategoryCard name={category.name} preview={category.preview} key={category._id} />
       ))}
     </div>
   );

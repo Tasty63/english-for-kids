@@ -19,7 +19,7 @@ const Menu: React.FC = () => {
             {categories.map(category => {
               const nameWithoutSpaces = removeSpacesfromWord(category.name);
               return (
-                <li className="nav__item" key={category.id}>
+                <li className="nav__item" key={category._id}>
                   <NavLink
                     to={`/category/${nameWithoutSpaces}`}
                     className="nav__link"

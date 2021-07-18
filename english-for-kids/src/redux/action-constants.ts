@@ -3,6 +3,9 @@ export const TOGGLE_MODE = 'TOGGLE_MODE';
 
 export const GET_CATEGORIES = 'GET_CATEGORIES';
 export const UPDATE_DIFFICULT_WORDS = 'UPDATE_DIFFICULT_WORDS';
+export const CREATE_CATEGORY = 'CREATE_CATEGORY';
+export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
+export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 
 export const START_GAME = 'START_GAME';
 export const STOP_GAME = 'STOP_GAME';
@@ -20,3 +23,7 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGIN_SUCCEED = 'LOGIN_SUCCEED';
 export const LOGOUT = 'LOGOUT';
 export const INIT_LOGIN = 'INIT_LOGIN';
+
+export const CREATE_WORD = 'CREATE_CATEGORY';
+export const UPDATE_WORD = 'UPDATE_WORD';
+export const DELETE_WORD = 'DELETE_WORD';

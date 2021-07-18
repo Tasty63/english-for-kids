@@ -9,14 +9,14 @@ export type AdminWordForm = {
   audioSrc: string;
 };
 
-const AdminWordCard: React.FC<WordData> = ({ word, image, translation, audioSrc, id }: WordData) => {
+const AdminWordCard: React.FC<WordData> = ({ word, image, translation, audioSrc }: WordData) => {
   const [isEditing, setEdit] = useState(false);
-  const [form, setForm] = useState<AdminWordForm>({
-    word,
-    image,
-    translation,
-    audioSrc,
-  });
+  // const [form, setForm] = useState<AdminWordForm>({
+  //   word,
+  //   image,
+  //   translation,
+  //   audioSrc,
+  // });
 
   const handleSubmitChanges = (event: React.MouseEvent) => {
     event?.preventDefault();

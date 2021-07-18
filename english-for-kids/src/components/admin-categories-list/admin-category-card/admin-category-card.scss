@@ -60,4 +60,10 @@
   &__link {
     text-decoration: none;
   }
+
+  &__preview {
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+  }
 }

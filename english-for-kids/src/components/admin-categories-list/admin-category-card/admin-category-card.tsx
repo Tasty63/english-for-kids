@@ -1,12 +1,20 @@
 import './admin-category-card.scss';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { CategoryEditCardProps } from '../../../app.api';
 import { removeSpacesfromWord } from '../../../utils/helpers';
+import { deleteCategory } from '../../../redux/actions';
+import { AdminCategoryCardProps } from '../../../app.api';
 
-const AdminCategoryCard: React.FC<CategoryEditCardProps> = ({ name, wordsAmount, preview }: CategoryEditCardProps) => {
-  const nameWithoutSpaces = removeSpacesfromWord(name);
+const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
+  id,
+  name,
+  wordsAmount,
+  preview,
+}: AdminCategoryCardProps) => {
   const [isEditing, setEdit] = useState(false);
+  const nameWithoutSpaces = removeSpacesfromWord(name);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -24,10 +32,17 @@ const AdminCategoryCard: React.FC<CategoryEditCardProps> = ({ name, wordsAmount,
       ) : (
         <div className="admin-category-card">
           <h5 className="admin-category-card__title">{name}</h5>
-          <button className="admin-category-card__close-button" type="button">
+          <button
+            className="admin-category-card__close-button"
+            type="button"
+            onClick={() => dispatch(deleteCategory(id))}
+          >
             X
           </button>
-          <div className="admin-category-card__words-info">Words: {wordsAmount}</div>
+          <div className="admin-category-card__words-info">
+            Words: {wordsAmount}
+            <img src={preview} alt="preview" className="admin-category-card__preview" />
+          </div>
           <footer className="admin-category-card__footer">
             <button
               className="admin-category-card__update-button"
