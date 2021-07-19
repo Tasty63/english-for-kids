@@ -3,7 +3,7 @@
 
 .card-list {
   @include card-list();
-  margin-top: 4rem;
+
   @media (max-width: $thirdBreakPoint) {
     margin-top: 0;
   }

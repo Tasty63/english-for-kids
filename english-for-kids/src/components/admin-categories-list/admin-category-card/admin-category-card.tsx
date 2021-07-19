@@ -6,6 +6,7 @@ import { removeSpacesfromWord } from '../../../utils/helpers';
 import { deleteCategory, updateCategory } from '../../../redux/actions';
 import { AdminCategoryCardProps } from '../../../app.api';
 import CardCategoryForm from '../card-category-form/card-category-form';
+import { ImagePaths } from '../../../utils/config';
 
 const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
   id,
@@ -22,6 +23,7 @@ const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
   const handleSubmitChanges = (event: React.FormEvent, categoryName: string, image: Blob | null) => {
     event?.preventDefault();
     dispatch(updateCategory(id, categoryName, image));
+    setPreview(preview);
     setEdit(false);
   };
 
@@ -48,7 +50,7 @@ const AdminCategoryCard: React.FC<AdminCategoryCardProps> = ({
           </button>
           <div className="admin-category-card__info">
             <div className="admin-category-card__amount">Words: {wordsAmount}</div>
-            <img src={previewImage || ''} alt="preview" className="admin-category-card__image" />
+            <img src={previewImage || ImagePaths.NoImage} alt="preview" className="admin-category-card__image" />
           </div>
           <footer className="admin-category-card__footer">
             <button

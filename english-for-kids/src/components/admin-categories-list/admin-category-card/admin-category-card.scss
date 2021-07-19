@@ -34,12 +34,16 @@
   &__footer {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
   }
-
+  &__update-button {
+    margin-right: 2rem;
+  }
   &__update-button,
   &__add-word-button {
     @include admin-button();
+
+    flex-basis: 50%;
   }
 
   &__link {

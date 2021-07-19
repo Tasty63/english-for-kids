@@ -2,7 +2,7 @@ import './login-form.scss';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoginFormType } from '../../app.api';
-import { toggleLoginPopUp, tryLogin } from '../../redux/actions';
+import { clearMessage, toggleLoginPopUp, tryLogin } from '../../redux/actions';
 import { RootState } from '../../redux/store';
 
 const LoginForm: React.FC = () => {
@@ -24,13 +24,22 @@ const LoginForm: React.FC = () => {
   const handleSubmit = (event: React.MouseEvent, formData: LoginFormType) => {
     event.preventDefault();
     dispatch(tryLogin(formData));
+    dispatch(clearMessage());
+  };
+
+  const handleCancel = () => {
+    setForm({
+      username: 'admin',
+      password: 'admin',
+    });
     dispatch(toggleLoginPopUp());
+    dispatch(clearMessage());
   };
 
   return (
     <form className="login-form">
       <h5 className="login-form__title">Login</h5>
-      {message && <div className="login-form__message">{message}</div>}
+      <div className="login-form__message">{message}</div>
       <div className="login-form__field">
         <label htmlFor="username" className="login-form__label">
           Username:
@@ -56,11 +65,7 @@ const LoginForm: React.FC = () => {
         />
       </div>
       <footer className="login-form__footer">
-        <button
-          className="login-form__button login-form__button_cancel"
-          type="button"
-          onClick={() => dispatch(toggleLoginPopUp())}
-        >
+        <button className="login-form__button login-form__button_cancel" type="button" onClick={handleCancel}>
           Cancel
         </button>
         <button

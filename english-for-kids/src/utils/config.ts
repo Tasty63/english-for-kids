@@ -41,3 +41,8 @@ export enum SortKeys {
 export enum RouteNames {
   DifficultWords = 'difficultWords',
 }
+
+export enum ImagePaths {
+  Upload = '',
+  NoImage = '/images/no-image.png',
+}

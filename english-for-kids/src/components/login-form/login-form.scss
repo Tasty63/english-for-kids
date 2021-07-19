@@ -17,9 +17,15 @@
     font-family: $logoFont;
     text-align: center;
     font-size: 4rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     color: $additionalAdminColor;
     -webkit-text-stroke: 1px black;
+  }
+
+  &__message {
+    box-sizing: border-box;
+    color: red;
+    margin-bottom: 1rem;
   }
 
   &__label {

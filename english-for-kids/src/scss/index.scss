@@ -93,9 +93,9 @@ p {
   justify-content: space-around;
   padding: 2rem;
   box-sizing: border-box;
-  flex-basis: calc(25% - 3rem);
   width: 100%;
   max-width: 30rem;
+  min-height: 40rem;
   margin-bottom: 2rem;
   margin-right: 3rem;
   position: relative;
@@ -103,14 +103,6 @@ p {
   border: 3px solid $adminColor;
   font-size: 2rem;
   font-family: $mainFont;
-
-  @media (max-width: $secondBreakPoint) {
-    flex-basis: calc(100% / 3 - 2rem);
-  }
-
-  @media (max-width: $thirdBreakPoint) {
-    flex-basis: calc(50% - 2rem);
-  }
 
   &__title {
     font-size: 3rem;
@@ -163,7 +155,7 @@ p {
 }
 
 @mixin admin-button() {
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
   box-sizing: border-box;
   background: transparent;
   border-radius: 5px;

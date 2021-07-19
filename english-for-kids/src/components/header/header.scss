@@ -5,6 +5,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 4rem 0;
+  margin-bottom: 3rem;
 
   @media (max-width: $thirdBreakPoint) {
     flex-wrap: wrap;

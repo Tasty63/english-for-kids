@@ -1,10 +1,17 @@
-import { LOGIN_FAILED, LOGIN_SUCCEED, LOGOUT, TOGGLE_LOGIN_POPUP, INIT_LOGIN } from '../action-constants';
+import {
+  LOGIN_FAILED,
+  LOGIN_SUCCEED,
+  LOGOUT,
+  TOGGLE_LOGIN_POPUP,
+  INIT_LOGIN,
+  CLEAR_MESSAGE,
+} from '../action-constants';
 import { LoginActionType, LoginState } from '../../app.api';
 
 const LoginInitialState: LoginState = {
   isPopUpOpened: false,
   isLogged: false,
-  message: undefined,
+  message: null,
   userData: { token: null, userId: null },
 };
 
@@ -23,6 +30,10 @@ const LoginReducer = (state = LoginInitialState, action: LoginActionType): Login
 
   if (action.type === LOGIN_FAILED) {
     return { ...state, message: action.message };
+  }
+
+  if (action.type === CLEAR_MESSAGE) {
+    return { ...state, message: null };
   }
 
   if (action.type === LOGOUT) {

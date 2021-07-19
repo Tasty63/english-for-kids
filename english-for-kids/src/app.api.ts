@@ -21,6 +21,7 @@ import {
   CREATE_CATEGORY,
   UPDATE_CATEGORY,
   DELETE_CATEGORY,
+  CLEAR_MESSAGE,
 } from './redux/action-constants';
 import { ReactNode } from 'react';
 
@@ -149,7 +150,7 @@ export type MenuState = {
 export type LoginState = {
   isPopUpOpened: boolean;
   isLogged: boolean;
-  message?: string;
+  message: string | null;
   userData: UserData;
 };
 
@@ -255,6 +256,11 @@ export interface ILoginFailed {
   type: typeof LOGIN_FAILED;
   message: string;
 }
+
+export interface IClearMessage {
+  type: typeof CLEAR_MESSAGE;
+}
+
 export interface ILoginSucceed {
   type: typeof LOGIN_SUCCEED;
   userData: UserData;
@@ -283,4 +289,4 @@ export type CategoriesActionType =
   | ICreateCategory
   | IUpdateCategory
   | IDeleteCategory;
-export type LoginActionType = IInitLogin | IToggleLoginPopUp | ILoginFailed | ILoginSucceed | ILogout;
+export type LoginActionType = IInitLogin | IToggleLoginPopUp | ILoginFailed | IClearMessage | ILoginSucceed | ILogout;

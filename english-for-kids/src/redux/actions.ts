@@ -32,6 +32,8 @@ import {
   INIT_LOGIN,
   CREATE_CATEGORY,
   DELETE_CATEGORY,
+  UPDATE_CATEGORY,
+  CLEAR_MESSAGE,
 } from './action-constants';
 import {
   GameResults,
@@ -63,18 +65,18 @@ export const logout = (): ThunkAction<void, RootState, unknown, LoginActionType>
   dispatch({ type: LOGOUT });
 };
 
+export const clearMessage = (): LoginActionType => ({ type: CLEAR_MESSAGE });
+
 export const loginSucceed =
   (userData: UserData): ThunkAction<void, RootState, unknown, LoginActionType> =>
   async dispatch => {
     localStorage.setItem(userDataStorageName, JSON.stringify(userData));
     dispatch({ type: LOGIN_SUCCEED, userData });
+    dispatch(toggleLoginPopUp());
+    dispatch(clearMessage());
   };
 
-export const loginFailed =
-  (message: string): ThunkAction<void, RootState, unknown, LoginActionType> =>
-  async dispatch => {
-    dispatch({ type: LOGIN_FAILED, message });
-  };
+export const loginFailed = (message: string): LoginActionType => ({ type: LOGIN_FAILED, message });
 
 export const tryLogin =
   (form: LoginFormType): ThunkAction<void, RootState, unknown, LoginActionType> =>
@@ -102,12 +104,17 @@ export const getCategories = (): ThunkAction<void, RootState, unknown, Categorie
   const response = await fetch(`${serverURL}/api/category`);
   const list = await response.json();
 
+  if (!Array.isArray(list)) {
+    return;
+  }
+
   dispatch({ type: GET_CATEGORIES, list });
 };
 
 export const createCategory =
   (categoryName: string, image: Blob | null): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
-  async dispatch => {
+  async (dispatch, getState) => {
+    const { token } = getState().login.userData;
     const formData = new FormData();
 
     if (image) {
@@ -118,19 +125,34 @@ export const createCategory =
     const response = await fetch(`${serverURL}/api/category/create`, {
       method: 'POST',
       body: formData,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
     const list = await response.json();
+
+    if (!Array.isArray(list)) {
+      return;
+    }
 
     dispatch({ type: CREATE_CATEGORY, list });
   };
 
 export const deleteCategory =
   (id: string): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
-  async dispatch => {
+  async (dispatch, getState) => {
+    const { token } = getState().login.userData;
     const response = await fetch(`${serverURL}/api/category/${id}`, {
       method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
     const list = await response.json();
+
+    if (!Array.isArray(list)) {
+      return;
+    }
 
     dispatch({ type: DELETE_CATEGORY, list });
   };
@@ -141,7 +163,8 @@ export const updateCategory =
     categoryName?: string,
     image?: Blob | null,
   ): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
-  async dispatch => {
+  async (dispatch, getState) => {
+    const { token } = getState().login.userData;
     if (!image && !categoryName) {
       return;
     }
@@ -159,10 +182,17 @@ export const updateCategory =
     const response = await fetch(`${serverURL}/api/category/${id}`, {
       method: 'PUT',
       body: formData,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
     });
     const list = await response.json();
 
-    dispatch({ type: DELETE_CATEGORY, list });
+    if (!Array.isArray(list)) {
+      return;
+    }
+
+    dispatch({ type: UPDATE_CATEGORY, list });
   };
 
 export const updateDifficultWords =

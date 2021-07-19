@@ -20,6 +20,7 @@ export const TRAIN_CLICK = 'TRAIN_CLICK';
 
 export const TOGGLE_LOGIN_POPUP = 'TOGGLE_LOGIN_POPUP';
 export const LOGIN_FAILED = 'LOGIN_FAILED';
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 export const LOGIN_SUCCEED = 'LOGIN_SUCCEED';
 export const LOGOUT = 'LOGOUT';
 export const INIT_LOGIN = 'INIT_LOGIN';
