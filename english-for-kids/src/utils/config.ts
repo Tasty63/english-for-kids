@@ -3,11 +3,12 @@ export const wordPronounceDelayMs = 500;
 export const endGameRedirectionDelayMs = 2000;
 export const lowAccuracyPercent = 50;
 export const maxDifficultWordsOnPage = 8;
-export const serverURL = 'https:git.heroku.com/safe-chamber-08643.git';
+export const serverURL = 'https://safe-chamber-08643.herokuapp.com';
 export const userDataStorageName = 'EFK-userData';
-// https:git.heroku.com/safe-chamber-08643.git
 
+// https://safe-chamber-08643.herokuapp.com/api/category
 // http://localhost:5000
+
 export enum Modes {
   Train = 'Train',
   Play = 'Play',
