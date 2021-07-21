@@ -220,29 +220,24 @@ export const createWord =
     formData.append('word', word);
     formData.append('translation', translation);
 
-    const response = await fetch(`${serverURL}/api/words/${categoryId}`, {
+    await fetch(`${serverURL}/api/words/${categoryId}`, {
       method: 'POST',
       body: formData,
       headers: {
         authorization: `Bearer ${token}`,
       },
     });
-    const result = response.json();
 
     dispatch({ type: CREATE_WORD });
   };
 
-export const deleteWord =
-  (id: string): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
-  async (dispatch, getState) => {
-    dispatch({ type: DELETE_WORD });
-  };
+export const deleteWord = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {
+  dispatch({ type: DELETE_WORD });
+};
 
-export const updateWord =
-  (id: string): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
-  async (dispatch, getState) => {
-    dispatch({ type: UPDATE_WORD });
-  };
+export const updateWord = (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async dispatch => {
+  dispatch({ type: UPDATE_WORD });
+};
 
 export const updateDifficultWords =
   (): ThunkAction<void, RootState, unknown, CategoriesActionType> => async (dispatch, getState) => {
