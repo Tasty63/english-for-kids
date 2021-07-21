@@ -332,6 +332,11 @@ export const trainClick =
   (id: string): ThunkAction<void, RootState, unknown, StatisticsActionType> =>
   async (dispatch, getState) => {
     const clickedWord = getState().statistics.find(word => word.id === id)!;
+
+    if (!clickedWord) {
+      return;
+    }
+
     clickedWord.trained += 1;
 
     await fetch(`${serverURL}/api/statistics/${id}`, {

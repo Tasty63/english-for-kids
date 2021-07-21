@@ -15,7 +15,7 @@ const LoginInitialState: LoginState = {
   userData: { token: null, userId: null },
 };
 
-const LoginReducer = (state = LoginInitialState, action: LoginActionType): LoginState => {
+const loginReducer = (state = LoginInitialState, action: LoginActionType): LoginState => {
   if (action.type === TOGGLE_LOGIN_POPUP) {
     return { ...state, isPopUpOpened: !state.isPopUpOpened };
   }
@@ -42,4 +42,4 @@ const LoginReducer = (state = LoginInitialState, action: LoginActionType): Login
   return state;
 };
 
-export default LoginReducer;
+export default loginReducer;

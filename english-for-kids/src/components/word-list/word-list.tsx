@@ -50,7 +50,7 @@ const WordList: React.FC = () => {
             word={wordData.word}
             image={wordData.image}
             translation={wordData.translation}
-            audioSrc={`${serverURL}${wordData.audioSrc}`}
+            audioSrc={wordData.audioSrc}
             id={wordData.id}
             key={wordData.id}
           />

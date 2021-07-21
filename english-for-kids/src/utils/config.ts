@@ -3,10 +3,10 @@ export const wordPronounceDelayMs = 500;
 export const endGameRedirectionDelayMs = 2000;
 export const lowAccuracyPercent = 50;
 export const maxDifficultWordsOnPage = 8;
-export const serverURL = 'http://localhost:5000';
+export const serverURL = 'https://safe-chamber-08643.herokuapp.com';
 export const userDataStorageName = 'EFK-userData';
 
-// https://safe-chamber-08643.herokuapp.com/api/category
+// https://safe-chamber-08643.herokuapp.com
 // http://localhost:5000
 
 export enum Modes {
