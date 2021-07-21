@@ -33,6 +33,11 @@
     }
   }
 
+  &__input-audio {
+    width: 100%;
+    text-overflow: initial;
+  }
+
   &__image {
     box-sizing: border-box;
     border: 5px solid transparent;

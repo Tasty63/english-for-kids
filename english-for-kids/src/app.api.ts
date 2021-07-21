@@ -22,6 +22,9 @@ import {
   UPDATE_CATEGORY,
   DELETE_CATEGORY,
   CLEAR_MESSAGE,
+  CREATE_WORD,
+  DELETE_WORD,
+  UPDATE_WORD,
 } from './redux/action-constants';
 import { ReactNode } from 'react';
 
@@ -102,6 +105,22 @@ export type CardCategoryFormProps = {
   handleSubmit: (event: React.FormEvent, categoryName: string, image: Blob | null) => void;
 };
 
+export type CardWordFormProps = {
+  categoryId?: string;
+  name?: string;
+  translation?: string;
+  setEdit: (state: boolean) => void;
+  setPreview: (file: string | null) => void;
+  previewImage?: string | null;
+  handleSubmit: (
+    event: React.FormEvent,
+    name: string,
+    translation: string,
+    image: Blob | null,
+    audio: Blob | null,
+  ) => void;
+};
+
 export type StatisticsProps = {
   requestSort: (key: SortKeys) => void;
   table: StatisticTableWord[];
@@ -141,6 +160,13 @@ export type LoginFormType = {
 export type CategoryForm = {
   categoryName: string;
   image: Blob | null;
+};
+
+export type CardForm = {
+  wordName: string;
+  translation: string;
+  image: Blob | null;
+  audio: Blob | null;
 };
 
 export type MenuState = {
@@ -194,6 +220,18 @@ export interface IUpdateCategory {
 export interface IDeleteCategory {
   type: typeof DELETE_CATEGORY;
   list: Category[];
+}
+
+export interface ICreateWord {
+  type: typeof CREATE_WORD;
+}
+
+export interface IDeleteWord {
+  type: typeof DELETE_WORD;
+}
+
+export interface IUpdateWord {
+  type: typeof UPDATE_WORD;
 }
 
 export interface IGetDifficultWords {
@@ -288,5 +326,9 @@ export type CategoriesActionType =
   | IGetDifficultWords
   | ICreateCategory
   | IUpdateCategory
-  | IDeleteCategory;
+  | IDeleteCategory
+  | ICreateWord
+  | IDeleteWord
+  | IUpdateWord;
+
 export type LoginActionType = IInitLogin | IToggleLoginPopUp | ILoginFailed | IClearMessage | ILoginSucceed | ILogout;

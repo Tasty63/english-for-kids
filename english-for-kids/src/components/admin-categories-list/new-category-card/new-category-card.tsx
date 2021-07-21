@@ -12,6 +12,7 @@ const NewCategoryCard: React.FC = () => {
   const handleSubmitChanges = (event: React.FormEvent, categoryName: string, image: Blob | null) => {
     event?.preventDefault();
     dispatch(createCategory(categoryName, image));
+    setPreview(null);
     setEdit(false);
   };
 

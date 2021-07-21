@@ -11,12 +11,12 @@ export type AdminWordForm = {
 
 const AdminWordCard: React.FC<WordData> = ({ word, image, translation, audioSrc }: WordData) => {
   const [isEditing, setEdit] = useState(false);
-  // const [form, setForm] = useState<AdminWordForm>({
-  //   word,
-  //   image,
-  //   translation,
-  //   audioSrc,
-  // });
+  const [form, setForm] = useState<AdminWordForm>({
+    word,
+    image,
+    translation,
+    audioSrc,
+  });
 
   const handleSubmitChanges = (event: React.MouseEvent) => {
     event?.preventDefault();
@@ -43,7 +43,7 @@ const AdminWordCard: React.FC<WordData> = ({ word, image, translation, audioSrc 
         <div className="admin-word-card">
           <div className="admin-word-card__name">Word: {word}</div>
           <div className="admin-word-card__translation">Transaltion: {translation}</div>
-          <div className="admin-word-card__sound">Audio: {audioSrc}</div>
+          <div className="admin-word-card__sound">Audio: {audioSrc.slice(audioSrc.lastIndexOf('/') + 1)}</div>
           <div className="admin-word-card__image-container">
             <div className="admin-word-card__image-text">Image:</div>
             <img src={image} className="admin-word-card__image" alt={word} />

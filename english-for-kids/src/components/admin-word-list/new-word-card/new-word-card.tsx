@@ -1,25 +1,40 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createWord } from '../../../redux/actions';
+import CardWordForm from '../card-word-form/card-word-form';
 import './new-word-card.scss';
 
-const NewWordCard: React.FC = () => {
+export type NewWordCardProps = {
+  categoryId: string;
+};
+
+const NewWordCard: React.FC<NewWordCardProps> = ({ categoryId }: NewWordCardProps) => {
   const [isEditing, setEdit] = useState(false);
+  const [previewImage, setPreview] = useState<string | null>(null);
+  const dispatch = useDispatch();
+
+  const handleSubmitChanges = (
+    event: React.FormEvent,
+    word: string,
+    translation: string,
+    image: Blob | null,
+    audio: Blob | null,
+  ) => {
+    event?.preventDefault();
+    dispatch(createWord(categoryId, word, translation, image, audio));
+    setPreview(null);
+    setEdit(false);
+  };
 
   return (
     <>
       {isEditing ? (
-        <form className="new-card">
-          <input type="text" className="new-card__input" placeholder="name" />
-          <input className="new-card__input" type="text" placeholder="translation" />
-          <input className="new-card__input" type="text" placeholder="sound" />
-          <input className="new-card__input" type="text" placeholder="image" />
-
-          <button className="new-card__submit" type="submit">
-            Submit
-          </button>
-          <button className="new-card__cancel" type="button" onClick={() => setEdit(false)}>
-            Cancel
-          </button>
-        </form>
+        <CardWordForm
+          handleSubmit={handleSubmitChanges}
+          setEdit={setEdit}
+          setPreview={setPreview}
+          previewImage={previewImage}
+        />
       ) : (
         <div className="new-card">
           <h5 className="new-card__title">Add new Word</h5>

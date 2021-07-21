@@ -34,6 +34,9 @@ import {
   DELETE_CATEGORY,
   UPDATE_CATEGORY,
   CLEAR_MESSAGE,
+  CREATE_WORD,
+  DELETE_WORD,
+  UPDATE_WORD,
 } from './action-constants';
 import {
   GameResults,
@@ -193,6 +196,52 @@ export const updateCategory =
     }
 
     dispatch({ type: UPDATE_CATEGORY, list });
+  };
+
+export const createWord =
+  (
+    categoryId: string,
+    word: string,
+    translation: string,
+    image?: Blob | null,
+    audio?: Blob | null,
+  ): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
+  async (dispatch, getState) => {
+    const { token } = getState().login.userData;
+    const formData = new FormData();
+
+    if (image) {
+      formData.append('image', image);
+    }
+
+    if (audio) {
+      formData.append('audio', audio);
+    }
+    formData.append('word', word);
+    formData.append('translation', translation);
+
+    const response = await fetch(`${serverURL}/api/words/${categoryId}`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+    const result = response.json();
+
+    dispatch({ type: CREATE_WORD });
+  };
+
+export const deleteWord =
+  (id: string): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
+  async (dispatch, getState) => {
+    dispatch({ type: DELETE_WORD });
+  };
+
+export const updateWord =
+  (id: string): ThunkAction<void, RootState, unknown, CategoriesActionType> =>
+  async (dispatch, getState) => {
+    dispatch({ type: UPDATE_WORD });
   };
 
 export const updateDifficultWords =

@@ -25,6 +25,6 @@ export const LOGIN_SUCCEED = 'LOGIN_SUCCEED';
 export const LOGOUT = 'LOGOUT';
 export const INIT_LOGIN = 'INIT_LOGIN';
 
-export const CREATE_WORD = 'CREATE_CATEGORY';
+export const CREATE_WORD = 'CREATE_WORD';
 export const UPDATE_WORD = 'UPDATE_WORD';
 export const DELETE_WORD = 'DELETE_WORD';
