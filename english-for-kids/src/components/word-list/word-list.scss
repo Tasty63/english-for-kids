@@ -1,0 +1,5 @@
+@import '../../scss/index.scss';
+
+.word-list {
+  @include card-list();
+}

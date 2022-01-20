@@ -1,0 +1,23 @@
+@import '../../../scss/variables.scss';
+
+.stars {
+  display: flex;
+  overflow: hidden;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  height: 4rem;
+}
+
+.star {
+  width: 4rem;
+  height: 100%;
+
+  &_mistake {
+    background: center / cover url('/icons/star-mistake.svg');
+  }
+
+  &_guess {
+    order: -1;
+    background: center / cover url('/icons/star-guess.svg');
+  }
+}

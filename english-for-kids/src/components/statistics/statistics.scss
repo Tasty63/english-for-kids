@@ -1,0 +1,79 @@
+@import '../../scss//variables.scss';
+
+.statistics {
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+  font-family: $mainFont;
+  box-sizing: border-box;
+  padding-bottom: 2rem;
+
+  @media (max-width: $firstBreakPoint) {
+    &__item {
+      font-size: 2rem;
+    }
+  }
+
+  &__action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 2rem;
+  }
+
+  &__reset,
+  &__repeat {
+    background: $playModeColor;
+    transition: background-color 0.5s;
+    border-radius: 15px;
+    padding: 0.5rem 2rem;
+
+    &:hover {
+      cursor: pointer;
+      background: $menuColor;
+    }
+  }
+  &__link {
+    text-decoration: none;
+  }
+  &__reset {
+    margin-right: 2rem;
+  }
+
+  &__wrapper {
+    overflow-x: auto;
+  }
+
+  &__button {
+    font-family: $mainFont;
+    font-weight: 600;
+    padding: 1rem 4rem;
+    background-color: transparent;
+    border: none;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__table {
+    user-select: none;
+    border-collapse: collapse;
+    border: 5px solid $menuColor;
+    text-align: center;
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  &__header {
+    background: $trainModeColor;
+  }
+
+  &__row {
+    transition: background-color 0.3s;
+    &:hover {
+      background: $menuColor;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import '../../../scss/variables.scss';
+@import '../../../scss/index.scss';
+
+.start-button {
+  @include game-button();
+
+  &__triangle {
+    width: 0;
+    height: 0;
+    margin-left: 1rem;
+    border-top: 2rem solid transparent;
+    border-left: 4rem solid $additionalColor;
+    border-bottom: 2rem solid transparent;
+    border-radius: 1px;
+  }
+}

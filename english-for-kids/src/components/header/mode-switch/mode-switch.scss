@@ -1,0 +1,58 @@
+@import '../../../scss/variables.scss';
+
+.mode-switch {
+  position: relative;
+  display: inline-block;
+  width: 12rem;
+  height: 3.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $trainModeColor;
+    border-radius: 35px;
+    transition: 0.4s;
+    box-shadow: 1px 1px 3px black;
+
+    &::before {
+      position: absolute;
+      content: '';
+      height: 2.6rem;
+      width: 2.6rem;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .mode-switch__slider {
+      background: $playModeColor;
+
+      &:before {
+        transform: translateX(8.6rem);
+      }
+    }
+  }
+
+  &__text {
+    font-family: $mainFont;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+  }
+}
